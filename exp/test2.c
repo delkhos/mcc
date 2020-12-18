@@ -25,3 +25,4 @@ int fun2(int a){
 int main(){
   return 8;
 }
+

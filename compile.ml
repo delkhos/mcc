@@ -16,6 +16,8 @@ type decl_env =
 type env = (string*decl_env) list
 
 exception GlobalVarAlreadyDeclared of env*Error.locator
+exception RedefiningMainIsForbidden of env*Error.locator
+exception TooManyArgumentsForMain of env*Error.locator
 exception EmptyReturnOfNonVoidFunction of env*Error.locator
 exception Key_Not_found of env*Error.locator
 exception ErrorDuringFunctionCompiling of env*Error.locator
@@ -65,7 +67,11 @@ let rec func_is_in_environment env_const (env : env) key loc =
   |[] -> (false,(-1))
   |(k, FUN_ENV (_,id))::tl ->
       if key=k then 
-        (true,id)
+        if key = "main" then
+            raise ( RedefiningMainIsForbidden (env_const,loc))
+          else
+            (true,id)
+
       else
         func_is_in_environment env_const tl key loc
   |(k, VAR_ENV (_,_))::tl ->
@@ -148,12 +154,12 @@ and compile_block env var_deepness rbp_deepness vars (code_list : CAST.loc_code 
   in
   let (block_code_str,was_return) = aux "" code_list block_env var_deepness new_rbp_deepness false
   in
-  let jump_if_necessary = if was_return = true then String.concat "" ["\n\t\tjmp .END";string_of_int !end_n] else "" in
+  (*let jump_if_necessary = if was_return = true then String.concat "" ["\n\t\tjmp .END";string_of_int !end_n] else "" in *)
   String.concat "" [
     "\n\t\tsubq\t\t$";string_of_int to_sub_sizeofint;" , %rsp"
     ; block_code_str
-    ;"\n\t\taddq\t\t$";string_of_int to_sub_sizeofint;" , %rsp"
-    ;jump_if_necessary]
+    ;"\n\t\taddq\t\t$";string_of_int to_sub_sizeofint;" , %rsp"]
+    (* ;jump_if_necessary] *)
   
 
   
@@ -187,7 +193,7 @@ and compile_while env loc_expr loc_code var_deepness rbp_deepness =
 
 
 and compile_return env loc_expr = 
-  compile_expr env loc_expr "%eax" 
+  String.concat "" [compile_expr env loc_expr "%eax";"\n\t\tjmp .END"; string_of_int !end_n]
 
 and compile_code env var_deepness rbp_deepness loc_code =
   let (loc,code) = loc_code in
@@ -205,7 +211,7 @@ and compile_code env var_deepness rbp_deepness loc_code =
 let compile_fun env name id args code =
     let ((args_begin,rbp_deepness,fun_env),args_end) = handle_args env args in
     let str_code = compile_code fun_env 1 rbp_deepness code in
-    let fun_code = String.concat "" [name;string_of_int id;":";"\n\t\tpushq\t\t%rbp";"\n\t\tmovq\t\t%rsp , %rbp"; args_begin ; str_code ; "\n\t\t.END"; string_of_int !end_n;":"; args_end ;"\n\t\tpopq\t\t%rbp";"\n\t\tret";"\n\n"] in 
+    let fun_code = String.concat "" [name;string_of_int id;":";"\n\t\tpushq\t\t%rbp";"\n\t\tmovq\t\t%rsp , %rbp"; args_begin ; str_code ; "\n\t\t.END"; string_of_int !end_n;":"; args_end ;"\n\t\tmovq\t\t%rbp , %rsp" ;"\n\t\tpopq\t\t%rbp";"\n\t\tret";"\n\n"] in 
     end_n := !end_n + 1;
     fun_code
 
