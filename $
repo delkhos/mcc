@@ -26,10 +26,8 @@ exception ErrorDuringFunctionCompiling of env*Error.locator
 exception VarAlreadyDefinedAtSameLevel of env*Error.locator
 exception VariableWithSameNameAsFunctionAlreadyDeclared of env*Error.locator
 exception FunctionWithSameNameAsVariableAlreadyDeclared of env*Error.locator
-exception NotEnoughArgswhenCallingFunc of env*Error.locator
 exception UnboundVariable of env*Error.locator
 exception UnboundFunction of env*Error.locator
-exception IllegalMonOpOnNonVar of env*Error.locator
 exception IllegalRegisterArg
 
 let empty_env = []
@@ -77,11 +75,9 @@ let rec get_value_func (env_const : env) ( env : env) key loc =
       if key=k then
         match v with
         |VAR_ENV (_,_)-> raise (UnboundFunction (env_const,loc))
-        |FUN_ENV (id,nargs)-> (id,nargs)
+        |FUN_ENV (id,nargs)-> id
       else
         get_value_func env_const tl key loc
-
-let effective_func name id = Printf.sprintf "%s%d" name id
 
 let rec is_in_environment_same_level env_const (env : env) key loc deepness =
   match env with
@@ -124,28 +120,20 @@ let get_func_existence (existence,_) = existence
 let p_0argf out func_name = Printf.fprintf out "\t\t%s\n" func_name
 let p_1argf out func_name arg1 = Printf.fprintf out "\t\t%s    %s\n" func_name arg1
 let p_2argf out func_name arg1 arg2 = Printf.fprintf out "\t\t%s    %s , %s\n" func_name arg1 arg2
-let setl arg1 out = p_1argf out "setl" arg1
-let setle arg1 out = p_1argf out "setle" arg1
-let sete arg1 out = p_1argf out "sete" arg1
-let call arg1 out = p_1argf out "call" arg1
-let idivq arg1 out = p_1argf out "idivq" arg1
+let popl arg1 out = p_1argf out "popl" arg1
+let pushl arg1 out = p_1argf out "pushl" arg1
 let pushq arg1 out = p_1argf out "pushq" arg1
 let popq arg1 out = p_1argf out "popq" arg1
-let notq arg1 out = p_1argf out "notq" arg1
-let negq arg1 out = p_1argf out "negq" arg1
-let inc arg1 out = p_1argf out "inc" arg1
-let dec arg1 out = p_1argf out "inc" arg1
 let jmp arg1 out = p_1argf out "jmp" arg1
 let je arg1 out = p_1argf out "je" arg1
 let movq arg1 arg2 out = p_2argf out "movq" arg1 arg2
+let movl arg1 arg2 out = p_2argf out "movl" arg1 arg2
+let cmpl arg1 arg2 out = p_2argf out "cmpl" arg1 arg2
 let addq arg1 arg2 out = p_2argf out "addq" arg1 arg2
 let addl arg1 arg2 out = p_2argf out "addl" arg1 arg2
 let subq arg1 arg2 out = p_2argf out "subq" arg1 arg2
-let cmpq arg1 arg2 out = p_2argf out "cmpq" arg1 arg2
-let xorq arg1 arg2 out = p_2argf out "xorq" arg1 arg2
-let imulq arg1 arg2 out = p_2argf out "imulq" arg1 arg2
+let imull arg1 arg2 out = p_2argf out "imull" arg1 arg2
 let ret out = p_0argf out "ret"
-let cqto out = p_0argf out "cqto"
 
 let p_register delta reg = 
   if delta=0 then
@@ -153,9 +141,8 @@ let p_register delta reg =
   else
     Printf.sprintf "%d(%s)" delta reg 
 
-let print_global_int out var_name = Printf.fprintf out "%s:\n\t\t.zero    8\n\n" var_name
+let print_global_int out var_name = Printf.fprintf out "%s:\n\t\t.zero    4\n\n" var_name
 let print_func out name id = Printf.fprintf out "%s%d:\n" name id
-let get_func_inline out name id = Printf.sprintf "%s%d" name id
 let print_label out name id = Printf.fprintf out "\t.%s%d:\n" name id
 let get_label name id = Printf.sprintf ".%s%d" name id
 let int_literal n = Printf.sprintf "$%d" n
@@ -163,33 +150,32 @@ let string_literal str = Printf.sprintf "$%s" str
 
 let arg_register n_arg =
   match n_arg with
-  |0 -> "%rdi"
-  |1 -> "%rsi"
-  |2 -> "%rdx"
-  |3 -> "%rcx"
+  |0 -> "%edi"
+  |1 -> "%esi"
+  |2 -> "%edx"
+  |3 -> "%ecx"
   |4 -> "%r8d"
   |5 -> "%r9d"
   |_ -> raise ( IllegalRegisterArg )
 
 
-
 let handle_args env args out = 
     let nb_args = List.length args in
-    let to_sub = max 0 (nb_args-6) in
-    let to_sub_sizeofint = to_sub * 8 in
+    let to_sub = if nb_args >= 6 then 6 else nb_args in
+    let to_sub_sizeofint = to_sub * 4 in
     let rec aux env args n rbp_deepness = 
       match args with
       |[] -> (rbp_deepness,env)
       |( CDECL (loc,name))::tl -> 
           let adress = match n with
-                        |i when i<=5 -> p_register ((-8)*(i+1)) "%rbp"
+                        |i when i<=5 -> p_register ((-4)*(i+1)) "%rbp"
                         |i -> p_register (8+8*(i-5)) "%rbp"
           in
           let new_env = begin is_in_environment_same_level env env name loc 1 ; add_key env name (VAR_ENV (1,adress)) end
           in
-          let new_rbp_deepness = if n > 5 then rbp_deepness else (rbp_deepness-8) in
+          let new_rbp_deepness = if n > 5 then rbp_deepness else (rbp_deepness-4) in
           begin
-            if n < 5 then movq (arg_register n) adress out;
+            if n < 5 then movl (arg_register n) adress out;
             aux new_env tl (n+1) new_rbp_deepness 
           end
       |_ -> Printf.printf "this case should never happen because syntax handles it" ; (rbp_deepness,env) 
@@ -203,154 +189,41 @@ let handle_args env args out =
  *)
 
 (* penser à tester si il ne va pas y avoir du code inatteignable *)
-let rec compile_expr env loc_expr rbp_deepness result_destination out =
+let rec compile_expr env loc_expr result_destination out =
   let (loc,expr)=loc_expr in
   match expr with
-  |VAR (name) -> movq (get_value_var env env name loc) result_destination out
-  |CST (n) -> movq (int_literal n) result_destination out
+  |VAR (name) -> movl (get_value_var env env name loc) result_destination out
+  |CST (n) -> movl (int_literal n) result_destination out
   |STRING (str) -> begin 
     let address = get_str_adress str !str_env in
     match address with
-      |None -> movq (string_literal (put_str_adress str)) result_destination out
-      |Some addr -> movq (string_literal addr) result_destination out (* potentillement penser à esaped *)
+      |None -> movl (string_literal (put_str_adress str)) result_destination out
+      |Some addr -> movl (string_literal addr) result_destination out (* potentillement penser à esaped *)
     end
   |SET_VAR (var, loc_expr1) -> 
-      compile_expr env loc_expr1 rbp_deepness result_destination out;
-      movq result_destination (get_value_var env env var loc) out
+      compile_expr env loc_expr1 result_destination out;
+      movl result_destination (get_value_var env env var loc) out
   |SET_ARRAY (var, loc_expr1 , loc_expr2) ->
-      compile_expr env loc_expr1 rbp_deepness result_destination out;
-      imulq (int_literal 8) result_destination out;
-      pushq result_destination out;
-      compile_expr env loc_expr2 rbp_deepness result_destination out;
-      popq "%rbx" out;
-      movq (get_value_var env env var loc) "%rcx" out ;
-      addq "%rbx" "%rcx" out;
-      movq result_destination (p_register 0 "%rcx") out 
-  |CALL (name, args) ->
-      let nb_args = List.length args in
-      let (id,nb_real_args) = get_value_func env env name loc in 
-      if not (nb_real_args=nb_args) then
-        raise (NotEnoughArgswhenCallingFunc (env,loc))
-      else
-        begin
-          let stack_delta_args = if nb_args <= 6 then 0 else (nb_args-6)*8 in
-          subq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out; (* adjusting stack *)
-          handling_args_call env (rbp_deepness-(stack_delta_args/8)) out args;
-          call (get_func_inline out name id) out;
-          addq (int_literal ((max 0 (nb_args-6))*8)) "%rsp" out; (* adjusting stack *)
-          addq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out (* adjusting stack *)
-        end
-  |OP1 (op1, le) -> compile_mon_op env rbp_deepness op1 le out     
-  |OP2 (op2, le1, le2) -> compile_bin_op env rbp_deepness op2 le1 le2 out
-  |CMP (cmpop, le1, le2) -> compile_cmp_op env rbp_deepness cmpop le1 le2 out
-  |EIF (le, leIf, leElse) ->
-      if_n := !if_n + 1;
-      compile_expr env le rbp_deepness "%rax" out;
-      cmpq (int_literal 0) "%rax" out;
-      je (get_label "EIF_ELSE" !if_n) out;
-      compile_expr env leElse rbp_deepness "%rax" out;
-      jmp (get_label "EIF_END" !if_n) out;
-      print_label out "EIF_ELSE" !if_n;
-      compile_expr env leIf rbp_deepness "%rax" out;
-      print_label out "EIF_END" !if_n
-  |ESEQ list_loc_expr -> 
-      List.iter (fun le ->
-      compile_expr env le rbp_deepness "%rax" out
-      ) list_loc_expr
+      compile_expr env loc_expr1 result_destination out;
+      imull (int_literal 4) result_destination out;
+      pushl result_destination out;
+      compile_expr env loc_expr2 result_destination out;
+      popl "ebx" out;
+      movl (get_value_var env env var loc) "ecx" out ;
+      addl "ebx" "ecx" out;
+      movl result_destination (p_register 0 "ecx") out 
+  |_ -> ()
 
-and compile_mon_op env rbp_deepness op1 le out =
-  let (loc,expr) = le in
-  match op1 with 
-  | M_MINUS -> 
-      compile_expr env le rbp_deepness "%rax" out;
-      negq "%rax" out
-  | M_NOT ->
-      compile_expr env le rbp_deepness "%rax" out;
-      notq "%rax" out
-  | _ ->
-    match expr with
-    |VAR v -> 
-      begin
-        match op1 with
-        |M_POST_INC ->
-            movq (get_value_var env env v loc) "%rax" out;
-            movq (get_value_var env env v loc) "%rbx" out; 
-            inc "%rbx" out;
-            movq "%rbx" (get_value_var env env v loc) out
-        |M_POST_DEC ->
-            movq (get_value_var env env v loc) "%rax" out;
-            movq (get_value_var env env v loc) "%rbx" out; 
-            dec "%rbx" out;
-            movq "%rbx" (get_value_var env env v loc) out
-        |M_PRE_INC ->
-            movq (get_value_var env env v loc) "%rax" out;
-            inc "%rax" out;
-            movq "%rax" (get_value_var env env v loc) out
-        |M_PRE_DEC ->
-            movq (get_value_var env env v loc) "%rax" out;
-            dec "%rax" out;
-            movq "%rax" (get_value_var env env v loc) out
-        |_ -> ()
-      end
-    |_ -> raise (IllegalMonOpOnNonVar(env,loc))
-and compile_bin_op env rbp_deepness op2 le1 le2 out =
-  compile_expr env le1 rbp_deepness "%rax" out;
-  pushq "%rax" out;
-  compile_expr env le2 rbp_deepness "%rbx" out;
-  popq "%rax" out;
-  match op2 with
-  |S_MUL -> imulq "%rbx" "%rax" out
-  |S_DIV ->
-      cqto out;
-      idivq "%rbx" out;
-  |S_MOD ->
-      cqto out;
-      idivq "%rbx" out;
-      movq "%rdx" "%rax" out
-  |S_ADD -> addq "%rbx" "%rax" out
-  |S_SUB -> subq "%rbx" "%rax" out
-  |S_INDEX -> 
-      imulq (int_literal 8) "%rbx" out;
-      addq "%rbx" "%rax" out;
-      movq (p_register 0 "%rax") "%rax" out
-
-and compile_cmp_op env rbp_deepness cmp_op le1 le2 out =
-  compile_expr env le1 rbp_deepness "%rax" out;
-  pushq "%rax" out;
-  compile_expr env le2 rbp_deepness "%rbx" out;
-  popq "%rax" out;
-  cmpq "%rbx" "%rax" out;
-  xorq "%rax" "%rax" out; 
-  (* potentiellement reset rax *)
-  match cmp_op with
-  |C_LT -> setl "%al" out
-  |C_LE -> setle "%al" out
-  |C_EQ -> sete "%al" out
-
-
-and handling_args_call env rbp_deepness out args = 
-  let rev_args = List.rev args in
-  let nb_args = List.length args in
-  List.iteri (fun i arg ->
-    compile_expr env arg rbp_deepness "%rax" out;
-    if i <= 5 then
-      movq "%rax" (arg_register i) out;    
-  ) args;
-  List.iteri (fun i arg ->
-    compile_expr env arg rbp_deepness "%rax" out;
-    if i < (nb_args-6) then
-      pushq "%rax" out;    
-  ) rev_args
 
 
 and handle_local_vars env vars var_deepness rbp_deepness = 
   let nb_args = List.length vars in
-  let to_sub_sizeofint = nb_args * 8 in
+  let to_sub_sizeofint = nb_args * 4 in
   let rec aux env vars rbp_deepness = 
     match vars with
       |[] -> (rbp_deepness,env)
       |( CDECL (loc,name))::tl -> 
-          let new_rbp_deepness = (rbp_deepness-8) in
+          let new_rbp_deepness = (rbp_deepness-4) in
           let adress = p_register new_rbp_deepness "%rbp" in
           let new_env = begin is_in_environment_same_level env env name loc var_deepness ; add_key env name (VAR_ENV (var_deepness,adress)) end in
           aux new_env tl new_rbp_deepness 
@@ -378,8 +251,8 @@ and compile_block env var_deepness rbp_deepness vars (code_list : CAST.loc_code 
 
 and compile_if loc_expr l_c_if l_c_else env var_deepness rbp_deepness out : unit =
   if_n := !if_n+1;
-  compile_expr env loc_expr rbp_deepness "%rax" out;
-  cmpq "$0" "%rax" out;
+  compile_expr env loc_expr "%eax" out;
+  cmpl "$0" "%eax" out;
   je (get_label "ELSE_BODY" !if_n) out;
   compile_code env var_deepness rbp_deepness l_c_if out;
   jmp (get_label "END_IF" !if_n) out;
@@ -393,31 +266,30 @@ and compile_while env loc_expr loc_code var_deepness rbp_deepness out : unit =
   print_label out "WHILE_BODY" !while_n;
   compile_code env var_deepness rbp_deepness loc_code out; 
   print_label out "WHILE_TEST" !while_n;
-  compile_expr env loc_expr rbp_deepness "%rax" out;
-  cmpq "$0" "%rax" out;
+  compile_expr env loc_expr "%eax" out;
+  cmpl "$0" "%eax" out;
   je (get_label "END_WHILE" !while_n) out;
   jmp (get_label "WHILE_BODY" !while_n) out;
   print_label out "END_WHILE" !while_n
 
-and compile_return env loc_expr rbp_deepness out : unit = 
-  compile_expr env loc_expr rbp_deepness "%rax" out;
+and compile_return env loc_expr out : unit = 
+  compile_expr env loc_expr "%eax" out;
   jmp (get_label "END" !end_n) out
 
 and compile_code env var_deepness rbp_deepness loc_code out : unit =
   let (loc,code) = loc_code in
   match code with
   | CBLOCK (vars,code_list) -> compile_block env (var_deepness+1) rbp_deepness vars code_list out
-  | CEXPR (loc_expr) -> compile_expr env loc_expr rbp_deepness "%rax" out 
+  | CEXPR (loc_expr) -> compile_expr env loc_expr "%eax" out 
   | CIF (loc_expr,l_c_if,l_c_else) -> compile_if loc_expr l_c_if l_c_else env var_deepness rbp_deepness out 
   | CWHILE (loc_expr,l_c) -> compile_while env loc_expr l_c var_deepness rbp_deepness out 
   | CRETURN (loc_expr) -> match loc_expr with 
                           |None -> raise ( EmptyReturnOfNonVoidFunction (env,loc))
-                          |Some le -> compile_return env le rbp_deepness out
+                          |Some le -> compile_return env le out
 
 let compile_fun env name id args code out : unit =
     let (rbp_deepness,fun_env) =
-      if name = "main" then Printf.fprintf out "main:\n"
-      else print_func out name id;
+      print_func out name id;
       pushq "%rbp" out;
       movq  "%rsp" "%rbp" out;
       handle_args env args out in
@@ -440,6 +312,7 @@ let compile out decl_list =
             begin
               is_in_environment_same_level env env name loc 0;
               print_global_int out name;
+
               compile_global tl (add_key env name (VAR_ENV (0, (String.concat "" [name;"(%rip)"]))))
             end
         |CFUN (loc,name,args,code)->
@@ -447,19 +320,8 @@ let compile out decl_list =
             let id = (get_func_id func_info) + 1 in
             let new_env = add_key env name (FUN_ENV (id,(List.length args))) in 
             begin
-              Printf.printf "Debug : name = %s et id = %d\n" name id;
               compile_fun new_env name id args code out;
               compile_global tl new_env
             end
   in
-  Printf.fprintf out ".align 16\n\n";
-  Printf.fprintf out ".global main\n\n";
-  compile_global decl_list empty_env;
-  Printf.fprintf out "\n";
-  List.iter (fun v ->
-    let (value, label) = v in
-    Printf.fprintf out "%s:\n\t\t.string    %s\n\n" label value
-    ) !str_env
-
-
-  (* cquand call vérifier que ce n'est pas main ? *)
+  compile_global decl_list empty_env

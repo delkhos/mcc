@@ -1,19 +1,17 @@
-int glob;
-int a;
+int d;
 
+int c(int a, int b){
 
-int function(int a, int b, int c){
-  int d;
-  d = 2;
-  d = 3+4*5;
-  if(b==9)
-    b=3;
-
-  return c;
-  d = 3+4*9-12;
+    d=2;
+    
+    if(a>b){
+        return b;
+    }
+    return a;
 }
+
 
 int main(){
-  return 8;
+    //printf("test");
+    return c(13,5);
 }
-
