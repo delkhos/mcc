@@ -1,10 +1,9 @@
-.align 16
-
 .global main
 
+.data
 d:
-		.zero    4
-
+		.zero    8
+.text
 c0:
 		pushq    %rbp
 		movq    %rsp , %rbp
@@ -12,14 +11,12 @@ c0:
 		movq    %rdi , -8(%rbp)
 		movq    %rsi , -16(%rbp)
 		subq    $0 , %rsp
-		movq    $2 , %rax
-		movq    %rax , d(%rip)
-		movq    -16(%rbp) , %rax
+		movq    -8(%rbp) , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
-		popq    %rax
-		cmpq    %rbx , %rax
-		xorq    %rax , %rax
+		movq    -16(%rbp) , %rbx
+		popq    %rcx
+		cmpq    %rcx , %rbx
+		movq    $0 , %rax
 		setl    %al
 		cmpq    $0 , %rax
 		je    .ELSE_BODY1
@@ -45,13 +42,21 @@ main:
 		movq    %rsp , %rbp
 		subq    $0 , %rsp
 		subq    $0 , %rsp
+		movq    $2 , %rax
+		movq    %rax , d(%rip)
 		subq    $0 , %rsp
-		movq    $13 , %rax
+		leaq    LString0(%rip) , %rax
+		movq    %rax , %rdi
+		movq    d(%rip) , %rax
+		movq    %rax , %rsi
+		call    printf
+		addq    $0 , %rsp
+		addq    $0 , %rsp
+		subq    $0 , %rsp
+		movq    $3 , %rax
 		movq    %rax , %rdi
 		movq    $5 , %rax
 		movq    %rax , %rsi
-		movq    $5 , %rax
-		movq    $13 , %rax
 		call    c0
 		addq    $0 , %rsp
 		addq    $0 , %rsp
@@ -62,4 +67,9 @@ main:
 		popq    %rbp
 		ret
 
-
+.data
+e:
+		.zero    8
+.text
+LString0:
+    .string    "test  %d\n"

@@ -17,20 +17,24 @@ type decl_env =
 type env = (string*decl_env) list
 type strenv = (string*string) list
 
-exception GlobalVarAlreadyDeclared of env*Error.locator
-exception RedefiningMainIsForbidden of env*Error.locator
-exception TooManyArgumentsForMain of env*Error.locator
-exception EmptyReturnOfNonVoidFunction of env*Error.locator
-exception Key_Not_found of env*Error.locator
-exception ErrorDuringFunctionCompiling of env*Error.locator
-exception VarAlreadyDefinedAtSameLevel of env*Error.locator
-exception VariableWithSameNameAsFunctionAlreadyDeclared of env*Error.locator
-exception FunctionWithSameNameAsVariableAlreadyDeclared of env*Error.locator
-exception NotEnoughArgswhenCallingFunc of env*Error.locator
-exception UnboundVariable of env*Error.locator
-exception UnboundFunction of env*Error.locator
-exception IllegalMonOpOnNonVar of env*Error.locator
+exception GlobalVarAlreadyDeclared
+exception RedefiningMainIsForbidden
+exception TooManyArgumentsForMain
+exception EmptyReturnOfNonVoidFunction
+exception Key_Not_found
+exception ErrorDuringFunctionCompiling
+exception VarAlreadyDefinedAtSameLevel
+exception VariableWithSameNameAsFunctionAlreadyDeclared
+exception FunctionWithSameNameAsVariableAlreadyDeclared
+exception NotEnoughArgswhenCallingFunc
+exception UnboundVariable
+exception UnboundFunction
+exception IllegalMonOpOnNonVar
 exception IllegalRegisterArg
+
+let custom_raise excpt loc =
+  Error.prerr_loc loc;
+  raise excpt
 
 let empty_env = []
 
@@ -46,9 +50,9 @@ let rec get_str_adress str env =
         get_str_adress str tl
 
 let put_str_adress str =
-  str_env := (str, Printf.sprintf ".LString%d" !string_n)::!str_env ;
+  str_env := (str, Printf.sprintf "LString%d" !string_n)::!str_env ;
   string_n := !string_n + 1;
-  Printf.sprintf ".LString%d" (!string_n-1)
+  Printf.sprintf "LString%d" (!string_n-1)
 
 let rec add_key env key (value: decl_env) = 
   match env with
@@ -61,42 +65,42 @@ let rec add_key env key (value: decl_env) =
 
 let rec get_value_var (env_const: env) (env: env) key loc =
   match env with
-  |[] -> raise (UnboundVariable (env_const,loc))
+  |[] -> custom_raise UnboundVariable (Some loc)
   |(k,v)::tl ->
       if key=k then
         match v with
-        |FUN_ENV (_,_)-> raise (UnboundVariable (env_const,loc))
+        |FUN_ENV (_,_)-> custom_raise UnboundVariable (Some loc)
         |VAR_ENV (level,address)-> address
       else
         get_value_var env_const tl key loc
 
 let rec get_value_func (env_const : env) ( env : env) key loc =
   match env with
-  |[] -> raise (UnboundFunction (env_const,loc))
+  |[] -> custom_raise UnboundFunction (Some loc)
   |(k,v)::tl ->
       if key=k then
         match v with
-        |VAR_ENV (_,_)-> raise (UnboundFunction (env_const,loc))
+        |VAR_ENV (_,_)-> custom_raise UnboundFunction (Some loc)
         |FUN_ENV (id,nargs)-> (id,nargs)
       else
         get_value_func env_const tl key loc
 
 let effective_func name id = Printf.sprintf "%s%d" name id
 
-let rec is_in_environment_same_level env_const (env : env) key loc deepness =
+let rec is_in_environment_same_level env_const (env : env) key (loc: Error.locator) deepness =
   match env with
   |[] -> ()
   |(k, VAR_ENV (deep ,_ ))::tl ->
       if key=k  then (* ajouter test niveau et tester si une function avec même nom n'est pas déjà défini *)
         if deep=deepness then 
-          raise ( VarAlreadyDefinedAtSameLevel (env_const,loc))
+          custom_raise  VarAlreadyDefinedAtSameLevel (Some loc)
         else
           ()
       else
         is_in_environment_same_level env_const tl key loc deepness
   |(k, FUN_ENV ( _ ,_ ))::tl ->
       if key=k  then (* ajouter test niveau et tester si une function avec même nom n'est pas déjà défini *)
-        raise ( VarAlreadyDefinedAtSameLevel (env_const,loc))
+        custom_raise  VarAlreadyDefinedAtSameLevel (Some loc)
       else
         is_in_environment_same_level env_const tl key loc deepness
 
@@ -106,7 +110,7 @@ let rec func_is_in_environment env_const (env : env) key loc =
   |(k, FUN_ENV (_,id))::tl ->
       if key=k then 
         if key = "main" then
-            raise ( RedefiningMainIsForbidden (env_const,loc))
+            custom_raise  RedefiningMainIsForbidden (Some loc)
           else
             (true,id)
 
@@ -114,7 +118,7 @@ let rec func_is_in_environment env_const (env : env) key loc =
         func_is_in_environment env_const tl key loc
   |(k, VAR_ENV (_,_))::tl ->
       if key=k then 
-        raise ( VariableWithSameNameAsFunctionAlreadyDeclared (env_const,loc))
+        custom_raise  VariableWithSameNameAsFunctionAlreadyDeclared (Some loc)
       else
         func_is_in_environment env_const tl key loc
 
@@ -137,12 +141,12 @@ let inc arg1 out = p_1argf out "inc" arg1
 let dec arg1 out = p_1argf out "inc" arg1
 let jmp arg1 out = p_1argf out "jmp" arg1
 let je arg1 out = p_1argf out "je" arg1
+let leaq arg1 arg2 out = p_2argf out "leaq" arg1 arg2
 let movq arg1 arg2 out = p_2argf out "movq" arg1 arg2
 let addq arg1 arg2 out = p_2argf out "addq" arg1 arg2
 let addl arg1 arg2 out = p_2argf out "addl" arg1 arg2
 let subq arg1 arg2 out = p_2argf out "subq" arg1 arg2
 let cmpq arg1 arg2 out = p_2argf out "cmpq" arg1 arg2
-let xorq arg1 arg2 out = p_2argf out "xorq" arg1 arg2
 let imulq arg1 arg2 out = p_2argf out "imulq" arg1 arg2
 let ret out = p_0argf out "ret"
 let cqto out = p_0argf out "cqto"
@@ -153,7 +157,7 @@ let p_register delta reg =
   else
     Printf.sprintf "%d(%s)" delta reg 
 
-let print_global_int out var_name = Printf.fprintf out "%s:\n\t\t.zero    8\n\n" var_name
+let print_global_int out var_name = Printf.fprintf out ".data\n%s:\n\t\t.zero    8\n.text\n" var_name
 let print_func out name id = Printf.fprintf out "%s%d:\n" name id
 let get_func_inline out name id = Printf.sprintf "%s%d" name id
 let print_label out name id = Printf.fprintf out "\t.%s%d:\n" name id
@@ -211,8 +215,8 @@ let rec compile_expr env loc_expr rbp_deepness result_destination out =
   |STRING (str) -> begin 
     let address = get_str_adress str !str_env in
     match address with
-      |None -> movq (string_literal (put_str_adress str)) result_destination out
-      |Some addr -> movq (string_literal addr) result_destination out (* potentillement penser à esaped *)
+      |None -> leaq ((put_str_adress str)^"(%rip)") result_destination out
+      |Some addr -> leaq (addr ^"(%rip)" )result_destination out (* potentillement penser à esaped *)
     end
   |SET_VAR (var, loc_expr1) -> 
       compile_expr env loc_expr1 rbp_deepness result_destination out;
@@ -227,32 +231,47 @@ let rec compile_expr env loc_expr rbp_deepness result_destination out =
       addq "%rbx" "%rcx" out;
       movq result_destination (p_register 0 "%rcx") out 
   |CALL (name, args) ->
-      let nb_args = List.length args in
-      let (id,nb_real_args) = get_value_func env env name loc in 
-      if not (nb_real_args=nb_args) then
-        raise (NotEnoughArgswhenCallingFunc (env,loc))
+      let is_builtin = not (get_func_existence (func_is_in_environment env env name loc)) in
+      Printf.printf "call : %s " name;
+      Printf.printf (if is_builtin then "true\n" else "false\n");
+      if not is_builtin then
+        let nb_args = List.length args in
+        let (id,nb_real_args) = get_value_func env env name loc in 
+        if not (nb_real_args=nb_args) then
+          custom_raise NotEnoughArgswhenCallingFunc (Some loc)
+        else
+          begin
+            let stack_delta_args = if nb_args <= 6 then 0 else (nb_args-6)*8 in
+            subq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out; (* adjusting stack *)
+            handling_args_call env (rbp_deepness-(stack_delta_args/8)) out args;
+            call (get_func_inline out name id) out;
+            addq (int_literal ((max 0 (nb_args-6))*8)) "%rsp" out; (* adjusting stack *)
+            addq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out (* adjusting stack *)
+          end
       else
-        begin
-          let stack_delta_args = if nb_args <= 6 then 0 else (nb_args-6)*8 in
-          subq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out; (* adjusting stack *)
-          handling_args_call env (rbp_deepness-(stack_delta_args/8)) out args;
-          call (get_func_inline out name id) out;
-          addq (int_literal ((max 0 (nb_args-6))*8)) "%rsp" out; (* adjusting stack *)
-          addq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out (* adjusting stack *)
-        end
+        let nb_args = List.length args in
+        let stack_delta_args = if nb_args <= 6 then 0 else (nb_args-6)*8 in
+        subq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out; (* adjusting stack *)
+        handling_args_call env (rbp_deepness-(stack_delta_args/8)) out args;
+        call name out;
+        addq (int_literal ((max 0 (nb_args-6))*8)) "%rsp" out; (* adjusting stack *)
+        addq (int_literal ((rbp_deepness+stack_delta_args) mod 16)) "%rsp" out (* adjusting stack *)
+
+
   |OP1 (op1, le) -> compile_mon_op env rbp_deepness op1 le out     
   |OP2 (op2, le1, le2) -> compile_bin_op env rbp_deepness op2 le1 le2 out
   |CMP (cmpop, le1, le2) -> compile_cmp_op env rbp_deepness cmpop le1 le2 out
   |EIF (le, leIf, leElse) ->
+      let current_if_n = !if_n +1 in
       if_n := !if_n + 1;
       compile_expr env le rbp_deepness "%rax" out;
       cmpq (int_literal 0) "%rax" out;
-      je (get_label "EIF_ELSE" !if_n) out;
+      je (get_label "EIF_ELSE" current_if_n) out;
       compile_expr env leElse rbp_deepness "%rax" out;
-      jmp (get_label "EIF_END" !if_n) out;
-      print_label out "EIF_ELSE" !if_n;
+      jmp (get_label "EIF_END" current_if_n) out;
+      print_label out "EIF_ELSE" current_if_n;
       compile_expr env leIf rbp_deepness "%rax" out;
-      print_label out "EIF_END" !if_n
+      print_label out "EIF_END" current_if_n
   |ESEQ list_loc_expr -> 
       List.iter (fun le ->
       compile_expr env le rbp_deepness "%rax" out
@@ -291,8 +310,40 @@ and compile_mon_op env rbp_deepness op1 le out =
             dec "%rax" out;
             movq "%rax" (get_value_var env env v loc) out
         |_ -> ()
-      end
-    |_ -> raise (IllegalMonOpOnNonVar(env,loc))
+      end 
+    |OP2 (S_INDEX, (loc1,e1) , (loc2,e2))->
+        begin
+          compile_expr env (loc2,e2) rbp_deepness "%rax" out;
+          pushq "%rax" out;
+          compile_expr env (loc1,e1) rbp_deepness "%rbx" out;
+          popq "%rax" out;
+          imulq (int_literal 8) "%rax" out;
+          addq "%rax" "%rbx" out;
+          match op1 with
+          |M_POST_INC ->
+              movq (p_register 0 "%rbx" ) "%rax" out;
+              movq (p_register 0 "%rbx" ) "%rcx" out;
+              inc "%rcx" out;
+              movq "%rcx" (p_register 0 "%rbx" ) out;
+          |M_POST_DEC ->
+              movq (p_register 0 "%rbx" ) "%rax" out;
+              movq (p_register 0 "%rbx" ) "%rcx" out;
+              dec "%rcx" out;
+              movq "%rcx" (p_register 0 "%rbx" ) out;
+          |M_PRE_INC ->
+              movq (p_register 0 "%rbx" ) "%rcx" out;
+              inc "%rcx" out;
+              movq "%rcx" (p_register 0 "%rbx" ) out;
+              movq "%rcx" "%rax" out;
+          |M_PRE_DEC ->
+              movq (p_register 0 "%rbx" ) "%rcx" out;
+              dec "%rcx" out;
+              movq "%rcx" (p_register 0 "%rbx" ) out;
+              movq "%rcx" "%rax" out;
+          |_ -> ()
+
+        end
+    |_ -> custom_raise IllegalMonOpOnNonVar (Some loc)
 and compile_bin_op env rbp_deepness op2 le1 le2 out =
   compile_expr env le1 rbp_deepness "%rax" out;
   pushq "%rax" out;
@@ -315,12 +366,12 @@ and compile_bin_op env rbp_deepness op2 le1 le2 out =
       movq (p_register 0 "%rax") "%rax" out
 
 and compile_cmp_op env rbp_deepness cmp_op le1 le2 out =
-  compile_expr env le1 rbp_deepness "%rax" out;
+  compile_expr env le2 rbp_deepness "%rax" out;
   pushq "%rax" out;
-  compile_expr env le2 rbp_deepness "%rbx" out;
-  popq "%rax" out;
-  cmpq "%rbx" "%rax" out;
-  xorq "%rax" "%rax" out; 
+  compile_expr env le1 rbp_deepness "%rbx" out;
+  popq "%rcx" out;
+  cmpq "%rcx" "%rbx" out;
+  movq (int_literal 0) "%rax" out; 
   (* potentiellement reset rax *)
   match cmp_op with
   |C_LT -> setl "%al" out
@@ -332,14 +383,18 @@ and handling_args_call env rbp_deepness out args =
   let rev_args = List.rev args in
   let nb_args = List.length args in
   List.iteri (fun i arg ->
-    compile_expr env arg rbp_deepness "%rax" out;
     if i <= 5 then
-      movq "%rax" (arg_register i) out;    
+      begin
+      compile_expr env arg rbp_deepness "%rax" out;
+      movq "%rax" (arg_register i) out    
+      end
   ) args;
   List.iteri (fun i arg ->
-    compile_expr env arg rbp_deepness "%rax" out;
     if i < (nb_args-6) then
+      begin
+      compile_expr env arg rbp_deepness "%rax" out;
       pushq "%rax" out;    
+      end
   ) rev_args
 
 
@@ -411,7 +466,7 @@ and compile_code env var_deepness rbp_deepness loc_code out : unit =
   | CIF (loc_expr,l_c_if,l_c_else) -> compile_if loc_expr l_c_if l_c_else env var_deepness rbp_deepness out 
   | CWHILE (loc_expr,l_c) -> compile_while env loc_expr l_c var_deepness rbp_deepness out 
   | CRETURN (loc_expr) -> match loc_expr with 
-                          |None -> raise ( EmptyReturnOfNonVoidFunction (env,loc))
+                          |None -> custom_raise  EmptyReturnOfNonVoidFunction (Some loc) 
                           |Some le -> compile_return env le rbp_deepness out
 
 let compile_fun env name id args code out : unit =
@@ -440,7 +495,7 @@ let compile out decl_list =
             begin
               is_in_environment_same_level env env name loc 0;
               print_global_int out name;
-              compile_global tl (add_key env name (VAR_ENV (0, (String.concat "" [name;"(%rip)"]))))
+              compile_global tl (add_key env name (VAR_ENV (0, (name ^ "(%rip)"))))
             end
         |CFUN (loc,name,args,code)->
             let func_info = func_is_in_environment env env name loc in
@@ -452,13 +507,14 @@ let compile out decl_list =
               compile_global tl new_env
             end
   in
-  Printf.fprintf out ".align 16\n\n";
+  (* Printf.fprintf out ".align 16\n\n"; *)
+  (*Printf.fprintf out ".file    \"test.c\"\n";
+  Printf.fprintf out ".section .text\n";*)
   Printf.fprintf out ".global main\n\n";
   compile_global decl_list empty_env;
-  Printf.fprintf out "\n";
   List.iter (fun v ->
     let (value, label) = v in
-    Printf.fprintf out "%s:\n\t\t.string    %s\n\n" label value
+    Printf.fprintf out "%s:\n    .string    \"%s\"\n" label (String.escaped value)
     ) !str_env
 
 

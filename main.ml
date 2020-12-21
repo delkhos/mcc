@@ -42,8 +42,9 @@ let () =
     end;
 
     if not (!c_D || !c_A) then begin
-      compile out c;
-      Error.flush_error ()
+     compile out c;
+     Error.flush_error ()
+
     end;
 
     if not (!c_D || !c_A || !c_E) then begin
