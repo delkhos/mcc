@@ -54,9 +54,11 @@ int test_op()
  if(--i == 0 && i == 0){ t=t+1; printf("  [+] Pre decrement OK\n");}
 
  if(t != 4) exit(printf(" [x] Some tests failed ! Check your increment/decrement operators.\n"));
- i = malloc(8); t=0;
+ i = malloc(16); t=0;
  i[0] = 5; i[1] = 9;
 
+
+ 
  if(i[0]++ == 5 && i[0] == 6){t++; printf("  [+] Post increment array OK\n");}
  if(i[1]-- == 9 && i[1] == 8){t++; printf("  [+] Post decrement array OK\n");}
  if(++i[0] == 7 && i[0] == 7){t++; printf("  [+] Pre increment array OK\n");}

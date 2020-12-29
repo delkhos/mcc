@@ -133,14 +133,13 @@ let pushq arg1 out = p_1argf out "pushq" arg1
 let popq arg1 out = p_1argf out "popq" arg1
 let notq arg1 out = p_1argf out "notq" arg1
 let negq arg1 out = p_1argf out "negq" arg1
-let inc arg1 out = p_1argf out "inc" arg1
-let dec arg1 out = p_1argf out "dec" arg1
+let incq arg1 out = p_1argf out "incq" arg1
+let decq arg1 out = p_1argf out "decq" arg1
 let jmp arg1 out = p_1argf out "jmp" arg1
 let je arg1 out = p_1argf out "je" arg1
 let leaq arg1 arg2 out = p_2argf out "leaq" arg1 arg2
 let movq arg1 arg2 out = p_2argf out "movq" arg1 arg2
 let addq arg1 arg2 out = p_2argf out "addq" arg1 arg2
-let addl arg1 arg2 out = p_2argf out "addl" arg1 arg2
 let subq arg1 arg2 out = p_2argf out "subq" arg1 arg2
 let cmpq arg1 arg2 out = p_2argf out "cmpq" arg1 arg2
 let imulq arg1 arg2 out = p_2argf out "imulq" arg1 arg2
@@ -173,68 +172,62 @@ let arg_register n_arg =
 
 
 
-let handle_args env args out = 
-    let nb_args = List.length args in
-    let to_sub = max 0 (nb_args-6) in
-    let to_sub_sizeofint = to_sub * 8 in
-    let rec aux env args n stack_offset = 
-      match args with
-      |[] -> (stack_offset,env)
-      |( CDECL (loc,name))::tl -> 
-          let adress = match n with
-                        |i when i<=5 -> p_register ((-8)*(i+1)) "%rbp"
-                        |i -> p_register (8+8*(i-5)) "%rbp"
-          in
-          let new_env = begin is_in_environment_same_level env env name loc 1 ; add_key env name (VAR_ENV (1,adress)) end
-          in
-          let new_stack_offset = if n > 5 then stack_offset else (stack_offset-8) in
-          begin
-            if n < 5 then movq (arg_register n) adress out;
-            aux new_env tl (n+1) new_stack_offset 
-          end
-      |_ -> Printf.printf "this case should never happen because syntax handles it" ; (stack_offset,env) 
-    in
-    subq (int_literal to_sub_sizeofint) "%rsp" out;
-    aux env args 0 0
-    (*addq to_sub_sizeofint "%rsp";*)
-    
 (* 
  * var deepness : 0 = global , 1 = function arg , 2+ block
  *)
 
 (* penser à tester si il ne va pas y avoir du code inatteignable *)
-let rec compile_expr env loc_expr stack_offset result_destination out =
+let rec compile_expr env loc_expr stack_offset out =
   let (loc,expr)=loc_expr in
   match expr with
-  |VAR (name) -> movq (get_value_var env env name loc) result_destination out
-  |CST (n) -> movq (int_literal n) result_destination out
+  |VAR (name) -> movq (get_value_var env env name loc) "%rax" out
+  |CST (n) -> movq (int_literal n) "%rax" out
   |STRING (str) -> begin 
     let address = get_str_adress str !str_env in
     match address with
-      |None -> leaq ((put_str_adress str)^"(%rip)") result_destination out
-      |Some addr -> leaq (addr ^"(%rip)" )result_destination out (* potentillement penser à esaped *)
+      |None -> leaq ((put_str_adress str)^"(%rip)") "%rax" out
+      |Some addr -> leaq (addr ^"(%rip)" )"%rax" out (* potentillement penser à esaped *)
     end
   |SET_VAR (var, loc_expr1) -> 
-      compile_expr env loc_expr1 stack_offset result_destination out;
-      movq result_destination (get_value_var env env var loc) out
-  |SET_ARRAY (var, loc_expr1 , loc_expr2) ->
-      compile_expr env loc_expr1 stack_offset result_destination out;
-      imulq (int_literal 8) result_destination out;
-      pushq result_destination out;
-      compile_expr env loc_expr2 stack_offset result_destination out;
+      compile_expr env loc_expr1 stack_offset out;
+      movq "%rax" (get_value_var env env var loc) out
+  |SET_ARRAY (var, loc_expr_index , loc_expr_val) ->
+      compile_expr env loc_expr_index stack_offset out;
+      imulq (int_literal 8) "%rax" out;
+      pushq "%rax" out;
+      compile_expr env loc_expr_val stack_offset out;
       popq "%rbx" out;
       movq (get_value_var env env var loc) "%rcx" out ;
       addq "%rbx" "%rcx" out;
-      movq result_destination (p_register 0 "%rcx") out 
+      movq "%rax" (p_register 0 "%rcx") out 
   |CALL (name, args) ->
       let nb_args = List.length args in
       let stack_delta_args = if nb_args <= 6 then 0 else (nb_args-6)*8 in
+      let new_stack_offset = stack_offset + stack_delta_args in
+      let stack_adjustment = (abs new_stack_offset) mod 16 in
+      subq (int_literal stack_adjustment) "%rsp" out; (* adjusting stack *)
+      (*
+      pushq "%rdi" out;
+      pushq "%rsi" out;
+      pushq "%rdx" out;
+      pushq "%rcx" out;
+      pushq "%r8" out;
+      pushq "%r9" out;
+      *)
+      handling_args_call env (new_stack_offset+stack_adjustment)  out args;
       Printf.printf "Je call %s et mon stack_offset=%d\n" name stack_offset;
-      subq (int_literal ( (stack_delta_args-stack_offset) mod 16)) "%rsp" out; (* adjusting stack *)
-      handling_args_call env ((stack_offset - ( (stack_delta_args-stack_offset) mod 16))-8*6)  out args;
+      movq (int_literal 0) "%rax" out;
       call name out;
-      addq (int_literal ((max 0 (nb_args-6))*8)) "%rsp" out; (* adjusting stack *)
-      addq (int_literal ( (stack_delta_args-stack_offset) mod 16)) "%rsp" out; (* adjusting stack *)
+      addq (int_literal stack_delta_args) "%rsp" out; (* adjusting stack *)
+      (*
+      popq "%r9" out;
+      popq "%r8" out;
+      popq "%rcx" out;
+      popq "%rdx" out;
+      popq "%rsi" out;
+      popq "%rdi" out;
+      *)
+      addq (int_literal stack_adjustment) "%rsp" out (* adjusting stack *)
 
 
   |OP1 (op1, le) -> compile_mon_op env stack_offset op1 le out     
@@ -243,27 +236,27 @@ let rec compile_expr env loc_expr stack_offset result_destination out =
   |EIF (le, leIf, leElse) ->
       let current_if_n = !if_n +1 in
       if_n := !if_n + 1;
-      compile_expr env le stack_offset "%rax" out;
+      compile_expr env le stack_offset out;
       cmpq (int_literal 0) "%rax" out;
       je (get_label "EIF_ELSE" current_if_n) out;
-      compile_expr env leIf stack_offset "%rax" out;
+      compile_expr env leIf stack_offset  out;
       jmp (get_label "EIF_END" current_if_n) out;
       print_label out "EIF_ELSE" current_if_n;
-      compile_expr env leElse stack_offset "%rax" out;
+      compile_expr env leElse stack_offset  out;
       print_label out "EIF_END" current_if_n
   |ESEQ list_loc_expr -> 
       List.iter (fun le ->
-      compile_expr env le stack_offset "%rax" out
+      compile_expr env le stack_offset out
       ) list_loc_expr
 
 and compile_mon_op env stack_offset op1 le out =
   let (loc,expr) = le in
   match op1 with 
   | M_MINUS -> 
-      compile_expr env le stack_offset "%rax" out;
+      compile_expr env le stack_offset out;
       negq "%rax" out
   | M_NOT ->
-      compile_expr env le stack_offset "%rax" out;
+      compile_expr env le stack_offset out;
       notq "%rax" out
   | _ ->
     match expr with
@@ -272,64 +265,56 @@ and compile_mon_op env stack_offset op1 le out =
         match op1 with
         |M_POST_INC ->
             movq (get_value_var env env v loc) "%rax" out;
-            movq (get_value_var env env v loc) "%rbx" out; 
-            inc "%rbx" out;
-            movq "%rbx" (get_value_var env env v loc) out
+            incq  (get_value_var env env v loc) out
         |M_POST_DEC ->
             movq (get_value_var env env v loc) "%rax" out;
-            movq (get_value_var env env v loc) "%rbx" out; 
-            dec "%rbx" out;
-            movq "%rbx" (get_value_var env env v loc) out
+            decq  (get_value_var env env v loc) out
         |M_PRE_INC ->
-            movq (get_value_var env env v loc) "%rax" out;
-            inc "%rax" out;
-            movq "%rax" (get_value_var env env v loc) out
+            incq (get_value_var env env v loc) out;
+            movq (get_value_var env env v loc) "%rax" out
         |M_PRE_DEC ->
-            movq (get_value_var env env v loc) "%rax" out;
-            dec "%rax" out;
-            movq "%rax" (get_value_var env env v loc) out
+            decq (get_value_var env env v loc) out;
+            movq (get_value_var env env v loc) "%rax" out
         |_ -> ()
       end 
     |OP2 (S_INDEX, (loc1,e1) , (loc2,e2))->
         begin
-          compile_expr env (loc2,e2) stack_offset "%rax" out;
+          compile_expr env (loc2,e2) stack_offset out;
           pushq "%rax" out;
-          compile_expr env (loc1,e1) stack_offset "%rbx" out;
-          popq "%rax" out;
-          imulq (int_literal 8) "%rax" out;
-          addq "%rax" "%rbx" out;
+          compile_expr env (loc1,e1) stack_offset out;
+          popq "%rbx" out;
+          imulq (int_literal 8) "%rbx" out;
+          addq "%rbx" "%rax" out;
           match op1 with
           |M_POST_INC ->
-              movq (p_register 0 "%rbx" ) "%rax" out;
-              movq (p_register 0 "%rbx" ) "%rcx" out;
-              inc "%rcx" out;
-              movq "%rcx" (p_register 0 "%rbx" ) out;
+              pushq (p_register 0 "%rax" ) out;
+              incq (p_register 0 "%rax" ) out;
+              popq "%rax" out
           |M_POST_DEC ->
-              movq (p_register 0 "%rbx" ) "%rax" out;
-              movq (p_register 0 "%rbx" ) "%rcx" out;
-              dec "%rcx" out;
-              movq "%rcx" (p_register 0 "%rbx" ) out;
+              pushq (p_register 0 "%rax" ) out;
+              decq (p_register 0 "%rax" ) out;
+              popq "%rax" out
           |M_PRE_INC ->
-              movq (p_register 0 "%rbx" ) "%rcx" out;
-              inc "%rcx" out;
-              movq "%rcx" (p_register 0 "%rbx" ) out;
-              movq "%rcx" "%rax" out;
+              incq (p_register 0 "%rax" ) out;
+              movq (p_register 0 "%rax" ) "%rax" out
           |M_PRE_DEC ->
-              movq (p_register 0 "%rbx" ) "%rcx" out;
-              dec "%rcx" out;
-              movq "%rcx" (p_register 0 "%rbx" ) out;
-              movq "%rcx" "%rax" out;
+              decq (p_register 0 "%rax" ) out;
+              movq (p_register 0 "%rax" ) "%rax" out
           |_ -> ()
 
         end
     |_ -> custom_raise IllegalMonOpOnNonVar (Some loc)
 and compile_bin_op env stack_offset op2 le1 le2 out =
-  compile_expr env le1 stack_offset "%rax" out;
+  compile_expr env le2 stack_offset  out;
   pushq "%rax" out;
-  compile_expr env le2 stack_offset "%rbx" out;
-  popq "%rax" out;
+  compile_expr env le1 stack_offset  out;
+  popq "%rbx" out;
   match op2 with
-  |S_MUL -> imulq "%rbx" "%rax" out
+  |S_MUL -> 
+      movq "%rbx" "%r15" out;
+      movq "%rax" "%rbx" out;
+      movq "%r15" "%rax" out;
+      imulq "%rbx" "%rax" out
   |S_DIV ->
       cqto out;
       idivq "%rbx" out;
@@ -337,19 +322,27 @@ and compile_bin_op env stack_offset op2 le1 le2 out =
       cqto out;
       idivq "%rbx" out;
       movq "%rdx" "%rax" out
-  |S_ADD -> addq "%rbx" "%rax" out
-  |S_SUB -> subq "%rbx" "%rax" out
+  |S_ADD -> 
+      movq "%rbx" "%r15" out;
+      movq "%rax" "%rbx" out;
+      movq "%r15" "%rax" out;
+      addq "%rbx" "%rax" out
+  |S_SUB -> 
+      subq "%rbx" "%rax" out
   |S_INDEX -> 
-      imulq (int_literal 8) "%rbx" out;
+      movq "%rbx" "%r15" out;
+      movq "%rax" "%rbx" out;
+      movq "%r15" "%rax" out;
+      imulq (int_literal 8) "%rax" out;
       addq "%rbx" "%rax" out;
       movq (p_register 0 "%rax") "%rax" out
 
 and compile_cmp_op env stack_offset cmp_op le1 le2 out =
-  compile_expr env le2 stack_offset "%rax" out;
+  compile_expr env le2 stack_offset out;
   pushq "%rax" out;
-  compile_expr env le1 stack_offset "%rax" out;
-  popq "%rcx" out;
-  cmpq "%rcx" "%rax" out;
+  compile_expr env le1 stack_offset out;
+  popq "%rbx" out;
+  cmpq "%rbx" "%rax" out;
   movq (int_literal 0) "%rax" out; 
   (* potentiellement reset rax *)
   match cmp_op with
@@ -362,19 +355,18 @@ and handling_args_call env stack_offset out args =
   let rev_args = List.rev args in
   let nb_args = List.length args in
   List.iteri (fun i arg ->
-    if i <= 5 then
       begin
-        compile_expr env arg stack_offset "%rax" out;
-        movq "%rax" (arg_register i) out    
-      end
-  ) args;
-  List.iteri (fun i arg ->
-    if i < (nb_args-6) then
-      begin
-        compile_expr env arg stack_offset "%rax" out;
+        compile_expr env arg stack_offset  out;
         pushq "%rax" out;    
       end
-  ) rev_args
+  ) rev_args;
+  List.iteri (fun i arg ->
+    if i <= 5 then
+      begin
+        compile_expr env arg stack_offset  out;
+        popq (arg_register i) out    
+      end
+  ) args
 
 
 and handle_local_vars env vars var_deepness stack_offset = 
@@ -413,7 +405,7 @@ and compile_block env var_deepness stack_offset vars (code_list : CAST.loc_code 
 and compile_if loc_expr l_c_if l_c_else env var_deepness stack_offset out : unit =
   let current_if_n = !if_n+1 in
   if_n := !if_n+1;
-  compile_expr env loc_expr stack_offset "%rax" out;
+  compile_expr env loc_expr stack_offset  out;
   cmpq "$0" "%rax" out;
   je (get_label "ELSE_BODY" current_if_n) out;
   compile_code env var_deepness stack_offset l_c_if out;
@@ -429,15 +421,15 @@ and compile_while env loc_expr loc_code var_deepness stack_offset out : unit =
   print_label out "WHILE_BODY" current_while_n;
   compile_code env var_deepness stack_offset loc_code out; 
   print_label out "WHILE_TEST" current_while_n;
-  compile_expr env loc_expr stack_offset "%rax" out;
+  compile_expr env loc_expr stack_offset  out;
   cmpq "$0" "%rax" out;
   je (get_label "END_WHILE" current_while_n) out;
   jmp (get_label "WHILE_BODY" current_while_n) out;
   print_label out "END_WHILE" current_while_n
 
 and compile_return env loc_expr stack_offset out : unit = 
-  compile_expr env loc_expr stack_offset "%rax" out;
-  subq (int_literal stack_offset) "%rsp";
+  compile_expr env loc_expr stack_offset  out;
+  addq (int_literal (abs stack_offset)) "%rsp" out;
   popq  "%rbp" out;
   ret out;
   Printf.fprintf out "\n" 
@@ -446,14 +438,14 @@ and compile_code env var_deepness stack_offset loc_code out : unit =
   let (loc,code) = loc_code in
   match code with
   | CBLOCK (vars,code_list) -> compile_block env (var_deepness+1) stack_offset vars code_list out
-  | CEXPR (loc_expr) -> compile_expr env loc_expr stack_offset "%rax" out 
+  | CEXPR (loc_expr) -> compile_expr env loc_expr stack_offset  out 
   | CIF (loc_expr,l_c_if,l_c_else) -> compile_if loc_expr l_c_if l_c_else env var_deepness stack_offset out 
   | CWHILE (loc_expr,l_c) -> compile_while env loc_expr l_c var_deepness stack_offset out 
   | CRETURN (loc_expr) -> match loc_expr with 
                           |None -> custom_raise  EmptyReturnOfNonVoidFunction (Some loc) 
                           |Some le -> compile_return env le stack_offset out
 
-let compile_fun env name args code out : unit =
+let rec compile_fun env name args code out : unit =
     let (stack_offset,fun_env) =
       Printf.fprintf out "%s:\n" name;
       pushq "%rbp" out;
@@ -461,12 +453,39 @@ let compile_fun env name args code out : unit =
       handle_args env args out in
     (*args_begin ; str_code ;args_end ;*)
     (*handle_args env args;*)
-    end_n := !end_n + 1 ;
     compile_code fun_env 1 stack_offset code out;
-    subq (int_literal stack_offset) "%rsp";
+    addq (int_literal (-stack_offset)) "%rsp" out;
     popq  "%rbp" out;
     ret out;
     Printf.fprintf out "\n" 
+
+
+and handle_args env args out = 
+    let nb_args = List.length args in
+    let to_sub = min 6 nb_args in
+    let to_sub_sizeofint = to_sub * 8 in
+    let rec aux env args n stack_offset = 
+      match args with
+      |[] -> (stack_offset,env)
+      |( CDECL (loc,name))::tl -> 
+          let adress = match n with
+                        |i when i<=5 -> p_register ((-8)*(i+1)) "%rbp"
+                        |i -> p_register (8+8*(i-5)) "%rbp"
+          in
+          let new_env = begin is_in_environment_same_level env env name loc 1 ; add_key env name (VAR_ENV (1,adress)) end
+          in
+          let new_stack_offset = if n > 5 then stack_offset else (stack_offset-8) in
+          begin
+            if n <= 5 then movq (arg_register n) adress out;
+            aux new_env tl (n+1) new_stack_offset 
+          end
+      |_ -> Printf.printf "this case should never happen because syntax handles it" ; (stack_offset,env) 
+    in
+    subq (int_literal to_sub_sizeofint) "%rsp" out;
+    aux env args 0 0
+    (*addq to_sub_sizeofint "%rsp";*)
+    
+
 
 let compile out decl_list =
   let rec compile_global decl_list env =
