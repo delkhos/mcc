@@ -363,7 +363,6 @@ and handling_args_call env stack_offset out args =
   List.iteri (fun i arg ->
     if i <= 5 then
       begin
-        compile_expr env arg stack_offset  out;
         popq (arg_register i) out    
       end
   ) args
