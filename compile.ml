@@ -17,20 +17,15 @@ type decl_env =
 type env = (string*decl_env) list
 type strenv = (string*string) list
 
-exception GlobalVarAlreadyDeclared
 exception RedefiningFunctionIsForbidden
-exception TooManyArgumentsForMain
 exception EmptyReturnOfNonVoidFunction
-exception Key_Not_found
-exception ErrorDuringFunctionCompiling
 exception VarAlreadyDefinedAtSameLevel
 exception VariableWithSameNameAsFunctionAlreadyDeclared
-exception FunctionWithSameNameAsVariableAlreadyDeclared
-exception NotEnoughArgswhenCallingFunc
-exception UnboundVariable
-exception UnboundFunction
+exception IllegalUseOfFunctionNameAsVariable 
+exception IllegalUseOfVariableNameAsFunction  
 exception IllegalMonOpOnNonVar
 exception IllegalRegisterArg
+exception UnboundFunction
 
 let custom_raise excpt loc =
   Error.prerr_loc loc;
@@ -69,19 +64,21 @@ let rec get_value_var (env_const: env) (env: env) key loc =
   |(k,v)::tl ->
       if key=k then
         match v with
-        |FUN_ENV (_)-> custom_raise UnboundVariable (Some loc)
+        |FUN_ENV (_)-> custom_raise IllegalUseOfFunctionNameAsVariable (Some loc)
         |VAR_ENV (level,address)-> address
       else
         get_value_var env_const tl key loc
 
+
+(* ajouter l'utilisation de ça *)
 let rec get_value_func (env_const : env) ( env : env) key loc =
   match env with
-  |[] -> custom_raise UnboundFunction (Some loc)
+  |[] -> key
   |(k,v)::tl ->
       if key=k then
         match v with
-        |VAR_ENV (_,_)-> custom_raise UnboundFunction (Some loc)
-        |FUN_ENV (nargs)-> (nargs)
+        |VAR_ENV (_,_)-> custom_raise IllegalUseOfVariableNameAsFunction  (Some loc)
+        |FUN_ENV (nargs)-> key
       else
         get_value_func env_const tl key loc
 
@@ -201,32 +198,16 @@ let rec compile_expr env loc_expr stack_offset out =
       addq "%rbx" "%rcx" out;
       movq "%rax" (p_register 0 "%rcx") out 
   |CALL (name, args) ->
+      let func_name = get_value_func env env name loc in
       let nb_args = List.length args in
       let stack_delta_args = if nb_args <= 6 then 0 else (nb_args-6)*8 in
       let new_stack_offset = stack_offset + stack_delta_args in
       let stack_adjustment = (abs new_stack_offset) mod 16 in
       subq (int_literal stack_adjustment) "%rsp" out; (* adjusting stack *)
-      (*
-      pushq "%rdi" out;
-      pushq "%rsi" out;
-      pushq "%rdx" out;
-      pushq "%rcx" out;
-      pushq "%r8" out;
-      pushq "%r9" out;
-      *)
       handling_args_call env (new_stack_offset+stack_adjustment)  out args;
-      Printf.printf "Je call %s et mon stack_offset=%d\n" name stack_offset;
       movq (int_literal 0) "%rax" out;
-      call name out;
+      call func_name out;
       addq (int_literal stack_delta_args) "%rsp" out; (* adjusting stack *)
-      (*
-      popq "%r9" out;
-      popq "%r8" out;
-      popq "%rcx" out;
-      popq "%rdx" out;
-      popq "%rsi" out;
-      popq "%rdi" out;
-      *)
       addq (int_literal stack_adjustment) "%rsp" out (* adjusting stack *)
 
 
@@ -353,7 +334,6 @@ and compile_cmp_op env stack_offset cmp_op le1 le2 out =
 
 and handling_args_call env stack_offset out args = 
   let rev_args = List.rev args in
-  let nb_args = List.length args in
   List.iteri (fun i arg ->
       begin
         compile_expr env arg stack_offset  out;
