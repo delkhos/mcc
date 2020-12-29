@@ -79,7 +79,8 @@ int test_op()
 int zer()
 { return i=0;}
 int inci()
-{ return ++i;}
+{
+  return ++i;}
 
 int variables()
 {
@@ -89,10 +90,14 @@ int variables()
 
  {
  int i; i=5; 
- if(i!=5) return 1;
+ if(i!=5){ return 1;}
  }
- if(i != 3) return 1;
- if(inci() != 1 || inci() != 2) return 1;
+ if(i != 3){ return 1;}
+ /*
+ printf("une fois : %d\n", inci());
+ printf("une fois : %d\n", inci());
+ */
+ if(inci() != 1 || inci() != 2 ){ return 1;}
  return 0;
 }
 

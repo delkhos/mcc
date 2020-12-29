@@ -13,127 +13,343 @@ main:
 		movq    %rsp , %rbp
 		subq    $0 , %rsp
 		subq    $32 , %rsp
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString0(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString1(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString2(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString1(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString3(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		movq    $1 , %rax
 		cmpq    $0 , %rax
 		je    .ELSE_BODY1
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString4(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		jmp    .END_IF1
 	.ELSE_BODY1:
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString5(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		movq    %rax , %rdi
 		call    exit
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 	.END_IF1:
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString6(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		call    variables
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		cmpq    $0 , %rax
 		je    .ELSE_BODY2
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString5(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		jmp    .END1
 		jmp    .END_IF2
 	.ELSE_BODY2:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
 	.END_IF2:
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString7(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		call    test_comp
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		cmpq    $0 , %rax
 		je    .ELSE_BODY3
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString5(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		movq    %rax , %rdi
 		call    exit
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		jmp    .END_IF3
 	.ELSE_BODY3:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
 	.END_IF3:
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString8(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		call    test_op
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString9(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		subq    $0 , %rsp
 		movq    $0 , %rax
 		movq    %rax , -8(%rbp)
@@ -147,7 +363,7 @@ main:
 		inc    %rbx
 		movq    %rbx , -8(%rbp)
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		setl    %al
 		cmpq    $0 , %rax
@@ -157,27 +373,51 @@ main:
 		addq    $0 , %rsp
 		movq    $4 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .ELSE_BODY4
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString4(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		jmp    .END_IF4
 	.ELSE_BODY4:
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString5(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		jmp    .END1
 	.END_IF4:
 		addq    $32 , %rsp
@@ -186,7 +426,7 @@ main:
 		popq    %rbp
 		ret
 
-test_comp0:
+test_comp:
 		pushq    %rbp
 		movq    %rsp , %rbp
 		subq    $0 , %rsp
@@ -195,9 +435,9 @@ test_comp0:
 		movq    %rax , -8(%rbp)
 		movq    $2 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
@@ -210,9 +450,9 @@ test_comp0:
 	.END_IF5:
 		movq    $3 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		setl    %al
 		cmpq    $0 , %rax
@@ -225,9 +465,9 @@ test_comp0:
 	.END_IF6:
 		movq    -8(%rbp) , %rax
 		pushq    %rax
-		movq    $1 , %rbx
+		movq    $1 , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		setl    %al
 		cmpq    $0 , %rax
@@ -240,39 +480,39 @@ test_comp0:
 	.END_IF7:
 		movq    $0 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE9
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END9
 	.EIF_ELSE9:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END9:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY9
+		je    .ELSE_BODY8
 		movq    $0 , %rax
-		jmp    .END_IF9
-	.ELSE_BODY9:
+		jmp    .END_IF8
+	.ELSE_BODY8:
 		movq    $1 , %rax
 		jmp    .END2
-	.END_IF9:
+	.END_IF8:
 		movq    $2 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE10
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END10
 	.EIF_ELSE10:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END10:
 		movq    %rax , -16(%rbp)
 		movq    -16(%rbp) , %rax
@@ -283,7 +523,7 @@ test_comp0:
 		popq    %rbp
 		ret
 
-test_op0:
+test_op:
 		pushq    %rbp
 		movq    %rsp , %rbp
 		subq    $0 , %rsp
@@ -299,24 +539,24 @@ test_op0:
 		inc    %rbx
 		movq    %rbx , -8(%rbp)
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE12
-		movq    $0 , %rax
-		jmp    .EIF_END12
-	.EIF_ELSE12:
 		movq    $1 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
+		jmp    .EIF_END12
+	.EIF_ELSE12:
+		movq    $0 , %rax
 	.EIF_END12:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY12
+		je    .ELSE_BODY11
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		pushq    %rax
@@ -324,43 +564,55 @@ test_op0:
 		popq    %rax
 		addq    %rbx , %rax
 		movq    %rax , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString10(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF12
-	.ELSE_BODY12:
+		jmp    .END_IF11
+	.ELSE_BODY11:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF12:
+	.END_IF11:
 		movq    $1 , %rax
 		pushq    %rax
 		movq    -8(%rbp) , %rax
 		movq    -8(%rbp) , %rbx
-		inc    %rbx
+		dec    %rbx
 		movq    %rbx , -8(%rbp)
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE14
 		movq    $0 , %rax
+		pushq    %rax
+		movq    -8(%rbp) , %rax
+		popq    %rcx
+		cmpq    %rcx , %rax
+		movq    $0 , %rax
+		sete    %al
 		jmp    .EIF_END14
 	.EIF_ELSE14:
 		movq    $0 , %rax
-		pushq    %rax
-		movq    -8(%rbp) , %rbx
-		popq    %rcx
-		cmpq    %rcx , %rbx
-		movq    $0 , %rax
-		sete    %al
 	.EIF_END14:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY14
+		je    .ELSE_BODY13
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		pushq    %rax
@@ -368,42 +620,54 @@ test_op0:
 		popq    %rax
 		addq    %rbx , %rax
 		movq    %rax , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString11(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF14
-	.ELSE_BODY14:
+		jmp    .END_IF13
+	.ELSE_BODY13:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF14:
+	.END_IF13:
 		movq    $1 , %rax
 		pushq    %rax
 		movq    -8(%rbp) , %rax
 		inc    %rax
 		movq    %rax , -8(%rbp)
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE16
-		movq    $0 , %rax
-		jmp    .EIF_END16
-	.EIF_ELSE16:
 		movq    $1 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
+		jmp    .EIF_END16
+	.EIF_ELSE16:
+		movq    $0 , %rax
 	.EIF_END16:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY16
+		je    .ELSE_BODY15
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		pushq    %rax
@@ -411,42 +675,54 @@ test_op0:
 		popq    %rax
 		addq    %rbx , %rax
 		movq    %rax , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString12(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF16
-	.ELSE_BODY16:
+		jmp    .END_IF15
+	.ELSE_BODY15:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF16:
+	.END_IF15:
 		movq    $0 , %rax
 		pushq    %rax
 		movq    -8(%rbp) , %rax
-		inc    %rax
+		dec    %rax
 		movq    %rax , -8(%rbp)
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE18
 		movq    $0 , %rax
+		pushq    %rax
+		movq    -8(%rbp) , %rax
+		popq    %rcx
+		cmpq    %rcx , %rax
+		movq    $0 , %rax
+		sete    %al
 		jmp    .EIF_END18
 	.EIF_ELSE18:
 		movq    $0 , %rax
-		pushq    %rax
-		movq    -8(%rbp) , %rbx
-		popq    %rcx
-		cmpq    %rcx , %rbx
-		movq    $0 , %rax
-		sete    %al
 	.EIF_END18:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY18
+		je    .ELSE_BODY17
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		pushq    %rax
@@ -454,56 +730,104 @@ test_op0:
 		popq    %rax
 		addq    %rbx , %rax
 		movq    %rax , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString13(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF18
-	.ELSE_BODY18:
+		jmp    .END_IF17
+	.ELSE_BODY17:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF18:
+	.END_IF17:
 		movq    $4 , %rax
 		pushq    %rax
-		movq    -16(%rbp) , %rbx
+		movq    -16(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE20
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END20
 	.EIF_ELSE20:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END20:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY20
+		je    .ELSE_BODY19
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString14(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		movq    %rax , %rdi
 		call    exit
 		addq    $0 , %rsp
 		addq    $0 , %rsp
-		jmp    .END_IF20
-	.ELSE_BODY20:
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		jmp    .END_IF19
+	.ELSE_BODY19:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF20:
+	.END_IF19:
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		movq    $8 , %rax
 		movq    %rax , %rdi
 		call    malloc
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		movq    %rax , -8(%rbp)
 		movq    $0 , %rax
 		movq    %rax , -16(%rbp)
@@ -536,14 +860,11 @@ test_op0:
 		inc    %rcx
 		movq    %rcx , (%rbx)
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE22
-		movq    $0 , %rax
-		jmp    .EIF_END22
-	.EIF_ELSE22:
 		movq    $6 , %rax
 		pushq    %rax
 		movq    -8(%rbp) , %rax
@@ -554,29 +875,44 @@ test_op0:
 		addq    %rbx , %rax
 		movq    (%rax) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
+		jmp    .EIF_END22
+	.EIF_ELSE22:
+		movq    $0 , %rax
 	.EIF_END22:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY22
+		je    .ELSE_BODY21
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString15(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF22
-	.ELSE_BODY22:
+		jmp    .END_IF21
+	.ELSE_BODY21:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF22:
+	.END_IF21:
 		movq    $9 , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -587,17 +923,14 @@ test_op0:
 		addq    %rax , %rbx
 		movq    (%rbx) , %rax
 		movq    (%rbx) , %rcx
-		inc    %rcx
+		dec    %rcx
 		movq    %rcx , (%rbx)
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE24
-		movq    $0 , %rax
-		jmp    .EIF_END24
-	.EIF_ELSE24:
 		movq    $8 , %rax
 		pushq    %rax
 		movq    -8(%rbp) , %rax
@@ -608,29 +941,44 @@ test_op0:
 		addq    %rbx , %rax
 		movq    (%rax) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
+		jmp    .EIF_END24
+	.EIF_ELSE24:
+		movq    $0 , %rax
 	.EIF_END24:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY24
+		je    .ELSE_BODY23
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString16(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF24
-	.ELSE_BODY24:
+		jmp    .END_IF23
+	.ELSE_BODY23:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF24:
+	.END_IF23:
 		movq    $7 , %rax
 		pushq    %rax
 		movq    $0 , %rax
@@ -644,14 +992,11 @@ test_op0:
 		movq    %rcx , (%rbx)
 		movq    %rcx , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE26
-		movq    $0 , %rax
-		jmp    .EIF_END26
-	.EIF_ELSE26:
 		movq    $7 , %rax
 		pushq    %rax
 		movq    -8(%rbp) , %rax
@@ -662,29 +1007,44 @@ test_op0:
 		addq    %rbx , %rax
 		movq    (%rax) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
+		jmp    .EIF_END26
+	.EIF_ELSE26:
+		movq    $0 , %rax
 	.EIF_END26:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY26
+		je    .ELSE_BODY25
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString17(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF26
-	.ELSE_BODY26:
+		jmp    .END_IF25
+	.ELSE_BODY25:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF26:
+	.END_IF25:
 		movq    $7 , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -694,18 +1054,15 @@ test_op0:
 		imulq    $8 , %rax
 		addq    %rax , %rbx
 		movq    (%rbx) , %rcx
-		inc    %rcx
+		dec    %rcx
 		movq    %rcx , (%rbx)
 		movq    %rcx , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE28
-		movq    $0 , %rax
-		jmp    .EIF_END28
-	.EIF_ELSE28:
 		movq    $7 , %rax
 		pushq    %rax
 		movq    -8(%rbp) , %rax
@@ -716,61 +1073,100 @@ test_op0:
 		addq    %rbx , %rax
 		movq    (%rax) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
+		jmp    .EIF_END28
+	.EIF_ELSE28:
+		movq    $0 , %rax
 	.EIF_END28:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY28
+		je    .ELSE_BODY27
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString18(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF28
-	.ELSE_BODY28:
+		jmp    .END_IF27
+	.ELSE_BODY27:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF28:
+	.END_IF27:
 		movq    $4 , %rax
 		pushq    %rax
-		movq    -16(%rbp) , %rbx
+		movq    -16(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE30
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END30
 	.EIF_ELSE30:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END30:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY30
+		je    .ELSE_BODY29
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString14(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		movq    %rax , %rdi
 		call    exit
 		addq    $0 , %rsp
 		addq    $0 , %rsp
-		jmp    .END_IF30
-	.ELSE_BODY30:
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		jmp    .END_IF29
+	.ELSE_BODY29:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF30:
+	.END_IF29:
 		movq    $0 , %rax
 		movq    %rax , -16(%rbp)
 		movq    $3 , %rax
@@ -783,7 +1179,7 @@ test_op0:
 		idivq    %rbx
 		movq    %rdx , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
@@ -793,12 +1189,24 @@ test_op0:
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString19(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
 		jmp    .END_IF31
 	.ELSE_BODY31:
@@ -813,7 +1221,7 @@ test_op0:
 		popq    %rax
 		addq    %rbx , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
@@ -823,12 +1231,24 @@ test_op0:
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString20(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
 		jmp    .END_IF32
 	.ELSE_BODY32:
@@ -845,7 +1265,7 @@ test_op0:
 		popq    %rax
 		imulq    %rbx , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
@@ -855,12 +1275,24 @@ test_op0:
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString21(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
 		jmp    .END_IF33
 	.ELSE_BODY33:
@@ -876,7 +1308,7 @@ test_op0:
 		cqto
 		idivq    %rbx
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
@@ -886,12 +1318,24 @@ test_op0:
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString22(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
 		jmp    .END_IF34
 	.ELSE_BODY34:
@@ -901,30 +1345,42 @@ test_op0:
 		movq    $0 , %rax
 		cmpq    $0 , %rax
 		je    .EIF_ELSE36
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END36
 	.EIF_ELSE36:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END36:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY36
+		je    .ELSE_BODY35
 		subq    $0 , %rsp
 		movq    -16(%rbp) , %rax
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString23(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
-		jmp    .END_IF36
-	.ELSE_BODY36:
+		jmp    .END_IF35
+	.ELSE_BODY35:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF36:
+	.END_IF35:
 		movq    $7 , %rax
 		pushq    %rax
 		movq    $12 , %rax
@@ -933,7 +1389,7 @@ test_op0:
 		popq    %rax
 		subq    %rbx , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
@@ -943,12 +1399,24 @@ test_op0:
 		movq    -16(%rbp) , %rbx
 		inc    %rbx
 		movq    %rbx , -16(%rbp)
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString24(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		addq    $0 , %rsp
 		jmp    .END_IF37
 	.ELSE_BODY37:
@@ -957,31 +1425,43 @@ test_op0:
 	.END_IF37:
 		movq    $6 , %rax
 		pushq    %rax
-		movq    -16(%rbp) , %rbx
+		movq    -16(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE39
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END39
 	.EIF_ELSE39:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END39:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY39
+		je    .ELSE_BODY38
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
 		subq    $0 , %rsp
 		leaq    LString25(%rip) , %rax
 		movq    %rax , %rdi
 		call    printf
 		addq    $0 , %rsp
 		addq    $0 , %rsp
-		jmp    .END_IF39
-	.ELSE_BODY39:
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		jmp    .END_IF38
+	.ELSE_BODY38:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF39:
+	.END_IF38:
 		movq    $0 , %rax
 		jmp    .END3
 		addq    $16 , %rsp
@@ -990,7 +1470,7 @@ test_op0:
 		popq    %rbp
 		ret
 
-zer0:
+zer:
 		pushq    %rbp
 		movq    %rsp , %rbp
 		subq    $0 , %rsp
@@ -1004,7 +1484,7 @@ zer0:
 		popq    %rbp
 		ret
 
-inci0:
+inci:
 		pushq    %rbp
 		movq    %rsp , %rbp
 		subq    $0 , %rsp
@@ -1019,116 +1499,158 @@ inci0:
 		popq    %rbp
 		ret
 
-variables0:
+variables:
 		pushq    %rbp
 		movq    %rsp , %rbp
 		subq    $0 , %rsp
 		subq    $8 , %rsp
 		movq    $3 , %rax
 		movq    %rax , -8(%rbp)
-		subq    $-8 , %rsp
-		call    zer0
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
+		subq    $8 , %rsp
+		call    zer
 		addq    $0 , %rsp
-		addq    $-8 , %rsp
+		addq    $8 , %rsp
+		popq    %r9
+		popq    %r8
+		popq    %rcx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
 		subq    $8 , %rsp
 		movq    $5 , %rax
 		movq    %rax , -16(%rbp)
 		movq    $5 , %rax
 		pushq    %rax
-		movq    -16(%rbp) , %rbx
+		movq    -16(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE41
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END41
 	.EIF_ELSE41:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END41:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY41
+		je    .ELSE_BODY40
+		subq    $0 , %rsp
 		movq    $1 , %rax
 		jmp    .END6
-		jmp    .END_IF41
-	.ELSE_BODY41:
+		addq    $0 , %rsp
+		jmp    .END_IF40
+	.ELSE_BODY40:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF41:
+	.END_IF40:
 		addq    $8 , %rsp
 		movq    $3 , %rax
 		pushq    %rax
-		movq    -8(%rbp) , %rbx
+		movq    -8(%rbp) , %rax
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE43
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END43
 	.EIF_ELSE43:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END43:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY43
+		je    .ELSE_BODY42
+		subq    $0 , %rsp
 		movq    $1 , %rax
 		jmp    .END6
-		jmp    .END_IF43
-	.ELSE_BODY43:
+		addq    $0 , %rsp
+		jmp    .END_IF42
+	.ELSE_BODY42:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF43:
+	.END_IF42:
 		movq    $1 , %rax
 		pushq    %rax
-		subq    $-8 , %rsp
-		call    inci0
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
+		subq    $8 , %rsp
+		call    inci
 		addq    $0 , %rsp
-		addq    $-8 , %rsp
+		addq    $8 , %rsp
+		popq    %r9
+		popq    %r8
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		popq    %rcx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE46
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END46
 	.EIF_ELSE46:
-		movq    $0 , %rax
+		movq    $1 , %rax
 	.EIF_END46:
 		cmpq    $0 , %rax
 		je    .EIF_ELSE45
+		movq    $1 , %rax
+		jmp    .EIF_END45
+	.EIF_ELSE45:
 		movq    $2 , %rax
 		pushq    %rax
-		subq    $-8 , %rsp
-		call    inci0
+		pushq    %rdi
+		pushq    %rsi
+		pushq    %rdx
+		pushq    %rcx
+		pushq    %r8
+		pushq    %r9
+		subq    $8 , %rsp
+		call    inci
 		addq    $0 , %rsp
-		addq    $-8 , %rsp
+		addq    $8 , %rsp
+		popq    %r9
+		popq    %r8
 		popq    %rcx
-		cmpq    %rcx , %rbx
+		popq    %rdx
+		popq    %rsi
+		popq    %rdi
+		popq    %rcx
+		cmpq    %rcx , %rax
 		movq    $0 , %rax
 		sete    %al
 		cmpq    $0 , %rax
 		je    .EIF_ELSE47
-		movq    $1 , %rax
+		movq    $0 , %rax
 		jmp    .EIF_END47
 	.EIF_ELSE47:
-		movq    $0 , %rax
-	.EIF_END47:
-		jmp    .EIF_END45
-	.EIF_ELSE45:
 		movq    $1 , %rax
+	.EIF_END47:
 	.EIF_END45:
 		cmpq    $0 , %rax
-		je    .ELSE_BODY47
+		je    .ELSE_BODY44
+		subq    $0 , %rsp
 		movq    $1 , %rax
 		jmp    .END6
-		jmp    .END_IF47
-	.ELSE_BODY47:
+		addq    $0 , %rsp
+		jmp    .END_IF44
+	.ELSE_BODY44:
 		subq    $0 , %rsp
 		addq    $0 , %rsp
-	.END_IF47:
+	.END_IF44:
 		movq    $0 , %rax
 		jmp    .END6
 		addq    $8 , %rsp

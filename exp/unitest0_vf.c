@@ -8,10 +8,13 @@
 #define NULL 0
 
 
+int global_1;
+int global_2;
 int global_3;
 int global_4;
 int* global_5;
 int* global_6;
+int test_cltq(int n){ return n; }
 
 int test_expr(){
   int i,j,k,l;
@@ -1415,8 +1418,5 @@ int main(){
   return 0;
 }
 
-int test_cltq(int n){ return n; }
 
 
-int global_1;
-int global_2;
