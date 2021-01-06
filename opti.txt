@@ -1,5 +1,7 @@
 .global main
 
+Debug : name = test_ordre_args
+Debug : name = main
 test_ordre_args:
 		pushq    %rbp
 		movq    %rsp , %rbp
