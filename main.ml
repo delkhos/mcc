@@ -56,5 +56,5 @@ let () =
             "gcc -ggdb -o \"%s\" \"%s.s\" -lc -lm"
             prefix prefix
       in
-        ignore (Unix.system command)
+        ignore (Unix.system command);
     end

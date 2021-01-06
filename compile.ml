@@ -17,6 +17,8 @@ type decl_env =
 type env = (string*decl_env) list
 type strenv = (string*string) list
 
+let unoptimized_code = ref []
+
 exception RedefiningFunctionIsForbidden
 exception EmptyReturnOfNonVoidFunction
 exception VarAlreadyDefinedAtSameLevel
@@ -118,30 +120,30 @@ let rec func_is_in_environment env_const (env : env) key loc =
 let get_func_id (_,id) = id
 let get_func_existence (existence,_) = existence
 
-let p_0argf out func_name = Printf.fprintf out "\t\t%s\n" func_name
-let p_1argf out func_name arg1 = Printf.fprintf out "\t\t%s    %s\n" func_name arg1
-let p_2argf out func_name arg1 arg2 = Printf.fprintf out "\t\t%s    %s , %s\n" func_name arg1 arg2
-let setl arg1 out = p_1argf out "setl" arg1
-let setle arg1 out = p_1argf out "setle" arg1
-let sete arg1 out = p_1argf out "sete" arg1
-let call arg1 out = p_1argf out "call" arg1
-let idivq arg1 out = p_1argf out "idivq" arg1
-let pushq arg1 out = p_1argf out "pushq" arg1
-let popq arg1 out = p_1argf out "popq" arg1
-let notq arg1 out = p_1argf out "notq" arg1
-let negq arg1 out = p_1argf out "negq" arg1
-let incq arg1 out = p_1argf out "incq" arg1
-let decq arg1 out = p_1argf out "decq" arg1
-let jmp arg1 out = p_1argf out "jmp" arg1
-let je arg1 out = p_1argf out "je" arg1
-let leaq arg1 arg2 out = p_2argf out "leaq" arg1 arg2
-let movq arg1 arg2 out = p_2argf out "movq" arg1 arg2
-let addq arg1 arg2 out = p_2argf out "addq" arg1 arg2
-let subq arg1 arg2 out = p_2argf out "subq" arg1 arg2
-let cmpq arg1 arg2 out = p_2argf out "cmpq" arg1 arg2
-let imulq arg1 arg2 out = p_2argf out "imulq" arg1 arg2
-let ret out = p_0argf out "ret"
-let cqto out = p_0argf out "cqto"
+let p_0argf func_name = Printf.fprintf out "\t\t%s\n" func_name
+let p_1argf func_name arg1 = Printf.fprintf out "\t\t%s    %s\n" func_name arg1
+let p_2argf func_name arg1 arg2 = Printf.fprintf out "\t\t%s    %s , %s\n" func_name arg1 arg2
+let setl arg1 = p_1argf out "setl" arg1
+let setle arg1 = p_1argf out "setle" arg1
+let sete arg1 = p_1argf out "sete" arg1
+let call arg1 = p_1argf out "call" arg1
+let idivq arg1 = p_1argf out "idivq" arg1
+let pushq arg1 = p_1argf out "pushq" arg1
+let popq arg1 = p_1argf out "popq" arg1
+let notq arg1 = p_1argf out "notq" arg1
+let negq arg1 = p_1argf out "negq" arg1
+let incq arg1 = p_1argf out "incq" arg1
+let decq arg1 = p_1argf out "decq" arg1
+let jmp arg1 = p_1argf out "jmp" arg1
+let je arg1 = p_1argf out "je" arg1
+let leaq arg1 arg2 = p_2argf out "leaq" arg1 arg2
+let movq arg1 arg2 = p_2argf out "movq" arg1 arg2
+let addq arg1 arg2 = if not (arg1 = "$0")then p_2argf out "addq" arg1 arg2 else ()
+let subq arg1 arg2 = if not (arg1 = "$0")then p_2argf out "subq" arg1 arg2 else ()
+let cmpq arg1 arg2 = p_2argf out "cmpq" arg1 arg2
+let imulq arg1 arg2 = p_2argf out "imulq" arg1 arg2
+let ret = p_0argf "ret"
+let cqto = p_0argf "cqto"
 
 let p_register delta reg = 
   if delta=0 then
@@ -465,7 +467,6 @@ and handle_args env args out =
     (*addq to_sub_sizeofint "%rsp";*)
     
 
-
 let compile out decl_list =
   let rec compile_global decl_list env =
     match decl_list with 
@@ -494,7 +495,7 @@ let compile out decl_list =
   List.iter (fun v ->
     let (value, label) = v in
     Printf.fprintf out "%s:\n    .string    \"%s\"\n" label (String.escaped value)
-    ) !str_env
+  ) !str_env
 
 
   (* cquand call vérifier que ce n'est pas main ? *)
