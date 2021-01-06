@@ -478,20 +478,31 @@ let rec optimize_code code (acc : string list) =
       match tl with
       |[] -> List.rev ([hd]@(List.rev acc))
       |hd2::tl2 ->
-          try Scanf.sscanf hd "\t\t%s    %s\n" (
-            fun cmd arg1 arg2 ->
-              try Scanf.sscanf hd2 "\t\t.ELSE_BODY%d\n" (
-                fun cmd2 arg3 arg4 ->
-                  if cmd=cmd2 && cmd="movq" && arg2=arg3 && arg2="%rax" then
-                    optimize_code tl2 (List.rev ([Printf.sprintf "\t\t%s    %s , %s\n" cmd arg1 arg4 ]@(List.rev acc)))
-                  else
+          match tl2 with
+          |[] -> List.rev ([hd2;hd]@(List.rev acc))
+          |hd3::tl3 ->
+              try Scanf.sscanf hd "\t\t%s    .END_IF%d\n" (
+                fun cmd id1 ->
+                  try Scanf.sscanf hd2 "\t\t.ELSE_BODY%d:\n" (
+                    fun id2 ->
+                      try Scanf.sscanf hd3 "\t\t.END_IF%d:\n" (
+                        fun id3 ->
+                          if id1=id2 && id2=id3 then
+                            begin
+                            Printf.printf "On passe ! id1 = %d , id2 = %d , id3 = %d\n" id1 id2 id3;
+                            optimize_code tl3 (List.rev ([hd2]@(List.rev acc)))
+                            end
+                          else
+                            optimize_code tl (List.rev ([hd]@(List.rev acc)))
+                      )
+                      with e ->
+                        optimize_code tl (List.rev ([hd]@(List.rev acc)))
+                  )
+                  with e ->
                     optimize_code tl (List.rev ([hd]@(List.rev acc)))
               )
               with e ->
-                optimize_code tl2 (List.rev ([hd2;hd]@(List.rev acc)))
-          )
-          with e ->
-            optimize_code tl (List.rev ([hd]@(List.rev acc)))
+                optimize_code tl (List.rev ([hd]@(List.rev acc)))
 
     
 
