@@ -4,8 +4,7 @@ main:
 		pushq    %rbp
 		movq    %rsp , %rbp
 		subq    $8 , %rsp
-		movq    $12 , %rax
-		movq    %rax , -8(%rbp)
+		movq    $12 , -8(%rbp)
 		movq    -8(%rbp) , %rax
 		pushq    %rax
 		movq    $10 , %rax

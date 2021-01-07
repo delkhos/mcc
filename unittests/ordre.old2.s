@@ -53,8 +53,10 @@ main:
 		pushq    %rbp
 		movq    %rsp , %rbp
 		subq    $32 , %rsp
-		movq    $67 , -8(%rbp)
-		movq    $91 , -16(%rbp)
+		movq    $67 , %rax
+		movq    %rax , -8(%rbp)
+		movq    $91 , %rax
+		movq    %rax , -16(%rbp)
 		movq    -16(%rbp) , %rax
 		movq    %rax , -24(%rbp)
 		pushq    %rax

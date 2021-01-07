@@ -471,7 +471,7 @@ and handle_args env args  =
     aux env args 0 0
     (*addq to_sub_sizeofint "%rsp";*)
 
-let rec optimize_code code (acc : string list) =
+let rec optimize_code_empty_elses code (acc : string list) =
   match code with
   |[] -> acc
   |hd::tl -> 
@@ -490,21 +490,81 @@ let rec optimize_code code (acc : string list) =
                           if id1=id2 && id2=id3 then
                             begin
                             Printf.printf "On passe ! id1 = %d , id2 = %d , id3 = %d\n" id1 id2 id3;
-                            optimize_code tl3 (List.rev ([hd2]@(List.rev acc)))
+                            optimize_code_empty_elses tl3 (List.rev ([hd2]@(List.rev acc)))
                             end
                           else
-                            optimize_code tl (List.rev ([hd]@(List.rev acc)))
+                            optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
                       )
                       with e ->
-                        optimize_code tl (List.rev ([hd]@(List.rev acc)))
+                        optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
                   )
                   with e ->
-                    optimize_code tl (List.rev ([hd]@(List.rev acc)))
+                    optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
               )
               with e ->
-                optimize_code tl (List.rev ([hd]@(List.rev acc)))
+                optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
+
+
+let rec rax_wont_be_used rest_of_code =
+  match rest_of_code with
+  |[] -> true
+  |hd::tl -> 
+      try Scanf.sscanf hd "\t\t%s    %s , %s\n" (
+        fun cmd arg1 arg2 ->
+          if arg1="%rax" then 
+            false
+          else if arg2="%rax" && cmd="movq" then
+            true
+          else
+            rax_wont_be_used tl
+      )
+      with e ->
+      try Scanf.sscanf hd "\t\t%s    %s\n" (
+        fun cmd arg1 ->
+          if arg1="%rax" || arg1="%al" then 
+            false
+          else
+            rax_wont_be_used tl
+      )
+      with e ->
+      try Scanf.sscanf hd "\t\t%s\n" (
+        fun cmd ->
+          if cmd="ret" || cmd="cqto" then 
+            false
+          else
+            rax_wont_be_used tl
+      )
+      with e -> true
+
+
+
+let rec optimize_code_rax_const code (acc : string list) =
+  match code with
+  |[] -> acc
+  |hd::tl -> 
+      match tl with
+      |[] -> List.rev ([hd]@(List.rev acc))
+      |hd2::tl2 ->
+          try Scanf.sscanf hd "\t\t%s    $%d , %s\n" (
+            fun cmd value arg2 ->
+              try Scanf.sscanf hd2 "\t\t%s    %s , %s\n" (
+                fun cmd2 arg3 arg4 ->
+                  if cmd=cmd2 && cmd="movq" && arg2=arg3 && arg2="%rax" && (rax_wont_be_used tl2) then
+                    optimize_code_rax_const tl2 (List.rev ([Printf.sprintf "\t\t%s    $%d , %s\n" cmd value arg4 ]@(List.rev acc)))
+                  else
+                    optimize_code_rax_const tl (List.rev ([hd]@(List.rev acc)))
+              )
+              with e ->
+                optimize_code_rax_const tl2 (List.rev ([hd2;hd]@(List.rev acc)))
+          )
+          with e ->
+            optimize_code_rax_const tl (List.rev ([hd]@(List.rev acc)))
 
     
+
+
+
+
 
 let rec print_code out code =
   match code with
@@ -536,8 +596,9 @@ let compile out decl_list =
   Printf.fprintf out ".section .text\n";*)
   Printf.fprintf out ".global main\n\n";
   compile_global decl_list empty_env;
-  let optimized_code = optimize_code (List.rev !unoptimized_code) [] in
-  print_code out optimized_code;
+  let optimized_code_first_pass = optimize_code_empty_elses (List.rev !unoptimized_code) [] in
+  let optimized_code_second_pass = optimize_code_rax_const optimized_code_first_pass [] in
+  print_code out optimized_code_second_pass;
   List.iter (fun v ->
     let (value, label) = v in
     Printf.fprintf out "%s:\n    .string    \"%s\"\n" label (String.escaped value)

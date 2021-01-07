@@ -28,8 +28,7 @@ test_ordre_args:
 		pushq    %rax
 		movq    -32(%rbp) , %rax
 		pushq    %rax
-		movq    $3 , %rax
-		movq    %rax , -32(%rbp)
+		movq    $3 , -32(%rbp)
 		popq    %rbx
 		movq    %rbx , %r15
 		movq    %rax , %rbx
