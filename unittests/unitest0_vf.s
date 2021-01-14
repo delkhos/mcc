@@ -663,6 +663,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -40(%rbp) , %rax
 		pushq    %rax
 		movq    $20143 , %rax
@@ -685,6 +686,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -40(%rbp) , %rax
 		pushq    %rax
 		movq    $20143 , %rax
@@ -697,11 +699,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -48(%rbp) , %rax
 		pushq    %rax
 		movq    $2972 , %rax
@@ -723,6 +727,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -48(%rbp) , %rax
 		pushq    %rax
 		movq    $2972 , %rax
@@ -734,11 +739,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -56(%rbp) , %rax
 		pushq    %rax
 		movq    $418914006 , %rax
@@ -761,6 +768,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -56(%rbp) , %rax
 		pushq    %rax
 		movq    $418914006 , %rax
@@ -773,11 +781,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -64(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -799,6 +809,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -64(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -810,11 +821,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -72(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -837,6 +850,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -72(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -849,11 +863,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -80(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -875,6 +891,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -80(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -886,11 +903,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -88(%rbp) , %rax
 		pushq    %rax
 		movq    $12 , %rax
@@ -913,6 +932,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -88(%rbp) , %rax
 		pushq    %rax
 		movq    $12 , %rax
@@ -925,11 +945,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -96(%rbp) , %rax
 		pushq    %rax
 		movq    $3 , %rax
@@ -952,6 +974,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -96(%rbp) , %rax
 		pushq    %rax
 		movq    $3 , %rax
@@ -964,11 +987,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -104(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -991,6 +1016,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -104(%rbp) , %rax
 		pushq    %rax
 		movq    $1 , %rax
@@ -1003,11 +1029,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1039,6 +1067,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1060,11 +1089,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $1 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1095,6 +1126,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $1 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1115,11 +1147,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $2 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1150,6 +1184,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $2 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1170,11 +1205,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $3 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1206,6 +1243,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $3 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1227,11 +1265,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $4 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1263,6 +1303,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $4 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1284,11 +1325,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $5 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1319,6 +1362,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $5 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1339,11 +1383,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $7 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1375,6 +1421,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $7 , %rax
 		pushq    %rax
 		movq    -112(%rbp) , %rax
@@ -1396,11 +1443,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -120(%rbp) , %rax
 		pushq    %rax
 		movq    $0 , %rax
@@ -1422,6 +1471,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -120(%rbp) , %rax
 		pushq    %rax
 		movq    $0 , %rax
@@ -1433,11 +1483,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -128(%rbp) , %rax
 		pushq    %rax
 		movq    $0 , %rax
@@ -1459,6 +1511,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -128(%rbp) , %rax
 		pushq    %rax
 		movq    $0 , %rax
@@ -1470,11 +1523,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -16(%rbp) , %rax
 		pushq    %rax
 		movq    $2972 , %rax
@@ -1497,6 +1552,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -16(%rbp) , %rax
 		pushq    %rax
 		movq    $2972 , %rax
@@ -1509,11 +1565,13 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -24(%rbp) , %rax
 		pushq    %rax
 		movq    $2982 , %rax
@@ -1536,6 +1594,7 @@ test_expr:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -24(%rbp) , %rax
 		pushq    %rax
 		movq    $2982 , %rax
@@ -1548,16 +1607,19 @@ test_expr:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -112(%rbp) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    free
+		cltq
 		movq    $56 , %rax
 		addq    $144 , %rsp
 		popq    %rbp
@@ -1590,6 +1652,7 @@ test_code:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		movq    $1 , %rax
 		pushq    %rax
@@ -1613,6 +1676,7 @@ test_code:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		movq    global_1(%rip) , %rax
 		decq    global_1(%rip)
@@ -1625,6 +1689,7 @@ test_code:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		movq    $10 , %rax
 		pushq    %rax
@@ -1977,6 +2042,7 @@ test_code:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -40(%rbp) , %rax
@@ -1990,6 +2056,7 @@ test_code:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -1997,6 +2064,7 @@ test_code:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -48(%rbp) , %rax
@@ -2020,6 +2088,7 @@ test_code:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -48(%rbp) , %rax
@@ -2033,6 +2102,7 @@ test_code:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -2040,6 +2110,7 @@ test_code:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -56(%rbp) , %rax
@@ -2063,6 +2134,7 @@ test_code:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -56(%rbp) , %rax
@@ -2076,6 +2148,7 @@ test_code:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -2083,6 +2156,7 @@ test_code:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -64(%rbp) , %rax
@@ -2106,6 +2180,7 @@ test_code:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -64(%rbp) , %rax
@@ -2119,6 +2194,7 @@ test_code:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -2126,6 +2202,7 @@ test_code:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		movq    -64(%rbp) , %rax
 		pushq    %rax
@@ -2194,6 +2271,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -8(%rbp) , %rax
 		pushq    %rax
 		movq    $5 , %rax
@@ -2205,11 +2283,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -16(%rbp) , %rax
 		pushq    %rax
 		movq    $8937 , %rax
@@ -2232,6 +2312,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -16(%rbp) , %rax
 		pushq    %rax
 		movq    $8937 , %rax
@@ -2244,11 +2325,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -24(%rbp) , %rax
 		pushq    %rax
 		movq    $1483542 , %rax
@@ -2271,6 +2354,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -24(%rbp) , %rax
 		pushq    %rax
 		movq    $1483542 , %rax
@@ -2283,11 +2367,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -32(%rbp) , %rax
 		pushq    %rax
 		movq    $8938 , %rax
@@ -2310,6 +2396,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -32(%rbp) , %rax
 		pushq    %rax
 		movq    $8938 , %rax
@@ -2322,11 +2409,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -40(%rbp) , %rax
 		pushq    %rax
 		movq    $1547 , %rax
@@ -2348,6 +2437,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -40(%rbp) , %rax
 		pushq    %rax
 		movq    $1547 , %rax
@@ -2359,11 +2449,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -48(%rbp) , %rax
 		pushq    %rax
 		movq    $12 , %rax
@@ -2385,6 +2477,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -48(%rbp) , %rax
 		pushq    %rax
 		movq    $12 , %rax
@@ -2396,11 +2489,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    16(%rbp) , %rax
 		pushq    %rax
 		movq    $589 , %rax
@@ -2423,6 +2518,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    16(%rbp) , %rax
 		pushq    %rax
 		movq    $589 , %rax
@@ -2435,11 +2531,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    24(%rbp) , %rax
 		pushq    %rax
 		movq    $166 , %rax
@@ -2461,6 +2559,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    24(%rbp) , %rax
 		pushq    %rax
 		movq    $166 , %rax
@@ -2472,11 +2571,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    32(%rbp) , %rax
 		pushq    %rax
 		movq    $8937 , %rax
@@ -2499,6 +2600,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    32(%rbp) , %rax
 		pushq    %rax
 		movq    $8937 , %rax
@@ -2511,11 +2613,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    40(%rbp) , %rax
 		pushq    %rax
 		movq    $5 , %rax
@@ -2537,6 +2641,7 @@ test_args:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    40(%rbp) , %rax
 		pushq    %rax
 		movq    $5 , %rax
@@ -2548,11 +2653,13 @@ test_args:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    40(%rbp) , %rax
@@ -2653,6 +2760,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -16(%rbp) , %rax
 		pushq    %rax
 		movq    $8937 , %rax
@@ -2665,11 +2773,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -24(%rbp) , %rax
 		pushq    %rax
 		movq    $1483542 , %rax
@@ -2692,6 +2802,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -24(%rbp) , %rax
 		pushq    %rax
 		movq    $1483542 , %rax
@@ -2704,11 +2815,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -32(%rbp) , %rax
 		pushq    %rax
 		movq    $8938 , %rax
@@ -2731,6 +2844,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -32(%rbp) , %rax
 		pushq    %rax
 		movq    $8938 , %rax
@@ -2743,11 +2857,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -40(%rbp) , %rax
 		pushq    %rax
 		movq    $1547 , %rax
@@ -2769,6 +2885,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -40(%rbp) , %rax
 		pushq    %rax
 		movq    $1547 , %rax
@@ -2780,11 +2897,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -48(%rbp) , %rax
 		pushq    %rax
 		movq    $12 , %rax
@@ -2806,6 +2925,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -48(%rbp) , %rax
 		pushq    %rax
 		movq    $12 , %rax
@@ -2817,11 +2937,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    16(%rbp) , %rax
 		pushq    %rax
 		movq    $589 , %rax
@@ -2844,6 +2966,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    16(%rbp) , %rax
 		pushq    %rax
 		movq    $589 , %rax
@@ -2856,11 +2979,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    24(%rbp) , %rax
 		pushq    %rax
 		movq    $166 , %rax
@@ -2882,6 +3007,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    24(%rbp) , %rax
 		pushq    %rax
 		movq    $166 , %rax
@@ -2893,11 +3019,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    32(%rbp) , %rax
 		pushq    %rax
 		movq    $8937 , %rax
@@ -2920,6 +3048,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    32(%rbp) , %rax
 		pushq    %rax
 		movq    $8937 , %rax
@@ -2932,11 +3061,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    40(%rbp) , %rax
 		pushq    %rax
 		movq    $5 , %rax
@@ -2958,6 +3089,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    40(%rbp) , %rax
 		pushq    %rax
 		movq    $5 , %rax
@@ -2969,11 +3101,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    48(%rbp) , %rax
 		pushq    %rax
 		movq    $2 , %rax
@@ -2996,6 +3130,7 @@ test_args_2:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    48(%rbp) , %rax
 		pushq    %rax
 		movq    $2 , %rax
@@ -3008,11 +3143,13 @@ test_args_2:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    40(%rbp) , %rax
@@ -3109,6 +3246,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    free
+		cltq
 		addq    $8 , %rsp
 		.ELSE_BODY50:
 		subq    $8 , %rsp
@@ -3356,6 +3494,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $0 , %rax
@@ -3378,6 +3517,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3385,6 +3525,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $1 , %rax
@@ -3417,6 +3558,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $1 , %rax
@@ -3439,6 +3581,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3446,6 +3589,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $2 , %rax
@@ -3479,6 +3623,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $2 , %rax
@@ -3502,6 +3647,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3509,6 +3655,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $3 , %rax
@@ -3541,6 +3688,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $3 , %rax
@@ -3563,6 +3711,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3570,6 +3719,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $4 , %rax
@@ -3602,6 +3752,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $4 , %rax
@@ -3624,6 +3775,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3631,6 +3783,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $5 , %rax
@@ -3663,6 +3816,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $5 , %rax
@@ -3685,6 +3839,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3692,6 +3847,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $6 , %rax
@@ -3724,6 +3880,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $6 , %rax
@@ -3746,6 +3903,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3753,6 +3911,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $7 , %rax
@@ -3785,6 +3944,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $7 , %rax
@@ -3807,6 +3967,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3814,6 +3975,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $8 , %rax
@@ -3846,6 +4008,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $8 , %rax
@@ -3868,6 +4031,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3875,6 +4039,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $9 , %rax
@@ -3907,6 +4072,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $9 , %rax
@@ -3929,6 +4095,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3936,6 +4103,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $10 , %rax
@@ -3968,6 +4136,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $10 , %rax
@@ -3990,6 +4159,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -3997,6 +4167,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $11 , %rax
@@ -4029,6 +4200,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $11 , %rax
@@ -4051,6 +4223,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4058,6 +4231,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $12 , %rax
@@ -4090,6 +4264,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $12 , %rax
@@ -4112,6 +4287,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4119,6 +4295,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $13 , %rax
@@ -4151,6 +4328,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $13 , %rax
@@ -4173,6 +4351,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4180,6 +4359,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $14 , %rax
@@ -4212,6 +4392,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $14 , %rax
@@ -4234,6 +4415,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4241,6 +4423,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $15 , %rax
@@ -4273,6 +4456,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $15 , %rax
@@ -4295,6 +4479,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4302,6 +4487,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $16 , %rax
@@ -4334,6 +4520,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $16 , %rax
@@ -4356,6 +4543,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4363,6 +4551,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $17 , %rax
@@ -4395,6 +4584,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $17 , %rax
@@ -4417,6 +4607,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4424,6 +4615,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $18 , %rax
@@ -4456,6 +4648,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $18 , %rax
@@ -4478,6 +4671,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4485,6 +4679,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $19 , %rax
@@ -4517,6 +4712,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $19 , %rax
@@ -4539,6 +4735,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4546,6 +4743,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $20 , %rax
@@ -4578,6 +4776,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $20 , %rax
@@ -4600,6 +4799,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4607,6 +4807,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $21 , %rax
@@ -4639,6 +4840,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $21 , %rax
@@ -4661,6 +4863,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4668,6 +4871,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $22 , %rax
@@ -4700,6 +4904,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $22 , %rax
@@ -4722,6 +4927,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4729,6 +4935,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $23 , %rax
@@ -4761,6 +4968,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $23 , %rax
@@ -4783,6 +4991,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4790,6 +4999,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $24 , %rax
@@ -4822,6 +5032,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $24 , %rax
@@ -4844,6 +5055,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4851,6 +5063,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $25 , %rax
@@ -4883,6 +5096,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $25 , %rax
@@ -4905,6 +5119,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4912,6 +5127,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $26 , %rax
@@ -4944,6 +5160,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $26 , %rax
@@ -4966,6 +5183,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -4973,6 +5191,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $27 , %rax
@@ -5005,6 +5224,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $27 , %rax
@@ -5027,6 +5247,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5034,6 +5255,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $28 , %rax
@@ -5066,6 +5288,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $28 , %rax
@@ -5088,6 +5311,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5095,6 +5319,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $29 , %rax
@@ -5127,6 +5352,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $29 , %rax
@@ -5149,6 +5375,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5156,6 +5383,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $30 , %rax
@@ -5188,6 +5416,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $30 , %rax
@@ -5210,6 +5439,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5217,6 +5447,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $31 , %rax
@@ -5249,6 +5480,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $31 , %rax
@@ -5271,6 +5503,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5278,6 +5511,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $32 , %rax
@@ -5310,6 +5544,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $32 , %rax
@@ -5332,6 +5567,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5339,6 +5575,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $33 , %rax
@@ -5371,6 +5608,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $33 , %rax
@@ -5393,6 +5631,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5400,6 +5639,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $34 , %rax
@@ -5432,6 +5672,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $34 , %rax
@@ -5454,6 +5695,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5461,6 +5703,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $35 , %rax
@@ -5493,6 +5736,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $35 , %rax
@@ -5515,6 +5759,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5522,6 +5767,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $36 , %rax
@@ -5554,6 +5800,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $36 , %rax
@@ -5576,6 +5823,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5583,6 +5831,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $37 , %rax
@@ -5615,6 +5864,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $37 , %rax
@@ -5637,6 +5887,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5644,6 +5895,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $38 , %rax
@@ -5676,6 +5928,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $38 , %rax
@@ -5698,6 +5951,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5705,6 +5959,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $39 , %rax
@@ -5737,6 +5992,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $39 , %rax
@@ -5759,6 +6015,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5766,6 +6023,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $40 , %rax
@@ -5798,6 +6056,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $40 , %rax
@@ -5820,6 +6079,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5827,6 +6087,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $41 , %rax
@@ -5859,6 +6120,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $41 , %rax
@@ -5881,6 +6143,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5888,6 +6151,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $42 , %rax
@@ -5920,6 +6184,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $42 , %rax
@@ -5942,6 +6207,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -5949,6 +6215,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $43 , %rax
@@ -5981,6 +6248,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $43 , %rax
@@ -6003,6 +6271,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6010,6 +6279,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $44 , %rax
@@ -6042,6 +6312,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $44 , %rax
@@ -6064,6 +6335,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6071,6 +6343,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $45 , %rax
@@ -6103,6 +6376,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $45 , %rax
@@ -6125,6 +6399,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6132,6 +6407,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $46 , %rax
@@ -6164,6 +6440,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $46 , %rax
@@ -6186,6 +6463,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6193,6 +6471,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $47 , %rax
@@ -6225,6 +6504,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $47 , %rax
@@ -6247,6 +6527,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6254,6 +6535,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $48 , %rax
@@ -6286,6 +6568,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $48 , %rax
@@ -6308,6 +6591,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6315,6 +6599,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $49 , %rax
@@ -6347,6 +6632,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $49 , %rax
@@ -6369,6 +6655,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6376,6 +6663,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $50 , %rax
@@ -6408,6 +6696,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $50 , %rax
@@ -6430,6 +6719,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6437,6 +6727,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $51 , %rax
@@ -6469,6 +6760,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $51 , %rax
@@ -6491,6 +6783,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6498,6 +6791,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $52 , %rax
@@ -6530,6 +6824,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $52 , %rax
@@ -6552,6 +6847,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6559,6 +6855,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $53 , %rax
@@ -6591,6 +6888,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $53 , %rax
@@ -6613,6 +6911,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6620,6 +6919,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $54 , %rax
@@ -6652,6 +6952,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $54 , %rax
@@ -6674,6 +6975,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6681,6 +6983,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $55 , %rax
@@ -6713,6 +7016,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $55 , %rax
@@ -6735,6 +7039,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6742,6 +7047,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $56 , %rax
@@ -6774,6 +7080,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $56 , %rax
@@ -6796,6 +7103,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6803,6 +7111,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $57 , %rax
@@ -6835,6 +7144,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $57 , %rax
@@ -6857,6 +7167,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6864,6 +7175,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $58 , %rax
@@ -6896,6 +7208,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $58 , %rax
@@ -6918,6 +7231,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6925,6 +7239,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $59 , %rax
@@ -6957,6 +7272,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $59 , %rax
@@ -6979,6 +7295,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -6986,6 +7303,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $60 , %rax
@@ -7018,6 +7336,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $60 , %rax
@@ -7040,6 +7359,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7047,6 +7367,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $61 , %rax
@@ -7079,6 +7400,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $61 , %rax
@@ -7101,6 +7423,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7108,6 +7431,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $62 , %rax
@@ -7140,6 +7464,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $62 , %rax
@@ -7162,6 +7487,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7169,6 +7495,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $63 , %rax
@@ -7201,6 +7528,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $63 , %rax
@@ -7223,6 +7551,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7230,6 +7559,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $64 , %rax
@@ -7262,6 +7592,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $64 , %rax
@@ -7284,6 +7615,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7291,6 +7623,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $65 , %rax
@@ -7323,6 +7656,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $65 , %rax
@@ -7345,6 +7679,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7352,6 +7687,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $66 , %rax
@@ -7384,6 +7720,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $66 , %rax
@@ -7406,6 +7743,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7413,6 +7751,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $67 , %rax
@@ -7445,6 +7784,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $67 , %rax
@@ -7467,6 +7807,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7474,6 +7815,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $68 , %rax
@@ -7506,6 +7848,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $68 , %rax
@@ -7528,6 +7871,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7535,6 +7879,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $69 , %rax
@@ -7567,6 +7912,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $69 , %rax
@@ -7589,6 +7935,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7596,6 +7943,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $70 , %rax
@@ -7628,6 +7976,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $70 , %rax
@@ -7650,6 +7999,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7657,6 +8007,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $71 , %rax
@@ -7689,6 +8040,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $71 , %rax
@@ -7711,6 +8063,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7718,6 +8071,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $72 , %rax
@@ -7750,6 +8104,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $72 , %rax
@@ -7772,6 +8127,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7779,6 +8135,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $73 , %rax
@@ -7811,6 +8168,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $73 , %rax
@@ -7833,6 +8191,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7840,6 +8199,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $74 , %rax
@@ -7872,6 +8232,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $74 , %rax
@@ -7894,6 +8255,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7901,6 +8263,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $75 , %rax
@@ -7933,6 +8296,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $75 , %rax
@@ -7955,6 +8319,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -7962,6 +8327,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $76 , %rax
@@ -7994,6 +8360,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $76 , %rax
@@ -8016,6 +8383,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8023,6 +8391,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $77 , %rax
@@ -8055,6 +8424,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $77 , %rax
@@ -8077,6 +8447,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8084,6 +8455,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $78 , %rax
@@ -8116,6 +8488,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $78 , %rax
@@ -8138,6 +8511,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8145,6 +8519,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $79 , %rax
@@ -8177,6 +8552,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $79 , %rax
@@ -8199,6 +8575,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8206,6 +8583,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $80 , %rax
@@ -8238,6 +8616,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $80 , %rax
@@ -8260,6 +8639,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8267,6 +8647,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $81 , %rax
@@ -8299,6 +8680,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $81 , %rax
@@ -8321,6 +8703,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8328,6 +8711,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $82 , %rax
@@ -8360,6 +8744,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $82 , %rax
@@ -8382,6 +8767,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8389,6 +8775,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $83 , %rax
@@ -8421,6 +8808,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $83 , %rax
@@ -8443,6 +8831,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8450,6 +8839,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $84 , %rax
@@ -8482,6 +8872,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $84 , %rax
@@ -8504,6 +8895,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8511,6 +8903,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $85 , %rax
@@ -8543,6 +8936,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $85 , %rax
@@ -8565,6 +8959,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8572,6 +8967,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $86 , %rax
@@ -8604,6 +9000,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $86 , %rax
@@ -8626,6 +9023,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8633,6 +9031,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $87 , %rax
@@ -8665,6 +9064,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $87 , %rax
@@ -8687,6 +9087,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8694,6 +9095,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $88 , %rax
@@ -8726,6 +9128,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $88 , %rax
@@ -8748,6 +9151,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8755,6 +9159,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $89 , %rax
@@ -8787,6 +9192,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $89 , %rax
@@ -8809,6 +9215,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8816,6 +9223,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $90 , %rax
@@ -8848,6 +9256,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $90 , %rax
@@ -8870,6 +9279,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8877,6 +9287,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $91 , %rax
@@ -8909,6 +9320,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $91 , %rax
@@ -8931,6 +9343,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8938,6 +9351,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $92 , %rax
@@ -8970,6 +9384,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $92 , %rax
@@ -8992,6 +9407,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -8999,6 +9415,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $93 , %rax
@@ -9031,6 +9448,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $93 , %rax
@@ -9053,6 +9471,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -9060,6 +9479,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $94 , %rax
@@ -9092,6 +9512,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $94 , %rax
@@ -9114,6 +9535,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -9121,6 +9543,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $95 , %rax
@@ -9153,6 +9576,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $95 , %rax
@@ -9175,6 +9599,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -9182,6 +9607,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $96 , %rax
@@ -9214,6 +9640,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $96 , %rax
@@ -9236,6 +9663,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -9243,6 +9671,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $97 , %rax
@@ -9275,6 +9704,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $97 , %rax
@@ -9297,6 +9727,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -9304,6 +9735,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $98 , %rax
@@ -9336,6 +9768,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $98 , %rax
@@ -9358,6 +9791,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -9365,6 +9799,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $99 , %rax
@@ -9397,6 +9832,7 @@ test_tabs:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $99 , %rax
@@ -9419,6 +9855,7 @@ test_tabs:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -9426,6 +9863,7 @@ test_tabs:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $8 , %rax
@@ -9576,6 +10014,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    global_1(%rip) , %rax
 		pushq    %rax
 		movq    $0 , %rax
@@ -9587,11 +10026,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    global_2(%rip) , %rax
 		pushq    %rax
 		movq    $45 , %rax
@@ -9613,6 +10054,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    global_2(%rip) , %rax
 		pushq    %rax
 		movq    $45 , %rax
@@ -9624,11 +10066,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    global_3(%rip) , %rax
 		pushq    %rax
 		movq    $55 , %rax
@@ -9651,6 +10095,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    global_3(%rip) , %rax
 		pushq    %rax
 		movq    $55 , %rax
@@ -9663,11 +10108,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    global_4(%rip) , %rax
 		pushq    %rax
 		movq    $52 , %rax
@@ -9689,6 +10136,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    global_4(%rip) , %rax
 		pushq    %rax
 		movq    $52 , %rax
@@ -9700,11 +10148,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -9735,6 +10185,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -9755,11 +10206,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -9791,6 +10244,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $0 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -9812,11 +10266,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $1 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -9848,6 +10304,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $1 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -9869,11 +10326,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $1 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -9904,6 +10363,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $1 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -9924,11 +10384,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $2 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -9959,6 +10421,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $2 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -9979,11 +10442,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $2 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10014,6 +10479,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $2 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10034,11 +10500,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $3 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10069,6 +10537,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $3 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10089,11 +10558,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $3 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10124,6 +10595,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $3 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10144,11 +10616,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $4 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10179,6 +10653,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $4 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10199,11 +10674,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $4 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10234,6 +10711,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $4 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10254,11 +10732,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $5 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10289,6 +10769,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $5 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10309,11 +10790,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $5 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10344,6 +10827,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $5 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10364,11 +10848,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $6 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10399,6 +10885,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $6 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10419,11 +10906,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $6 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10454,6 +10943,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $6 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10474,11 +10964,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $7 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10509,6 +11001,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $7 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10529,11 +11022,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $7 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10564,6 +11059,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $7 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10584,11 +11080,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $8 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10619,6 +11117,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $8 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10639,11 +11138,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $8 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10674,6 +11175,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $8 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10694,11 +11196,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $9 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10729,6 +11233,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $9 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10749,11 +11254,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $9 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10784,6 +11291,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $9 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10804,11 +11312,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $10 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10839,6 +11349,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $10 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10859,11 +11370,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $10 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10894,6 +11407,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $10 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -10914,11 +11428,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $11 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10949,6 +11465,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $11 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -10969,11 +11486,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $11 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11004,6 +11523,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $11 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11024,11 +11544,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $12 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11059,6 +11581,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $12 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11079,11 +11602,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $12 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11114,6 +11639,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $12 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11134,11 +11660,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $13 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11169,6 +11697,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $13 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11189,11 +11718,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $13 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11224,6 +11755,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $13 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11244,11 +11776,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $14 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11279,6 +11813,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $14 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11299,11 +11834,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $14 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11334,6 +11871,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $14 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11354,11 +11892,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $15 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11389,6 +11929,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $15 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11409,11 +11950,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $15 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11444,6 +11987,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $15 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11464,11 +12008,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $16 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11499,6 +12045,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $16 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11519,11 +12066,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $16 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11554,6 +12103,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $16 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11574,11 +12124,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $17 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11609,6 +12161,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $17 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11629,11 +12182,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $17 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11664,6 +12219,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $17 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11684,11 +12240,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $18 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11719,6 +12277,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $18 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11739,11 +12298,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $18 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11774,6 +12335,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $18 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11794,11 +12356,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $19 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11829,6 +12393,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $19 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11849,11 +12414,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $19 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11884,6 +12451,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $19 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11904,11 +12472,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $20 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11939,6 +12509,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $20 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -11959,11 +12530,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $20 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -11994,6 +12567,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $20 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12014,11 +12588,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $21 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12049,6 +12625,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $21 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12069,11 +12646,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $21 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12104,6 +12683,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $21 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12124,11 +12704,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $22 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12159,6 +12741,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $22 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12179,11 +12762,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $22 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12214,6 +12799,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $22 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12234,11 +12820,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $23 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12269,6 +12857,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $23 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12289,11 +12878,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $23 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12324,6 +12915,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $23 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12344,11 +12936,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $24 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12379,6 +12973,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $24 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12399,11 +12994,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $24 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12434,6 +13031,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $24 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12454,11 +13052,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $25 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12489,6 +13089,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $25 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12509,11 +13110,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $25 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12544,6 +13147,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $25 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12564,11 +13168,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $26 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12599,6 +13205,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $26 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12619,11 +13226,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $26 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12654,6 +13263,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $26 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12674,11 +13284,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $27 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12709,6 +13321,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $27 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12729,11 +13342,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $27 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12764,6 +13379,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $27 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12784,11 +13400,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $28 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12819,6 +13437,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $28 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12839,11 +13458,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $28 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12874,6 +13495,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $28 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12894,11 +13516,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $29 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12929,6 +13553,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $29 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -12949,11 +13574,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $29 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -12984,6 +13611,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $29 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13004,11 +13632,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $30 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13039,6 +13669,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $30 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13059,11 +13690,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $30 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13094,6 +13727,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $30 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13114,11 +13748,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $31 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13149,6 +13785,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $31 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13169,11 +13806,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $31 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13204,6 +13843,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $31 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13224,11 +13864,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $32 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13259,6 +13901,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $32 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13279,11 +13922,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $32 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13314,6 +13959,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $32 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13334,11 +13980,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $33 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13369,6 +14017,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $33 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13389,11 +14038,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $33 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13424,6 +14075,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $33 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13444,11 +14096,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $34 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13479,6 +14133,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $34 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13499,11 +14154,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $34 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13534,6 +14191,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $34 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13554,11 +14212,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $35 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13589,6 +14249,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $35 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13609,11 +14270,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $35 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13644,6 +14307,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $35 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13664,11 +14328,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $36 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13699,6 +14365,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $36 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13719,11 +14386,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $36 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13754,6 +14423,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $36 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13774,11 +14444,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $37 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13809,6 +14481,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $37 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13829,11 +14502,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $37 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13864,6 +14539,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $37 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13884,11 +14560,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $38 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13919,6 +14597,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $38 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -13939,11 +14618,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $38 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13974,6 +14655,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $38 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -13994,11 +14676,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $39 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14029,6 +14713,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $39 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14049,11 +14734,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $39 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14084,6 +14771,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $39 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14104,11 +14792,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $40 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14139,6 +14829,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $40 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14159,11 +14850,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $40 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14194,6 +14887,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $40 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14214,11 +14908,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $41 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14249,6 +14945,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $41 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14269,11 +14966,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $41 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14304,6 +15003,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $41 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14324,11 +15024,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $42 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14359,6 +15061,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $42 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14379,11 +15082,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $42 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14414,6 +15119,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $42 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14434,11 +15140,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $43 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14469,6 +15177,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $43 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14489,11 +15198,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $43 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14524,6 +15235,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $43 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14544,11 +15256,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $44 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14579,6 +15293,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $44 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14599,11 +15314,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $44 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14634,6 +15351,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $44 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14654,11 +15372,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $45 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14689,6 +15409,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $45 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14709,11 +15430,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $45 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14744,6 +15467,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $45 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14764,11 +15488,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $46 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14799,6 +15525,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $46 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14819,11 +15546,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $46 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14854,6 +15583,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $46 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14874,11 +15604,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $47 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14909,6 +15641,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $47 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -14929,11 +15662,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $47 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14964,6 +15699,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $47 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -14984,11 +15720,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $48 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15019,6 +15757,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $48 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15039,11 +15778,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $48 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15074,6 +15815,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $48 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15094,11 +15836,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $49 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15129,6 +15873,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $49 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15149,11 +15894,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $49 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15184,6 +15931,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $49 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15204,11 +15952,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $50 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15239,6 +15989,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $50 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15259,11 +16010,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $50 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15294,6 +16047,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $50 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15314,11 +16068,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $51 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15349,6 +16105,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $51 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15369,11 +16126,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $51 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15404,6 +16163,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $51 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15424,11 +16184,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $52 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15459,6 +16221,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $52 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15479,11 +16242,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $52 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15514,6 +16279,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $52 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15534,11 +16300,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $53 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15569,6 +16337,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $53 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15589,11 +16358,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $53 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15624,6 +16395,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $53 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15644,11 +16416,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $54 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15679,6 +16453,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $54 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15699,11 +16474,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $54 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15734,6 +16511,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $54 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15754,11 +16532,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $55 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15789,6 +16569,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $55 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15809,11 +16590,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $55 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15844,6 +16627,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $55 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15864,11 +16648,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $56 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15899,6 +16685,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $56 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -15919,11 +16706,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $56 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15954,6 +16743,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $56 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -15974,11 +16764,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $57 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16009,6 +16801,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $57 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16029,11 +16822,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $57 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16064,6 +16859,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $57 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16084,11 +16880,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $58 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16119,6 +16917,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $58 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16139,11 +16938,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $58 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16174,6 +16975,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $58 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16194,11 +16996,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $59 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16229,6 +17033,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $59 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16249,11 +17054,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $59 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16284,6 +17091,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $59 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16304,11 +17112,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $60 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16339,6 +17149,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $60 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16359,11 +17170,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $60 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16394,6 +17207,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $60 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16414,11 +17228,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $61 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16449,6 +17265,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $61 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16469,11 +17286,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $61 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16504,6 +17323,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $61 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16524,11 +17344,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $62 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16559,6 +17381,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $62 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16579,11 +17402,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $62 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16614,6 +17439,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $62 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16634,11 +17460,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $63 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16669,6 +17497,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $63 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16689,11 +17518,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $63 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16724,6 +17555,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $63 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16744,11 +17576,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $64 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16779,6 +17613,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $64 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16799,11 +17634,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $64 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16834,6 +17671,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $64 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16854,11 +17692,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $65 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16889,6 +17729,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $65 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16909,11 +17750,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $65 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16944,6 +17787,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $65 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -16964,11 +17808,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $66 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -16999,6 +17845,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $66 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17019,11 +17866,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $66 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17054,6 +17903,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $66 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17074,11 +17924,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $67 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17109,6 +17961,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $67 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17129,11 +17982,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $67 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17164,6 +18019,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $67 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17184,11 +18040,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $68 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17219,6 +18077,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $68 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17239,11 +18098,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $68 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17274,6 +18135,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $68 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17294,11 +18156,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $69 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17329,6 +18193,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $69 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17349,11 +18214,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $69 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17384,6 +18251,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $69 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17404,11 +18272,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $70 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17439,6 +18309,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $70 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17459,11 +18330,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $70 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17494,6 +18367,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $70 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17514,11 +18388,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $71 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17549,6 +18425,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $71 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17569,11 +18446,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $71 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17604,6 +18483,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $71 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17624,11 +18504,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $72 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17659,6 +18541,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $72 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17679,11 +18562,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $72 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17714,6 +18599,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $72 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17734,11 +18620,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $73 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17769,6 +18657,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $73 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17789,11 +18678,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $73 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17824,6 +18715,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $73 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17844,11 +18736,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $74 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17879,6 +18773,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $74 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17899,11 +18794,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $74 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17934,6 +18831,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $74 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -17954,11 +18852,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $75 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -17989,6 +18889,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $75 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18009,11 +18910,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $75 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18044,6 +18947,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $75 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18064,11 +18968,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $76 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18099,6 +19005,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $76 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18119,11 +19026,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $76 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18154,6 +19063,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $76 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18174,11 +19084,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $77 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18209,6 +19121,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $77 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18229,11 +19142,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $77 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18264,6 +19179,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $77 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18284,11 +19200,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $78 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18319,6 +19237,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $78 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18339,11 +19258,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $78 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18374,6 +19295,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $78 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18394,11 +19316,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $79 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18429,6 +19353,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $79 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18449,11 +19374,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $79 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18484,6 +19411,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $79 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18504,11 +19432,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $80 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18539,6 +19469,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $80 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18559,11 +19490,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $80 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18594,6 +19527,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $80 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18614,11 +19548,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $81 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18649,6 +19585,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $81 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18669,11 +19606,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $81 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18704,6 +19643,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $81 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18724,11 +19664,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $82 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18759,6 +19701,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $82 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18779,11 +19722,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $82 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18814,6 +19759,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $82 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18834,11 +19780,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $83 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18869,6 +19817,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $83 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18889,11 +19838,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $83 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18924,6 +19875,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $83 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -18944,11 +19896,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $84 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18979,6 +19933,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $84 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -18999,11 +19954,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $84 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19034,6 +19991,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $84 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19054,11 +20012,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $85 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19089,6 +20049,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $85 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19109,11 +20070,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $85 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19144,6 +20107,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $85 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19164,11 +20128,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $86 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19199,6 +20165,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $86 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19219,11 +20186,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $86 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19254,6 +20223,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $86 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19274,11 +20244,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $87 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19309,6 +20281,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $87 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19329,11 +20302,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $87 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19364,6 +20339,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $87 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19384,11 +20360,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $88 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19419,6 +20397,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $88 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19439,11 +20418,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $88 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19474,6 +20455,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $88 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19494,11 +20476,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $89 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19529,6 +20513,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $89 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19549,11 +20534,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $89 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19584,6 +20571,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $89 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19604,11 +20592,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $90 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19639,6 +20629,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $90 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19659,11 +20650,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $90 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19694,6 +20687,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $90 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19714,11 +20708,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $91 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19749,6 +20745,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $91 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19769,11 +20766,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $91 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19804,6 +20803,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $91 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19824,11 +20824,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $92 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19859,6 +20861,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $92 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19879,11 +20882,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $92 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19914,6 +20919,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $92 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -19934,11 +20940,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $93 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19969,6 +20977,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $93 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -19989,11 +20998,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $93 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20024,6 +21035,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $93 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20044,11 +21056,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $94 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20079,6 +21093,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $94 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20099,11 +21114,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $94 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20134,6 +21151,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $94 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20154,11 +21172,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $95 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20189,6 +21209,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $95 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20209,11 +21230,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $95 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20244,6 +21267,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $95 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20264,11 +21288,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $96 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20299,6 +21325,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $96 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20319,11 +21346,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $96 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20354,6 +21383,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $96 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20374,11 +21404,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $97 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20409,6 +21441,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $97 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20429,11 +21462,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $97 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20464,6 +21499,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $97 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20484,11 +21520,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $98 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20519,6 +21557,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $98 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20539,11 +21578,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $98 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20574,6 +21615,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $98 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20594,11 +21636,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $99 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20629,6 +21673,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $99 , %rax
 		pushq    %rax
 		movq    global_5(%rip) , %rax
@@ -20649,11 +21694,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $99 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20684,6 +21731,7 @@ verify_global:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    $99 , %rax
 		pushq    %rax
 		movq    global_6(%rip) , %rax
@@ -20704,11 +21752,13 @@ verify_global:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		popq    %rbp
 		ret
 
@@ -20971,6 +22021,7 @@ test_last:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -24(%rbp) , %rax
 		pushq    %rax
 		movq    $6056 , %rax
@@ -20982,11 +22033,13 @@ test_last:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -32(%rbp) , %rax
 		pushq    %rax
 		movq    $545541 , %rax
@@ -21009,6 +22062,7 @@ test_last:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		movq    -32(%rbp) , %rax
 		pushq    %rax
 		movq    $545541 , %rax
@@ -21021,11 +22075,13 @@ test_last:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		leaq    LString5(%rip) , %rax
 		pushq    %rax
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $16 , %rsp
 		addq    $16 , %rsp
 		popq    %rbp
@@ -21271,6 +22327,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -8(%rbp) , %rax
@@ -21284,6 +22341,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21291,6 +22349,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -16(%rbp) , %rax
@@ -21314,6 +22373,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -16(%rbp) , %rax
@@ -21327,6 +22387,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21334,6 +22395,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -24(%rbp) , %rax
@@ -21357,6 +22419,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -24(%rbp) , %rax
@@ -21370,6 +22433,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21377,6 +22441,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -40(%rbp) , %rax
@@ -21400,6 +22465,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -40(%rbp) , %rax
@@ -21413,6 +22479,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21420,6 +22487,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $0 , %rax
@@ -21453,6 +22521,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $0 , %rax
@@ -21476,6 +22545,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21483,6 +22553,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $1 , %rax
@@ -21515,6 +22586,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $1 , %rax
@@ -21537,6 +22609,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21544,6 +22617,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $2 , %rax
@@ -21577,6 +22651,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    $2 , %rax
@@ -21600,6 +22675,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21607,6 +22683,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -72(%rbp) , %rax
@@ -21630,6 +22707,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -72(%rbp) , %rax
@@ -21643,6 +22721,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21650,6 +22729,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -80(%rbp) , %rax
@@ -21673,6 +22753,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -80(%rbp) , %rax
@@ -21686,6 +22767,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21693,6 +22775,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -88(%rbp) , %rax
@@ -21716,6 +22799,7 @@ main:
 		popq    %rsi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		movq    -88(%rbp) , %rax
@@ -21729,6 +22813,7 @@ main:
 		popq    %rdx
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		subq    $8 , %rsp
 		leaq    LString5(%rip) , %rax
@@ -21736,6 +22821,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		movq    -48(%rbp) , %rax
 		cmpq    $0 , %rax
@@ -21746,6 +22832,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    free
+		cltq
 		addq    $8 , %rsp
 		.ELSE_BODY368:
 		movq    global_5(%rip) , %rax
@@ -21757,6 +22844,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    free
+		cltq
 		addq    $8 , %rsp
 		.ELSE_BODY369:
 		movq    global_6(%rip) , %rax
@@ -21768,6 +22856,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    free
+		cltq
 		addq    $8 , %rsp
 		.ELSE_BODY370:
 		subq    $8 , %rsp
@@ -21776,6 +22865,7 @@ main:
 		popq    %rdi
 		movq    $0 , %rax
 		call    printf
+		cltq
 		addq    $8 , %rsp
 		movq    $0 , %rax
 		addq    $88 , %rsp

@@ -35,6 +35,17 @@ let custom_raise excpt loc =
 
 let empty_env = []
 
+let _64_bit_env = ref empty_env
+
+let rec is_func_64 str env = 
+  match env with
+  |[] -> false
+  |(k,v)::tl -> 
+      if str=k then
+        true
+      else
+        is_func_64 str tl
+
 let str_env = ref empty_env
 
 let rec get_str_adress str env = 
@@ -50,6 +61,24 @@ let put_str_adress str =
   str_env := (str, Printf.sprintf "LString%d" !string_n)::!str_env ;
   string_n := !string_n + 1;
   Printf.sprintf "LString%d" (!string_n-1)
+  
+let rec add_64bit env key (value: string) = 
+  match env with
+  |[] -> [(key,value)]
+  |(k,v)::tl -> 
+      if key=k then
+        (k,value)::tl
+      else
+        (k,v):: add_64bit tl key value
+
+
+let set_64_bit_functions =
+  _64_bit_env := add_64bit !_64_bit_env "malloc" "64bits";
+  _64_bit_env := add_64bit !_64_bit_env "realloc" "64bits";
+  _64_bit_env := add_64bit !_64_bit_env "calloc" "64bits";
+  _64_bit_env := add_64bit !_64_bit_env "fopen" "64bits"
+
+
 
 let rec add_key env key (value: decl_env) = 
   match env with
@@ -59,6 +88,7 @@ let rec add_key env key (value: decl_env) =
         (k,value)::tl
       else
         (k,v):: add_key tl key value
+
 
 let rec get_value_var (env_const: env) (env: env) key loc =
   match env with
@@ -71,8 +101,6 @@ let rec get_value_var (env_const: env) (env: env) key loc =
       else
         get_value_var env_const tl key loc
 
-
-(* ajouter l'utilisation de ça *)
 let rec get_value_func (env_const : env) ( env : env) key loc =
   match env with
   |[] -> key
@@ -83,8 +111,6 @@ let rec get_value_func (env_const : env) ( env : env) key loc =
         |FUN_ENV (nargs)-> key
       else
         get_value_func env_const tl key loc
-
-let effective_func name id = Printf.sprintf "%s%d" name id
 
 let rec is_in_environment_same_level env_const (env : env) key (loc: Error.locator) deepness =
   match env with
@@ -141,8 +167,10 @@ let jmp arg1 = p_1argf "jmp" arg1
 let je arg1 = p_1argf "je" arg1
 let leaq arg1 arg2 = p_2argf "leaq" arg1 arg2
 let movq arg1 arg2 = p_2argf "movq" arg1 arg2
-let addq arg1 arg2 = if not (arg1 = "$0")then p_2argf "addq" arg1 arg2 else ()
-let subq arg1 arg2 = if not (arg1 = "$0")then p_2argf "subq" arg1 arg2 else ()
+let addq arg1 arg2 = if not (arg1 = "$0")then p_2argf "addq" arg1 arg2 else 
+                  Printf.printf "Optimisation : there was a addq opti\n"
+let subq arg1 arg2 = if not (arg1 = "$0")then p_2argf "subq" arg1 arg2 else
+                  Printf.printf "Optimisation : there was a subq opti\n"
 let cmpq arg1 arg2 = p_2argf "cmpq" arg1 arg2
 let imulq arg1 arg2 = p_2argf "imulq" arg1 arg2
 let ret = p_0argf "ret"
@@ -156,8 +184,6 @@ let p_register delta reg =
 
 let print_global_int var_name = 
   unoptimized_code := [Printf.sprintf ".data\n%s:\n\t\t.zero    8\n.text\n" var_name]@(!unoptimized_code)
-(*let print_func out name id = Printf.fprintf out "%s%d:\n" name id*)
-(*let get_func_inline out name id = Printf.sprintf "%s%d" name id*)
 let print_label name id = 
   unoptimized_code := [Printf.sprintf "\t\t.%s%d:\n" name id]@(!unoptimized_code)
 let get_label name id = Printf.sprintf ".%s%d" name id
@@ -180,7 +206,6 @@ let arg_register n_arg =
  * var deepness : 0 = global , 1 = function arg , 2+ block
  *)
 
-(* penser à tester si il ne va pas y avoir du code inatteignable *)
 let rec compile_expr env loc_expr stack_offset =
   let (loc,expr)=loc_expr in
   match expr with
@@ -190,7 +215,7 @@ let rec compile_expr env loc_expr stack_offset =
     let address = get_str_adress str !str_env in
     match address with
       |None -> leaq ((put_str_adress str)^"(%rip)") "%rax" 
-      |Some addr -> leaq (addr ^"(%rip)" )"%rax"  (* potentillement penser à esaped *)
+      |Some addr -> leaq (addr ^"(%rip)" )"%rax"  
     end
   |SET_VAR (var, loc_expr1) -> 
       compile_expr env loc_expr1 stack_offset ;
@@ -390,15 +415,22 @@ and compile_block env var_deepness stack_offset vars (code_list : CAST.loc_code 
 
 and compile_if loc_expr l_c_if l_c_else env var_deepness stack_offset  : unit =
   let current_if_n = !if_n+1 in
+  let (_,else_code) = l_c_else in
+  let else_empty = match else_code with 
+    |CBLOCK (else_decls, else_c) -> 
+        (List.length else_decls)=0 && (List.length else_c)=0
+    |_ -> false
+  in 
   if_n := !if_n+1;
   compile_expr env loc_expr stack_offset  ;
   cmpq "$0" "%rax" ;
   je (get_label "ELSE_BODY" current_if_n) ;
   compile_code env var_deepness stack_offset l_c_if ;
-  jmp (get_label "END_IF" current_if_n) ;
+  if not else_empty then jmp (get_label "END_IF" current_if_n);
   print_label  "ELSE_BODY" current_if_n;
   compile_code env var_deepness stack_offset l_c_else ;
-  print_label  "END_IF" current_if_n
+  if not else_empty then print_label  "END_IF" current_if_n else
+                  Printf.printf "Optimisation : there was an empty else opti\n"
   
 and compile_while env loc_expr loc_code var_deepness stack_offset  : unit =
   let current_while_n = !while_n+1 in
@@ -471,40 +503,6 @@ and handle_args env args  =
     aux env args 0 0
     (*addq to_sub_sizeofint "%rsp";*)
 
-let rec optimize_code_empty_elses code (acc : string list) =
-  match code with
-  |[] -> acc
-  |hd::tl -> 
-      match tl with
-      |[] -> List.rev ([hd]@(List.rev acc))
-      |hd2::tl2 ->
-          match tl2 with
-          |[] -> List.rev ([hd2;hd]@(List.rev acc))
-          |hd3::tl3 ->
-              try Scanf.sscanf hd "\t\t%s    .END_IF%d\n" (
-                fun cmd id1 ->
-                  try Scanf.sscanf hd2 "\t\t.ELSE_BODY%d:\n" (
-                    fun id2 ->
-                      try Scanf.sscanf hd3 "\t\t.END_IF%d:\n" (
-                        fun id3 ->
-                          if id1=id2 && id2=id3 then
-                            begin
-                            Printf.printf "On passe ! id1 = %d , id2 = %d , id3 = %d\n" id1 id2 id3;
-                            optimize_code_empty_elses tl3 (List.rev ([hd2]@(List.rev acc)))
-                            end
-                          else
-                            optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
-                      )
-                      with e ->
-                        optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
-                  )
-                  with e ->
-                    optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
-              )
-              with e ->
-                optimize_code_empty_elses tl (List.rev ([hd]@(List.rev acc)))
-
-
 let rec rax_wont_be_used rest_of_code =
   match rest_of_code with
   |[] -> true
@@ -536,34 +534,48 @@ let rec rax_wont_be_used rest_of_code =
       )
       with e -> true
 
-
-
-let rec optimize_code_rax_const code (acc : string list) =
+let rec print_code_and_optimize out code =
   match code with
-  |[] -> acc
+  |[] -> ()
   |hd::tl -> 
-      match tl with
-      |[] -> List.rev ([hd]@(List.rev acc))
-      |hd2::tl2 ->
-          try Scanf.sscanf hd "\t\t%s    $%d , %s\n" (
-            fun cmd value arg2 ->
-              try Scanf.sscanf hd2 "\t\t%s    %s , %s\n" (
-                fun cmd2 arg3 arg4 ->
-                  if cmd=cmd2 && cmd="movq" && arg2=arg3 && arg2="%rax" && (rax_wont_be_used tl2) then
-                    optimize_code_rax_const tl2 (List.rev ([Printf.sprintf "\t\t%s    $%d , %s\n" cmd value arg4 ]@(List.rev acc)))
-                  else
-                    optimize_code_rax_const tl (List.rev ([hd]@(List.rev acc)))
-              )
-              with e ->
-                optimize_code_rax_const tl2 (List.rev ([hd2;hd]@(List.rev acc)))
-          )
-          with e ->
-            optimize_code_rax_const tl (List.rev ([hd]@(List.rev acc)))
-
-    
-
-
-
+      try Scanf.sscanf hd "\t\tcall    %s\n" (
+        fun name ->
+          if not(is_func_64 name !_64_bit_env) then
+            begin
+              Printf.fprintf out "%s" hd ;
+              Printf.fprintf out "\t\tcltq\n";
+              Printf.printf "Debug: a non 64 bit function was called : %s \n" name;
+              print_code_and_optimize out tl
+            end
+          else
+            begin
+              Printf.fprintf out "%s" hd ; print_code_and_optimize out tl
+            end
+      )
+      with e ->
+      try Scanf.sscanf hd "\t\t%s    $%d , %s\n" (
+        fun cmd value arg2 ->
+          match tl with 
+          |[] -> Printf.fprintf out "%s" hd ; print_code_and_optimize out tl
+          |hd2::tl2 ->
+            try Scanf.sscanf hd2 "\t\t%s    %s , %s\n" (
+              fun cmd2 arg3 arg4 ->
+                if cmd=cmd2 && cmd="movq" && arg2=arg3 && arg2="%rax" && (rax_wont_be_used tl2) then
+                  begin
+                  Printf.printf "Optimisation : there was a rax opti\n";
+                  Printf.fprintf out "\t\t%s    $%d , %s\n" cmd value arg4 ;
+                  print_code_and_optimize out tl2
+                  end
+                else
+                  begin
+                  Printf.fprintf out "%s" hd ; print_code_and_optimize out tl
+                  end
+            )
+            with e ->
+              Printf.fprintf out "%s" hd ; print_code_and_optimize out tl
+      )
+      with e ->
+        Printf.fprintf out "%s" hd ; print_code_and_optimize out tl
 
 
 let rec print_code out code =
@@ -586,23 +598,16 @@ let compile out decl_list =
             let _ = func_is_in_environment env env name loc in
             let new_env = add_key env name (FUN_ENV (List.length args)) in 
             begin
-              Printf.printf "Debug : name = %s\n" name;
+              _64_bit_env := add_64bit !_64_bit_env name "64bits";
+              Printf.printf "Debug a function is being compiled : name = %s\n" name;
               compile_fun new_env name args code ;
               compile_global tl new_env
             end
   in
-  (* Printf.fprintf out ".align 16\n\n"; *)
-  (*Printf.fprintf out ".file    \"test.c\"\n";
-  Printf.fprintf out ".section .text\n";*)
   Printf.fprintf out ".global main\n\n";
   compile_global decl_list empty_env;
-  let optimized_code_first_pass = optimize_code_empty_elses (List.rev !unoptimized_code) [] in
-  let optimized_code_second_pass = optimize_code_rax_const optimized_code_first_pass [] in
-  print_code out optimized_code_second_pass;
+  print_code_and_optimize out (List.rev !unoptimized_code) ;
   List.iter (fun v ->
     let (value, label) = v in
     Printf.fprintf out "%s:\n    .string    \"%s\"\n" label (String.escaped value)
   ) !str_env
-
-
-  (* cquand call vérifier que ce n'est pas main ? *)
