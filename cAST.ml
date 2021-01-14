@@ -1,72 +1,49 @@
-(*
- *  Copyright (c) 2005 by Laboratoire Spécification et Vérification (LSV),
- *  UMR 8643 CNRS & ENS Cachan.
- *  Written by Jean Goubault-Larrecq.  Not derived from licensed software.
- *
- *  Permission is granted to anyone to use this software for any
- *  purpose on any computer system, and to redistribute it freely,
- *  subject to the following restrictions:
- *
- *  1. Neither the author nor its employer is responsible for the consequences
- *     of use of this software, no matter how awful, even if they arise
- *     from defects in it.
- *
- *  2. The origin of this software must not be misrepresented, either
- *     by explicit claim or by omission.
- *
- *  3. Altered versions must be plainly marked as such, and must not
- *     be misrepresented as being the original software.
- *
- *  4. This software is restricted to non-commercial use only.  Commercial
- *     use is subject to a specific license, obtainable from LSV.
- * 
- *)
 
 open Error
 
 type mon_op = M_MINUS | M_NOT | M_POST_INC | M_POST_DEC | M_PRE_INC | M_PRE_DEC
     (* Les opérations unaires:
-     M_MINUS: calcule l'opposé -e de e;
-     M_NOT: calcule la négation logique ~e de e;
-     M_POST_INC: post-incrémentation e++;
-     M_POST_DEC: post-décrémentation e--;
-     M_PRE_INC: pré-incrémentation ++e;
-     M_PRE_DEC: pré-décrémentation --e.
+       M_MINUS: calcule l'opposé -e de e;
+       M_NOT: calcule la négation logique ~e de e;
+       M_POST_INC: post-incrémentation e++;
+       M_POST_DEC: post-décrémentation e--;
+       M_PRE_INC: pré-incrémentation ++e;
+       M_PRE_DEC: pré-décrémentation --e.
      *)
 type bin_op = S_MUL | S_DIV | S_MOD | S_ADD | S_SUB | S_INDEX
     (* Les opérations binaires:
-     S_MUL: multiplication entière;
-     S_DIV: division entière (quotient);
-     S_MOD: division entière (reste);
-     S_ADD: addition entière;
-     S_SUB: soustraction entière;
-     S_INDEX: accès à un élément de tableau a[i].
+       S_MUL: multiplication entière;
+       S_DIV: division entière (quotient);
+       S_MOD: division entière (reste);
+       S_ADD: addition entière;
+       S_SUB: soustraction entière;
+       S_INDEX: accès à un élément de tableau a[i].
      *)
 type cmp_op = C_LT | C_LE | C_EQ
     (* Les opérations de comparaison:
-     C_LT (less than): <;
-     C_LE (less than or equal to): <=;
-     C_EQ (equal): ==.
+       C_LT (less than): <;
+       C_LE (less than or equal to): <=;
+       C_EQ (equal): ==.
      *)
 
 type loc_expr = locator * expr
 and expr = VAR of string (* une variable --- toujours de type int. *)
-    | CST of int (* une constante entiere. *)
+    | CST of int (* une constante entière. *)
     | STRING of string (* une constante chaine. *)
     | SET_VAR of string * loc_expr (* affectation x=e. *)
     | SET_ARRAY of string * loc_expr * loc_expr (* affectation x[e]=e'. *)
     | CALL of string * loc_expr list (* appel de fonction f(e1,...,en) *)
-	(* operations arithmetiques: *)
+	(* opérations arithmétiques : *)
     | OP1 of mon_op * loc_expr (* OP1(mop, e) dénote -e, ~e, e++, e--, ++e, ou --e. *)
     | OP2 of bin_op * loc_expr * loc_expr (* OP2(bop,e,e') dénote e*e', e/e', e%e',
 					   e+e', e-e', ou e[e']. *)
     | CMP of cmp_op * loc_expr * loc_expr (* CMP(cop,e,e') vaut e<e', e<=e', ou e==e' *)
     | EIF of loc_expr * loc_expr * loc_expr (* EIF(e1,e2,e3) est e1?e2:e3 *)
     | ESEQ of loc_expr list (* e1, ..., en [sequence, analogue a e1;e2 au niveau code];
-			     si n=0, represente skip. *)
+			     si n=0, représente skip. *)
 
 type var_declaration =
-    CDECL of locator * string (* declaration de variable de type int. *)
+    CDECL of locator * string (* déclaration de variable de type int. *)
   | CFUN of locator * string * var_declaration list * loc_code
     (* fonction avec ses arguments, et son code. *)
 and loc_code = locator * code
@@ -76,7 +53,6 @@ and code =
   | CIF of loc_expr * loc_code * loc_code (* if (e) c1; else c2; *)
   | CWHILE of loc_expr * loc_code (* while (e) c1; *)
   | CRETURN of loc_expr option (* return; ou return (e); *)
-
 
 let cline = ref 1
 let ccol = ref 0
@@ -127,144 +103,137 @@ let bufout_delim buf pri newpri s =
 let bufout_open buf pri newpri = bufout_delim buf pri newpri "("
 let bufout_close buf pri newpri = bufout_delim buf pri newpri ")"
 
-let setop_text setop =
-    match setop with
-        S_MUL -> "*="
-      | S_DIV -> "/="
-      | S_MOD -> "%="
-      | S_ADD -> "+="
-      | S_SUB -> "-="
-      | S_INDEX -> ""
+let setop_text setop = match setop with
+    S_MUL -> "*="
+  | S_DIV -> "/="
+  | S_MOD -> "%="
+  | S_ADD -> "+="
+  | S_SUB -> "-="
+  | S_INDEX -> ""
 
-let mop_text mop =
-  match mop with
+let mop_text mop = match mop with
     M_MINUS -> "-"
   | M_NOT -> "~"
   | M_POST_INC | M_PRE_INC -> "++"
   | M_POST_DEC | M_PRE_DEC -> "--"
-
-let mop_prec mop =
-  match mop with
+                            
+let mop_prec mop = match mop with
     M_MINUS -> uminus_prec
   | M_NOT -> tilde_prec
   | M_POST_INC | M_POST_DEC | M_PRE_INC | M_PRE_DEC -> incdec_prec
+                                                     
+let op_text setop = match setop with
+    S_MUL -> "*"
+  | S_DIV -> "/"
+  | S_MOD -> "%"
+  | S_ADD -> "+"
+  | S_SUB -> "-"
+  | S_INDEX -> "["
 
-let op_text setop =
-    match setop with
-        S_MUL -> "*"
-      | S_DIV -> "/"
-      | S_MOD -> "%"
-      | S_ADD -> "+"
-      | S_SUB -> "-"
-      | S_INDEX -> "["
+let fin_op_text setop = match setop with
+    S_MUL -> ""
+  | S_DIV -> ""
+  | S_MOD -> ""
+  | S_ADD -> ""
+  | S_SUB -> ""
+  | S_INDEX -> "]"
+             
+let op_prec setop = match setop with
+    S_MUL -> mul_prec
+  | S_DIV -> div_prec
+  | S_MOD -> mod_prec
+  | S_ADD -> add_prec
+  | S_SUB -> sub_prec
+  | S_INDEX -> index_prec
 
-let fin_op_text setop =
-    match setop with
-        S_MUL -> ""
-      | S_DIV -> ""
-      | S_MOD -> ""
-      | S_ADD -> ""
-      | S_SUB -> ""
-      | S_INDEX -> "]"
-
-let op_prec setop =
-    match setop with
-        S_MUL -> mul_prec
-      | S_DIV -> div_prec
-      | S_MOD -> mod_prec
-      | S_ADD -> add_prec
-      | S_SUB -> sub_prec
-      | S_INDEX -> index_prec
-
-let rec bufout_expr buf pri e =
-    match e with
-	VAR s -> Buffer.add_string buf s
-      | CST n -> Buffer.add_string buf (string_of_int n)
-      | STRING s ->
-	  begin
-	    Buffer.add_string buf "\"";
-	    Buffer.add_string buf (String.escaped s);
-	    Buffer.add_string buf "\""
-	  end
-      | SET_VAR (x, e) -> (bufout_open buf pri setop_prec;
-			      Buffer.add_string buf x;
-			      Buffer.add_string buf "=";
-			      bufout_loc_expr buf setop_prec e;
-			      bufout_close buf pri setop_prec)
-      | SET_ARRAY (x, e, e') -> (bufout_open buf pri setop_prec;
-				 Buffer.add_string buf x;
-				 Buffer.add_string buf "[";
-				 bufout_loc_expr buf index_prec e;
-				 Buffer.add_string buf "]=";
-				 bufout_loc_expr buf setop_prec e';
-				 bufout_close buf pri setop_prec)
-      | CALL (f, l) -> (bufout_open buf pri index_prec;
-			Buffer.add_string buf f;
-			Buffer.add_string buf "(";
-			bufout_loc_expr_list buf l;
-			Buffer.add_string buf ")";
-			bufout_close buf pri index_prec)
-      | OP1 (mop, e') ->
-	  let newpri = mop_prec mop in
-	  (bufout_open buf pri newpri;
-	   (match mop with
-	     M_MINUS | M_NOT | M_PRE_INC | M_PRE_DEC ->
-	       (Buffer.add_string buf (mop_text mop);
-		bufout_loc_expr buf newpri e')
-	   | _ ->
-	       (bufout_loc_expr buf newpri e';
-		Buffer.add_string buf (mop_text mop)));
-	   bufout_close buf pri newpri)
-      | OP2 (setop, e, e') -> let newpri = op_prec setop in
-	(bufout_open buf pri newpri;
-	 bufout_loc_expr buf newpri e;
-	 Buffer.add_string buf (op_text setop);
-	 bufout_loc_expr buf newpri e';
-	 Buffer.add_string buf (fin_op_text setop);
-	 bufout_close buf pri newpri)
-      | CMP (C_LT, e, e') -> (bufout_open buf pri cmp_prec;
-			      bufout_loc_expr buf cmp_prec e;
-			      Buffer.add_string buf "<";
-			      bufout_loc_expr buf cmp_prec e';
-			      bufout_close buf pri cmp_prec)
-      | CMP (C_LE, e, e') -> (bufout_open buf pri cmp_prec;
-			      bufout_loc_expr buf cmp_prec e;
-			      Buffer.add_string buf "<=";
-			      bufout_loc_expr buf cmp_prec e';
-			      bufout_close buf pri cmp_prec)
-      | CMP (C_EQ, e, e') -> (bufout_open buf pri eq_prec;
-			      bufout_loc_expr buf eq_prec e;
-			      Buffer.add_string buf "==";
-			      bufout_loc_expr buf eq_prec e';
-			      bufout_close buf pri eq_prec)
-      | EIF (eb, et, ee) -> (bufout_open buf pri if_prec;
-			     bufout_loc_expr buf if_prec eb;
-			     Buffer.add_string buf "?";
-			     bufout_loc_expr buf if_prec et;
-			     Buffer.add_string buf ":";
-			     bufout_loc_expr buf if_prec ee;
-			     bufout_close buf pri if_prec)
-      | ESEQ (e::l) -> (bufout_open buf pri comma_prec;
-			bufout_loc_expr buf comma_prec e;
-			List.iter (fun e' -> (Buffer.add_string buf ",";
-					      bufout_loc_expr buf comma_prec e')) l;
-			bufout_close buf pri comma_prec)
-      | ESEQ [] -> ()
+let rec bufout_expr buf pri e = match e with
+    VAR s -> Buffer.add_string buf s
+  | CST n -> Buffer.add_string buf (string_of_int n)
+  | STRING s ->
+     begin
+       Buffer.add_string buf "\"";
+       Buffer.add_string buf (String.escaped s);
+       Buffer.add_string buf "\""
+     end
+  | SET_VAR (x, e) -> (bufout_open buf pri setop_prec;
+		       Buffer.add_string buf x;
+		       Buffer.add_string buf "=";
+		       bufout_loc_expr buf setop_prec e;
+		       bufout_close buf pri setop_prec)
+  | SET_ARRAY (x, e, e') -> (bufout_open buf pri setop_prec;
+			     Buffer.add_string buf x;
+			     Buffer.add_string buf "[";
+			     bufout_loc_expr buf index_prec e;
+			     Buffer.add_string buf "]=";
+			     bufout_loc_expr buf setop_prec e';
+			     bufout_close buf pri setop_prec)
+  | CALL (f, l) -> (bufout_open buf pri index_prec;
+		    Buffer.add_string buf f;
+		    Buffer.add_string buf "(";
+		    bufout_loc_expr_list buf l;
+		    Buffer.add_string buf ")";
+		    bufout_close buf pri index_prec)
+  | OP1 (mop, e') ->
+     let newpri = mop_prec mop in
+     (bufout_open buf pri newpri;
+      (match mop with
+	 M_MINUS | M_NOT | M_PRE_INC | M_PRE_DEC ->
+	            (Buffer.add_string buf (mop_text mop);
+		     bufout_loc_expr buf newpri e')
+	 | _ ->
+	    (bufout_loc_expr buf newpri e';
+	     Buffer.add_string buf (mop_text mop)));
+      bufout_close buf pri newpri)
+  | OP2 (setop, e, e') ->
+     let newpri = op_prec setop in
+     (bufout_open buf pri newpri;
+      bufout_loc_expr buf newpri e;
+      Buffer.add_string buf (op_text setop);
+      bufout_loc_expr buf newpri e';
+      Buffer.add_string buf (fin_op_text setop);
+      bufout_close buf pri newpri)
+  | CMP (C_LT, e, e') -> (bufout_open buf pri cmp_prec;
+			  bufout_loc_expr buf cmp_prec e;
+			  Buffer.add_string buf "<";
+			  bufout_loc_expr buf cmp_prec e';
+			  bufout_close buf pri cmp_prec)
+  | CMP (C_LE, e, e') -> (bufout_open buf pri cmp_prec;
+			  bufout_loc_expr buf cmp_prec e;
+			  Buffer.add_string buf "<=";
+			  bufout_loc_expr buf cmp_prec e';
+			  bufout_close buf pri cmp_prec)
+  | CMP (C_EQ, e, e') -> (bufout_open buf pri eq_prec;
+			  bufout_loc_expr buf eq_prec e;
+			  Buffer.add_string buf "==";
+			  bufout_loc_expr buf eq_prec e';
+			  bufout_close buf pri eq_prec)
+  | EIF (eb, et, ee) -> (bufout_open buf pri if_prec;
+			 bufout_loc_expr buf if_prec eb;
+			 Buffer.add_string buf "?";
+			 bufout_loc_expr buf if_prec et;
+			 Buffer.add_string buf ":";
+			 bufout_loc_expr buf if_prec ee;
+			 bufout_close buf pri if_prec)
+  | ESEQ (e::l) -> (bufout_open buf pri comma_prec;
+		    bufout_loc_expr buf comma_prec e;
+		    List.iter (fun e' -> (Buffer.add_string buf ",";
+					  bufout_loc_expr buf comma_prec e')) l;
+		    bufout_close buf pri comma_prec)
+  | ESEQ [] -> ()
 and bufout_loc_expr buf pri (_, e) =
   bufout_expr buf pri e
-and bufout_loc_expr_list buf l =
-    match l with
-	[] -> ()
-      | [a] -> bufout_loc_expr buf comma_prec a
-      | a::l' -> (bufout_loc_expr buf comma_prec a;
-		  Buffer.add_string buf ",";
-		  bufout_loc_expr_list buf l')
-
+and bufout_loc_expr_list buf l = match l with
+    [] -> ()
+  | [a] -> bufout_loc_expr buf comma_prec a
+  | a::l' -> (bufout_loc_expr buf comma_prec a;
+	      Buffer.add_string buf ",";
+	      bufout_loc_expr_list buf l')
+           
 let rec string_of_expr e =
   let buf = Buffer.create 128 in
   bufout_loc_expr buf comma_prec e;
   Buffer.contents buf
-
+  
 let rec string_of_loc_expr e =
   let buf = Buffer.create 128 in
   bufout_expr buf comma_prec e;

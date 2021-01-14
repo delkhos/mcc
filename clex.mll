@@ -1,31 +1,6 @@
 {
 
-(*
- *	Copyright (c) 2005 by Laboratoire Spécification et Vérification (LSV),
- *	UMR 8643 CNRS & ENS Cachan.
- *	Written by Jean Goubault-Larrecq.  Derived from the csur project.
- *
- *	Permission is granted to anyone to use this software for any
- *	purpose on any computer system, and to redistribute it freely,
- *	subject to the following restrictions:
- *
- *	1. Neither the author nor its employer is responsible for the consequences of use of
- *		this software, no matter how awful, even if they arise
- *		from defects in it.
- *
- *	2. The origin of this software must not be misrepresented, either
- *		by explicit claim or by omission.
- *
- *	3. Altered versions must be plainly marked as such, and must not
- *		be misrepresented as being the original software.
- *
- *	4. This software is restricted to non-commercial use only.  Commercial
- *		use is subject to a specific license, obtainable from LSV.
- * 
-*)
-
-(* Analyse lexicale d'un sous-ensemble (tres) reduit de C.
- *)
+(* Analyse lexicale d'un sous-ensemble (très) réduit de C. *)
 
 open CAST
 open Error
@@ -33,54 +8,50 @@ open Cparse
 
 let string_buf = Buffer.create 256
 
-let string_iter f s = (* = String.iter; pas present en OCaml 2.04. *)
-	let n = String.length s
-	in for i=0 to n-1 do f (s.[i]) done
-
 let count yytext =
-	(oldcline := !cline; oldccol := !ccol;
-	string_iter (fun c -> match c with
-			'\n' -> (cline := !cline+1; ccol := 0)
-                      (* | '\t' -> (ccol := !ccol + 8 - (!ccol mod 8)) *)
-                      | _ -> ccol := !ccol+1) yytext)
+  (oldcline := !cline; oldccol := !ccol;
+   String.iter (fun c -> match c with
+			   '\n' -> (cline := !cline+1; ccol := 0)
+                         (* | '\t' -> (ccol := !ccol + 8 - (!ccol mod 8)) *)
+                         | _ -> ccol := !ccol+1) yytext)
 
 let parse_hex yytext tend =
-	let n = ref 0
-	in let len = String.length yytext-tend
-	in ((for i=2 to len-1 do
-	     let c = yytext.[i] in
-	     match c with
-	         '0'..'9' -> n := 16 * !n + (int_of_char c - int_of_char '0')
-               | 'a'..'f' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'a')
-               | 'A'..'F' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'A')
-	       | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
-			("invalid hexadecimal number " ^ yytext)
-	     done);
-	    !n)
-
+  let n = ref 0
+  in let len = String.length yytext-tend
+     in ((for i=2 to len-1 do
+	    let c = yytext.[i] in
+	    match c with
+	      '0'..'9' -> n := 16 * !n + (int_of_char c - int_of_char '0')
+            | 'a'..'f' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'a')
+            | 'A'..'F' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'A')
+	    | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
+		     ("invalid hexadecimal number " ^ yytext)
+	  done);
+	 !n)
+      
 let parse_oct yytext start tend =
-	let n = ref 0
-	in let len = String.length yytext-tend
-	in ((for i=start to len-1 do
-	     let c = yytext.[i] in
-	     match c with
-	         '0'..'7' -> n := 8 * !n + (int_of_char c - int_of_char '0')
-	       | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
-			("invalid octal number " ^ yytext)
-	     done);
-	    !n)
-
+  let n = ref 0
+  in let len = String.length yytext-tend
+     in ((for i=start to len-1 do
+	    let c = yytext.[i] in
+	    match c with
+	      '0'..'7' -> n := 8 * !n + (int_of_char c - int_of_char '0')
+	    | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
+		     ("invalid octal number " ^ yytext)
+	  done);
+	 !n)
+      
 let parse_dec yytext tend =
-	let n = ref 0
-	in let len = String.length yytext-tend
-	in ((for i=0 to len-1 do
-	     let c = yytext.[i] in
-	     match c with
-	         '0'..'9' -> n := 10 * !n + (int_of_char c - int_of_char '0')
-	       | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
-			("invalid number " ^ yytext)
-	    done);
-	    !n)
+  let n = ref 0
+  in let len = String.length yytext-tend
+     in ((for i=0 to len-1 do
+	    let c = yytext.[i] in
+	    match c with
+	      '0'..'9' -> n := 10 * !n + (int_of_char c - int_of_char '0')
+	    | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
+		     ("invalid number " ^ yytext)
+	  done);
+	 !n)
 
 }
 
@@ -127,9 +98,9 @@ rule ctoken = parse
   | "volatile" { count (Lexing.lexeme lexbuf); VOLATILE }
   | "while" { count (Lexing.lexeme lexbuf); WHILE }
   | letter (letter | digit)* { count (Lexing.lexeme lexbuf);
-		let yytext = Lexing.lexeme lexbuf in
-		    IDENTIFIER yytext
-                    } 
+		               let yytext = Lexing.lexeme lexbuf in
+		               IDENTIFIER yytext
+                             } 
   | '0' ['x' 'X'] hex+ { count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 0) }
   | '0' ['x' 'X'] hex+ ['u' 'U'] { count (Lexing.lexeme lexbuf);
@@ -139,7 +110,7 @@ rule ctoken = parse
   | '0' ['x' 'X'] hex+ ['u' 'U'] ['l' 'L'] { count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 2) }
 
- | '0' ['x' 'X'] hex+ ['u' 'U'] ['l' 'L'] ['l' 'L'] { count (Lexing.lexeme lexbuf);
+  | '0' ['x' 'X'] hex+ ['u' 'U'] ['l' 'L'] ['l' 'L'] { count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 3) }
 
 
@@ -277,19 +248,19 @@ and line = parse
   | [' ' '\t']+ { count (Lexing.lexeme lexbuf); line lexbuf }
   | '\n' { count (Lexing.lexeme lexbuf); ctoken lexbuf }
   | "\"" { count (Lexing.lexeme lexbuf); Buffer.reset string_buf;
-        string lexbuf;
-	cfile := Buffer.contents string_buf;
-	ctoken lexbuf
-      }
+           string lexbuf;
+	   cfile := Buffer.contents string_buf;
+	   ctoken lexbuf
+         }
   | eof { fatal (Some (!cfile, !cline, !ccol, !cline, !ccol)) "end of file reached inside # directive" }
 and line2 = parse
     [' ' '\t']+ { count (Lexing.lexeme lexbuf); line2 lexbuf }
   | '\n' { count (Lexing.lexeme lexbuf); ctoken lexbuf }
   | "\"" { count (Lexing.lexeme lexbuf); Buffer.reset string_buf;
-        string lexbuf;
-	cfile := Buffer.contents string_buf;
-	line3 lexbuf
-      }
+           string lexbuf;
+	   cfile := Buffer.contents string_buf;
+	   line3 lexbuf
+         }
   | eof { fatal (Some (!cfile, !cline, !ccol, !cline, !ccol)) "end of file reached inside # directive" }
 and line3 = parse
     '\n' { count (Lexing.lexeme lexbuf); ctoken lexbuf }

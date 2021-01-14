@@ -88,39 +88,15 @@ open Parsing;;
 let _ = parse_error;;
 # 2 "cparse.mly"
 
-(*
- * Copyright (c) 2005 by Laboratoire Spécification et Vérification
- * (LSV), UMR 8643 CNRS & ENS Cachan.
- * Written by Jean Goubault-Larrecq.  Derived from the csur project.
- *
- * Permission is granted to anyone to use this software for any
- * purpose on any computer system, and to redistribute it freely,
- * subject to the following restrictions:
- *
- * 1. Neither the author nor its employer is responsible for the
- *    consequences of use of this software, no matter how awful, even if
- *    they arise from defects in it.
- *
- * 2. The origin of this software must not be misrepresented, either
- *    by explicit claim or by omission.
- *
- * 3. Altered versions must be plainly marked as such, and must not
- *    be misrepresented as being the original software.
- *
- * 4. This software is restricted to non-commercial use only.  Commercial
- *    use is subject to a specific license, obtainable from LSV.
- * 
- *)
-
-(* Analyse grammaticale d'un sous-ensemble (tres) reduit de C. *)
+(* Analyse grammaticale d'un sous-ensemble (très) réduit de C. *)
 
 open CAST
 open Error
 
 let parse_error msg =
-    fatal (Some (getloc ())) msg
-
-# 124 "cparse.ml"
+  fatal (Some (getloc ())) msg
+  
+# 100 "cparse.ml"
 let yytransl_const = [|
   261 (* SIZEOF *);
   262 (* PTR_OP *);
@@ -594,187 +570,187 @@ let yyact = [|
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'identifier) in
     Obj.repr(
-# 62 "cparse.mly"
+# 38 "cparse.mly"
                      ( let loc, var = _1 in loc, VAR var )
-# 600 "cparse.ml"
+# 576 "cparse.ml"
                : 'primary_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'constant) in
     Obj.repr(
-# 63 "cparse.mly"
+# 39 "cparse.mly"
                    ( let loc, cst = _1 in loc, CST cst )
-# 607 "cparse.ml"
+# 583 "cparse.ml"
                : 'primary_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'string_literal) in
     Obj.repr(
-# 64 "cparse.mly"
+# 40 "cparse.mly"
                          ( let loc, s = _1 in loc, STRING s )
-# 614 "cparse.ml"
+# 590 "cparse.ml"
                : 'primary_expression))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'expression) in
     Obj.repr(
-# 65 "cparse.mly"
+# 41 "cparse.mly"
                                                     ( _2 )
-# 621 "cparse.ml"
+# 597 "cparse.ml"
                : 'primary_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : int) in
     Obj.repr(
-# 68 "cparse.mly"
+# 44 "cparse.mly"
                     ( getloc (), _1 )
-# 628 "cparse.ml"
+# 604 "cparse.ml"
                : 'constant))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 70 "cparse.mly"
+# 46 "cparse.mly"
                               ( getloc (), _1 )
-# 635 "cparse.ml"
+# 611 "cparse.ml"
                : 'identifier))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 71 "cparse.mly"
+# 47 "cparse.mly"
                               ( getloc () )
-# 641 "cparse.ml"
+# 617 "cparse.ml"
                : 'open_brace))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 72 "cparse.mly"
+# 48 "cparse.mly"
                               ( getloc () )
-# 647 "cparse.ml"
+# 623 "cparse.ml"
                : 'close_brace))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 75 "cparse.mly"
+# 51 "cparse.mly"
                          ( getloc (), _1 )
-# 654 "cparse.ml"
+# 630 "cparse.ml"
                : 'string_literal))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : string) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'string_literal) in
     Obj.repr(
-# 77 "cparse.mly"
+# 53 "cparse.mly"
             ( 
               let l, s = _2 in
               let s2 = _1 in
               (getloc (), s2^s)
             )
-# 666 "cparse.ml"
+# 642 "cparse.ml"
                : 'string_literal))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 83 "cparse.mly"
+# 59 "cparse.mly"
                 ( getloc () )
-# 672 "cparse.ml"
+# 648 "cparse.ml"
                : 'inc_op))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 84 "cparse.mly"
+# 60 "cparse.mly"
                 ( getloc () )
-# 678 "cparse.ml"
+# 654 "cparse.ml"
                : 'dec_op))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'primary_expression) in
     Obj.repr(
-# 87 "cparse.mly"
+# 63 "cparse.mly"
                              ( _1 )
-# 685 "cparse.ml"
+# 661 "cparse.ml"
                : 'postfix_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 : 'postfix_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'expression) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'close_bracket) in
     Obj.repr(
-# 89 "cparse.mly"
+# 65 "cparse.mly"
  ( sup_locator (loc_of_expr _1) _4, OP2 (S_INDEX, _1, _3) )
-# 694 "cparse.ml"
+# 670 "cparse.ml"
                : 'postfix_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'identifier) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'close_paren) in
     Obj.repr(
-# 91 "cparse.mly"
+# 67 "cparse.mly"
  ( let loc, var = _1 in
 	  let loc1 = sup_locator loc _3 in
 	    loc1, CALL (var, [])
 	)
-# 705 "cparse.ml"
+# 681 "cparse.ml"
                : 'postfix_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 : 'identifier) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'argument_expression_list) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'close_paren) in
     Obj.repr(
-# 96 "cparse.mly"
+# 72 "cparse.mly"
  ( let loc, var = _1 in
 	  let loc1 = sup_locator loc _4 in
 	    loc1, CALL (var, List.rev _3)
 	)
-# 717 "cparse.ml"
+# 693 "cparse.ml"
                : 'postfix_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'postfix_expression) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'inc_op) in
     Obj.repr(
-# 101 "cparse.mly"
+# 77 "cparse.mly"
  ( sup_locator (loc_of_expr _1) _2, OP1 (M_POST_INC, _1) )
-# 725 "cparse.ml"
+# 701 "cparse.ml"
                : 'postfix_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'postfix_expression) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'dec_op) in
     Obj.repr(
-# 103 "cparse.mly"
+# 79 "cparse.mly"
  ( sup_locator (loc_of_expr _1) _2, OP1 (M_POST_DEC, _1) )
-# 733 "cparse.ml"
+# 709 "cparse.ml"
                : 'postfix_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'assignment_expression) in
     Obj.repr(
-# 109 "cparse.mly"
+# 85 "cparse.mly"
                                 ( [_1] )
-# 740 "cparse.ml"
+# 716 "cparse.ml"
                : 'argument_expression_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'argument_expression_list) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'assignment_expression) in
     Obj.repr(
-# 110 "cparse.mly"
+# 86 "cparse.mly"
                                                                    ( 
           _3 :: _1 )
-# 749 "cparse.ml"
+# 725 "cparse.ml"
                : 'argument_expression_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'postfix_expression) in
     Obj.repr(
-# 115 "cparse.mly"
+# 91 "cparse.mly"
                              ( _1 )
-# 756 "cparse.ml"
+# 732 "cparse.ml"
                : 'unary_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'inc_op) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'unary_expression) in
     Obj.repr(
-# 117 "cparse.mly"
+# 93 "cparse.mly"
  ( sup_locator _1 (loc_of_expr _2), OP1 (M_PRE_INC, _2) )
-# 764 "cparse.ml"
+# 740 "cparse.ml"
                : 'unary_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'dec_op) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'unary_expression) in
     Obj.repr(
-# 119 "cparse.mly"
+# 95 "cparse.mly"
  ( sup_locator _1 (loc_of_expr _2), OP1 (M_PRE_DEC, _2) )
-# 772 "cparse.ml"
+# 748 "cparse.ml"
                : 'unary_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'unary_operator) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'cast_expression) in
     Obj.repr(
-# 121 "cparse.mly"
+# 97 "cparse.mly"
  ( 
           let loc, c = _1 in
           let loc' = sup_locator loc (loc_of_expr _2) in
@@ -785,307 +761,307 @@ let yyact = [|
             | TILDE_CHR -> loc', OP1 (M_NOT, _2)
 	    | _ -> (Error.error (Some loc) "unknown unary operator";
 		     loc, CST 0) )
-# 789 "cparse.ml"
+# 765 "cparse.ml"
                : 'unary_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'add_chr) in
     Obj.repr(
-# 134 "cparse.mly"
+# 110 "cparse.mly"
                     ( _1 )
-# 796 "cparse.ml"
+# 772 "cparse.ml"
                : 'unary_operator))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'sub_chr) in
     Obj.repr(
-# 135 "cparse.mly"
+# 111 "cparse.mly"
                     ( _1 )
-# 803 "cparse.ml"
+# 779 "cparse.ml"
                : 'unary_operator))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'bang_chr) in
     Obj.repr(
-# 136 "cparse.mly"
+# 112 "cparse.mly"
                     ( _1 )
-# 810 "cparse.ml"
+# 786 "cparse.ml"
                : 'unary_operator))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'tilde_chr) in
     Obj.repr(
-# 137 "cparse.mly"
+# 113 "cparse.mly"
                     ( _1 )
-# 817 "cparse.ml"
+# 793 "cparse.ml"
                : 'unary_operator))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 140 "cparse.mly"
+# 116 "cparse.mly"
                         ( getloc (), ADD_CHR   )
-# 823 "cparse.ml"
+# 799 "cparse.ml"
                : 'add_chr))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 141 "cparse.mly"
+# 117 "cparse.mly"
                         ( getloc (), SUB_CHR   )
-# 829 "cparse.ml"
+# 805 "cparse.ml"
                : 'sub_chr))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 142 "cparse.mly"
+# 118 "cparse.mly"
                         ( getloc (), BANG_CHR  )
-# 835 "cparse.ml"
+# 811 "cparse.ml"
                : 'bang_chr))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 143 "cparse.mly"
+# 119 "cparse.mly"
                         ( getloc (), TILDE_CHR )
-# 841 "cparse.ml"
+# 817 "cparse.ml"
                : 'tilde_chr))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 145 "cparse.mly"
+# 121 "cparse.mly"
                               ( getloc () )
-# 847 "cparse.ml"
+# 823 "cparse.ml"
                : 'close_paren))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'unary_expression) in
     Obj.repr(
-# 148 "cparse.mly"
+# 124 "cparse.mly"
                            ( _1 )
-# 854 "cparse.ml"
+# 830 "cparse.ml"
                : 'cast_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'cast_expression) in
     Obj.repr(
-# 152 "cparse.mly"
+# 128 "cparse.mly"
                           ( _1 )
-# 861 "cparse.ml"
+# 837 "cparse.ml"
                : 'multiplicative_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'multiplicative_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'cast_expression) in
     Obj.repr(
-# 154 "cparse.mly"
+# 130 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  OP2 (S_MUL, _1, _3)
 	)
-# 871 "cparse.ml"
+# 847 "cparse.ml"
                : 'multiplicative_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'multiplicative_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'cast_expression) in
     Obj.repr(
-# 158 "cparse.mly"
+# 134 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  OP2 (S_DIV, _1, _3)
 	)
-# 881 "cparse.ml"
+# 857 "cparse.ml"
                : 'multiplicative_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'multiplicative_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'cast_expression) in
     Obj.repr(
-# 162 "cparse.mly"
+# 138 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  OP2 (S_MOD, _1, _3)
 	)
-# 891 "cparse.ml"
+# 867 "cparse.ml"
                : 'multiplicative_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'multiplicative_expression) in
     Obj.repr(
-# 169 "cparse.mly"
+# 145 "cparse.mly"
             ( _1 )
-# 898 "cparse.ml"
+# 874 "cparse.ml"
                : 'additive_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'additive_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'multiplicative_expression) in
     Obj.repr(
-# 171 "cparse.mly"
+# 147 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  OP2 (S_ADD, _1, _3)
 	)
-# 908 "cparse.ml"
+# 884 "cparse.ml"
                : 'additive_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'additive_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'multiplicative_expression) in
     Obj.repr(
-# 175 "cparse.mly"
+# 151 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  OP2 (S_SUB, _1, _3)
 	)
-# 918 "cparse.ml"
+# 894 "cparse.ml"
                : 'additive_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'additive_expression) in
     Obj.repr(
-# 181 "cparse.mly"
+# 157 "cparse.mly"
                               ( _1 )
-# 925 "cparse.ml"
+# 901 "cparse.ml"
                : 'shift_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'shift_expression) in
     Obj.repr(
-# 185 "cparse.mly"
+# 161 "cparse.mly"
                            ( _1 )
-# 932 "cparse.ml"
+# 908 "cparse.ml"
                : 'relational_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'relational_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'shift_expression) in
     Obj.repr(
-# 187 "cparse.mly"
+# 163 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  CMP (C_LT, _1, _3)
 	)
-# 942 "cparse.ml"
+# 918 "cparse.ml"
                : 'relational_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'relational_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'shift_expression) in
     Obj.repr(
-# 191 "cparse.mly"
+# 167 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  CMP (C_LT, _3, _1)
 	)
-# 952 "cparse.ml"
+# 928 "cparse.ml"
                : 'relational_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'relational_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'shift_expression) in
     Obj.repr(
-# 195 "cparse.mly"
+# 171 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  CMP (C_LE, _1, _3)
 	)
-# 962 "cparse.ml"
+# 938 "cparse.ml"
                : 'relational_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'relational_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'shift_expression) in
     Obj.repr(
-# 199 "cparse.mly"
+# 175 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  CMP (C_LE, _3, _1)
 	)
-# 972 "cparse.ml"
+# 948 "cparse.ml"
                : 'relational_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'relational_expression) in
     Obj.repr(
-# 205 "cparse.mly"
+# 181 "cparse.mly"
                                 ( _1 )
-# 979 "cparse.ml"
+# 955 "cparse.ml"
                : 'equality_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'equality_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'relational_expression) in
     Obj.repr(
-# 207 "cparse.mly"
+# 183 "cparse.mly"
  ( sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  CMP (C_EQ, _1, _3)
 	)
-# 989 "cparse.ml"
+# 965 "cparse.ml"
                : 'equality_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'equality_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'relational_expression) in
     Obj.repr(
-# 211 "cparse.mly"
+# 187 "cparse.mly"
  ( 
           let loc = sup_locator (loc_of_expr _1) (loc_of_expr _3) in
 	  loc, EIF ((loc, CMP (C_EQ, _1, _3)),
 		    (loc, CST 0),
 		    (loc, CST 1))
 	)
-# 1002 "cparse.ml"
+# 978 "cparse.ml"
                : 'equality_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'equality_expression) in
     Obj.repr(
-# 220 "cparse.mly"
+# 196 "cparse.mly"
                               ( _1 )
-# 1009 "cparse.ml"
+# 985 "cparse.ml"
                : 'and_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'and_expression) in
     Obj.repr(
-# 224 "cparse.mly"
+# 200 "cparse.mly"
                          ( _1 )
-# 1016 "cparse.ml"
+# 992 "cparse.ml"
                : 'exclusive_or_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'exclusive_or_expression) in
     Obj.repr(
-# 228 "cparse.mly"
+# 204 "cparse.mly"
                                   ( _1 )
-# 1023 "cparse.ml"
+# 999 "cparse.ml"
                : 'inclusive_or_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'inclusive_or_expression) in
     Obj.repr(
-# 232 "cparse.mly"
+# 208 "cparse.mly"
                                   ( _1 )
-# 1030 "cparse.ml"
+# 1006 "cparse.ml"
                : 'logical_and_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'logical_and_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'inclusive_or_expression) in
     Obj.repr(
-# 234 "cparse.mly"
+# 210 "cparse.mly"
  ( let loc = sup_locator (loc_of_expr _1) (loc_of_expr _3) in
 	  loc, EIF (_1, _3, (loc, CST 0))
 	)
-# 1040 "cparse.ml"
+# 1016 "cparse.ml"
                : 'logical_and_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'logical_and_expression) in
     Obj.repr(
-# 240 "cparse.mly"
+# 216 "cparse.mly"
                                  ( _1 )
-# 1047 "cparse.ml"
+# 1023 "cparse.ml"
                : 'logical_or_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'logical_or_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'logical_and_expression) in
     Obj.repr(
-# 242 "cparse.mly"
+# 218 "cparse.mly"
  ( let loc = sup_locator (loc_of_expr _1) (loc_of_expr _3) in
 	  loc, EIF (_1, (loc, CST 1), _3)
 	)
-# 1057 "cparse.ml"
+# 1033 "cparse.ml"
                : 'logical_or_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'logical_or_expression) in
     Obj.repr(
-# 248 "cparse.mly"
+# 224 "cparse.mly"
                                 ( _1 )
-# 1064 "cparse.ml"
+# 1040 "cparse.ml"
                : 'conditional_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 4 : 'logical_or_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 2 : 'expression) in
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'conditional_expression) in
     Obj.repr(
-# 250 "cparse.mly"
+# 226 "cparse.mly"
  ( 
 	  sup_locator (loc_of_expr _1) (loc_of_expr _5),
 	  EIF (_1, _3, _5)
 	)
-# 1076 "cparse.ml"
+# 1052 "cparse.ml"
                : 'conditional_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'conditional_expression) in
     Obj.repr(
-# 257 "cparse.mly"
+# 233 "cparse.mly"
                                  ( _1 )
-# 1083 "cparse.ml"
+# 1059 "cparse.ml"
                : 'assignment_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'unary_expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'assignment_expression) in
     Obj.repr(
-# 259 "cparse.mly"
+# 235 "cparse.mly"
      (
 	     let locvar, left = _1 in
 	     let loc = sup_locator locvar (loc_of_expr _3) in
@@ -1099,175 +1075,175 @@ let yyact = [|
 		   _3
 		 end
 	   )
-# 1103 "cparse.ml"
+# 1079 "cparse.ml"
                : 'assignment_expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'assignment_expression) in
     Obj.repr(
-# 275 "cparse.mly"
+# 251 "cparse.mly"
                                 ( _1 )
-# 1110 "cparse.ml"
+# 1086 "cparse.ml"
                : 'expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'expression) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'assignment_expression) in
     Obj.repr(
-# 277 "cparse.mly"
+# 253 "cparse.mly"
  ( 
 	  sup_locator (loc_of_expr _1) (loc_of_expr _3),
 	  ESEQ [_1; _3]
 	)
-# 1121 "cparse.ml"
+# 1097 "cparse.ml"
                : 'expression))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'type_specifier) in
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'optional_init_declarator_list) in
     Obj.repr(
-# 285 "cparse.mly"
+# 261 "cparse.mly"
  ( List.rev _2 )
-# 1129 "cparse.ml"
+# 1105 "cparse.ml"
                : 'declaration))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 289 "cparse.mly"
+# 265 "cparse.mly"
           ( [] )
-# 1135 "cparse.ml"
+# 1111 "cparse.ml"
                : 'optional_init_declarator_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'init_declarator_list) in
     Obj.repr(
-# 290 "cparse.mly"
+# 266 "cparse.mly"
                         ( _1 )
-# 1142 "cparse.ml"
+# 1118 "cparse.ml"
                : 'optional_init_declarator_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'init_declarator) in
     Obj.repr(
-# 296 "cparse.mly"
+# 272 "cparse.mly"
             ( [_1] )
-# 1149 "cparse.ml"
+# 1125 "cparse.ml"
                : 'init_declarator_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'init_declarator_list) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'init_declarator) in
     Obj.repr(
-# 298 "cparse.mly"
+# 274 "cparse.mly"
             ( _3 :: _1 )
-# 1157 "cparse.ml"
+# 1133 "cparse.ml"
                : 'init_declarator_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'declarator) in
     Obj.repr(
-# 301 "cparse.mly"
+# 277 "cparse.mly"
                             ( _1 )
-# 1164 "cparse.ml"
+# 1140 "cparse.ml"
                : 'init_declarator))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'identifier) in
     Obj.repr(
-# 304 "cparse.mly"
+# 280 "cparse.mly"
                      ( let loc, x = _1 in CDECL (loc, x) )
-# 1171 "cparse.ml"
+# 1147 "cparse.ml"
                : 'declarator))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 307 "cparse.mly"
+# 283 "cparse.mly"
                         ( () )
-# 1177 "cparse.ml"
+# 1153 "cparse.ml"
                : 'type_specifier))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 308 "cparse.mly"
+# 284 "cparse.mly"
                  ( () )
-# 1183 "cparse.ml"
+# 1159 "cparse.ml"
                : 'type_specifier))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'type_specifier) in
     Obj.repr(
-# 309 "cparse.mly"
+# 285 "cparse.mly"
                            ( () )
-# 1190 "cparse.ml"
+# 1166 "cparse.ml"
                : 'type_specifier))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 311 "cparse.mly"
+# 287 "cparse.mly"
                                   ( getloc () )
-# 1196 "cparse.ml"
+# 1172 "cparse.ml"
                : 'close_bracket))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'compound_statement) in
     Obj.repr(
-# 314 "cparse.mly"
+# 290 "cparse.mly"
             ( _1 )
-# 1203 "cparse.ml"
+# 1179 "cparse.ml"
                : 'statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'expression_statement) in
     Obj.repr(
-# 316 "cparse.mly"
+# 292 "cparse.mly"
             ( loc_of_expr _1, CEXPR _1 )
-# 1210 "cparse.ml"
+# 1186 "cparse.ml"
                : 'statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'selection_statement) in
     Obj.repr(
-# 318 "cparse.mly"
+# 294 "cparse.mly"
             ( _1 )
-# 1217 "cparse.ml"
+# 1193 "cparse.ml"
                : 'statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'iteration_statement) in
     Obj.repr(
-# 320 "cparse.mly"
+# 296 "cparse.mly"
             ( _1 )
-# 1224 "cparse.ml"
+# 1200 "cparse.ml"
                : 'statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'jump_statement) in
     Obj.repr(
-# 322 "cparse.mly"
+# 298 "cparse.mly"
             ( _1 )
-# 1231 "cparse.ml"
+# 1207 "cparse.ml"
                : 'statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'open_brace) in
     Obj.repr(
-# 325 "cparse.mly"
+# 301 "cparse.mly"
                         ( _1 )
-# 1238 "cparse.ml"
+# 1214 "cparse.ml"
                : 'open_block))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'close_brace) in
     Obj.repr(
-# 326 "cparse.mly"
+# 302 "cparse.mly"
                           ( _1 )
-# 1245 "cparse.ml"
+# 1221 "cparse.ml"
                : 'close_block))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'open_block) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'close_block) in
     Obj.repr(
-# 330 "cparse.mly"
+# 306 "cparse.mly"
         ( sup_locator _1 _2, CBLOCK ([], []) )
-# 1253 "cparse.ml"
+# 1229 "cparse.ml"
                : 'compound_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'open_block) in
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'statement_list) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'close_block) in
     Obj.repr(
-# 332 "cparse.mly"
+# 308 "cparse.mly"
  ( sup_locator _1 _3, CBLOCK ([], List.rev _2) )
-# 1262 "cparse.ml"
+# 1238 "cparse.ml"
                : 'compound_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'open_block) in
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'declaration_list) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'close_block) in
     Obj.repr(
-# 334 "cparse.mly"
+# 310 "cparse.mly"
  ( sup_locator _1 _3, CBLOCK (_2, []) )
-# 1271 "cparse.ml"
+# 1247 "cparse.ml"
                : 'compound_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 : 'open_block) in
@@ -1275,77 +1251,77 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'statement_list) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'close_block) in
     Obj.repr(
-# 336 "cparse.mly"
+# 312 "cparse.mly"
  ( sup_locator _1 _4, CBLOCK (_2, List.rev _3) )
-# 1281 "cparse.ml"
+# 1257 "cparse.ml"
                : 'compound_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'declaration) in
     Obj.repr(
-# 342 "cparse.mly"
+# 318 "cparse.mly"
           ( _1 )
-# 1288 "cparse.ml"
+# 1264 "cparse.ml"
                : 'declaration_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'declaration_list) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'declaration) in
     Obj.repr(
-# 344 "cparse.mly"
+# 320 "cparse.mly"
           ( _1 @ _2 )
-# 1296 "cparse.ml"
+# 1272 "cparse.ml"
                : 'declaration_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'statement) in
     Obj.repr(
-# 350 "cparse.mly"
+# 326 "cparse.mly"
           ( [_1] )
-# 1303 "cparse.ml"
+# 1279 "cparse.ml"
                : 'statement_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'statement_list) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'statement) in
     Obj.repr(
-# 352 "cparse.mly"
+# 328 "cparse.mly"
           ( _2 :: _1 )
-# 1311 "cparse.ml"
+# 1287 "cparse.ml"
                : 'statement_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'semi_chr) in
     Obj.repr(
-# 357 "cparse.mly"
+# 333 "cparse.mly"
             ( _1, ESEQ [] )
-# 1318 "cparse.ml"
+# 1294 "cparse.ml"
                : 'expression_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'expression) in
     Obj.repr(
-# 359 "cparse.mly"
+# 335 "cparse.mly"
             ( _1 )
-# 1325 "cparse.ml"
+# 1301 "cparse.ml"
                : 'expression_statement))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 362 "cparse.mly"
+# 338 "cparse.mly"
                     ( getloc () )
-# 1331 "cparse.ml"
+# 1307 "cparse.ml"
                : 'semi_chr))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 364 "cparse.mly"
+# 340 "cparse.mly"
           ( getloc () )
-# 1337 "cparse.ml"
+# 1313 "cparse.ml"
                : 'ifkw))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 4 : 'ifkw) in
     let _3 = (Parsing.peek_val __caml_parser_env 2 : 'expression) in
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'statement) in
     Obj.repr(
-# 368 "cparse.mly"
+# 344 "cparse.mly"
  ( 
           sup_locator _1 (fst _5), CIF (_3, _5,
 					(getloc (), CBLOCK ([], [])))
 	)
-# 1349 "cparse.ml"
+# 1325 "cparse.ml"
                : 'selection_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 6 : 'ifkw) in
@@ -1353,23 +1329,23 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 2 : 'statement) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'statement) in
     Obj.repr(
-# 373 "cparse.mly"
+# 349 "cparse.mly"
  ( 
           sup_locator _1 (fst _7), CIF (_3, _5, _7)
 	)
-# 1361 "cparse.ml"
+# 1337 "cparse.ml"
                : 'selection_statement))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 378 "cparse.mly"
+# 354 "cparse.mly"
                 ( getloc () )
-# 1367 "cparse.ml"
+# 1343 "cparse.ml"
                : 'whilekw))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 379 "cparse.mly"
+# 355 "cparse.mly"
             ( getloc () )
-# 1373 "cparse.ml"
+# 1349 "cparse.ml"
                : 'forkw))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 4 : 'whilekw) in
@@ -1377,12 +1353,12 @@ let yyact = [|
     let _4 = (Parsing.peek_val __caml_parser_env 1 : 'close_paren) in
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'statement) in
     Obj.repr(
-# 382 "cparse.mly"
+# 358 "cparse.mly"
     (
 	    let loc = sup_locator _1 (fst _5) in
 	    loc, CWHILE (_3, _5)
 	   )
-# 1386 "cparse.ml"
+# 1362 "cparse.ml"
                : 'iteration_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 5 : 'forkw) in
@@ -1391,13 +1367,13 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'close_paren) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'statement) in
     Obj.repr(
-# 388 "cparse.mly"
+# 364 "cparse.mly"
  ( 
           let loc = sup_locator _1 (fst _6) in
 	  loc, CBLOCK ([], [(loc_of_expr _3, CEXPR _3);
 			    loc, CWHILE (_4, _6)])
 	)
-# 1401 "cparse.ml"
+# 1377 "cparse.ml"
                : 'iteration_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 6 : 'forkw) in
@@ -1407,7 +1383,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 1 : 'close_paren) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'statement) in
     Obj.repr(
-# 395 "cparse.mly"
+# 371 "cparse.mly"
  ( 
           let loc = sup_locator _1 (fst _7) in
 	  loc, CBLOCK ([], [(loc_of_expr _3, CEXPR _3);
@@ -1416,133 +1392,133 @@ let yyact = [|
 					  CBLOCK ([], [_7; (loc_of_expr _5,
 							    CEXPR _5)])))])
 	)
-# 1420 "cparse.ml"
+# 1396 "cparse.ml"
                : 'iteration_statement))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 405 "cparse.mly"
+# 381 "cparse.mly"
                 ( getloc () )
-# 1426 "cparse.ml"
+# 1402 "cparse.ml"
                : 'return))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'return) in
     Obj.repr(
-# 409 "cparse.mly"
+# 385 "cparse.mly"
             ( _1, CRETURN None )
-# 1433 "cparse.ml"
+# 1409 "cparse.ml"
                : 'jump_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'return) in
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'expression) in
     Obj.repr(
-# 411 "cparse.mly"
+# 387 "cparse.mly"
             ( sup_locator _1 (loc_of_expr _2), CRETURN (Some _2) )
-# 1441 "cparse.ml"
+# 1417 "cparse.ml"
                : 'jump_statement))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'external_declaration) in
     Obj.repr(
-# 416 "cparse.mly"
+# 392 "cparse.mly"
           ( _1 )
-# 1448 "cparse.ml"
+# 1424 "cparse.ml"
                : (CAST.var_declaration list)))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : (CAST.var_declaration list)) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'external_declaration) in
     Obj.repr(
-# 418 "cparse.mly"
+# 394 "cparse.mly"
           ( _1 @ _2 )
-# 1456 "cparse.ml"
+# 1432 "cparse.ml"
                : (CAST.var_declaration list)))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 420 "cparse.mly"
+# 396 "cparse.mly"
           ( [] )
-# 1462 "cparse.ml"
+# 1438 "cparse.ml"
                : (CAST.var_declaration list)))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'function_definition) in
     Obj.repr(
-# 425 "cparse.mly"
+# 401 "cparse.mly"
             ( [_1] )
-# 1469 "cparse.ml"
+# 1445 "cparse.ml"
                : 'external_declaration))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'declaration) in
     Obj.repr(
-# 427 "cparse.mly"
+# 403 "cparse.mly"
             ( _1 )
-# 1476 "cparse.ml"
+# 1452 "cparse.ml"
                : 'external_declaration))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'type_specifier) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'declarator) in
     Obj.repr(
-# 430 "cparse.mly"
+# 406 "cparse.mly"
                                                  ( _2 )
-# 1484 "cparse.ml"
+# 1460 "cparse.ml"
                : 'parameter_declaration))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'parameter_declaration) in
     Obj.repr(
-# 435 "cparse.mly"
+# 411 "cparse.mly"
           ( [_1] )
-# 1491 "cparse.ml"
+# 1467 "cparse.ml"
                : 'parameter_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'parameter_list) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'parameter_declaration) in
     Obj.repr(
-# 437 "cparse.mly"
+# 413 "cparse.mly"
           ( _3 :: _1 )
-# 1499 "cparse.ml"
+# 1475 "cparse.ml"
                : 'parameter_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'parameter_list) in
     Obj.repr(
-# 441 "cparse.mly"
+# 417 "cparse.mly"
                          ( List.rev _1)
-# 1506 "cparse.ml"
+# 1482 "cparse.ml"
                : 'parameter_type_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'parameter_list) in
     Obj.repr(
-# 442 "cparse.mly"
+# 418 "cparse.mly"
                                             ( List.rev _1 )
-# 1513 "cparse.ml"
+# 1489 "cparse.ml"
                : 'parameter_type_list))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 446 "cparse.mly"
+# 422 "cparse.mly"
                                   ( [] )
-# 1519 "cparse.ml"
+# 1495 "cparse.ml"
                : 'parameter_declarator))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'parameter_type_list) in
     Obj.repr(
-# 447 "cparse.mly"
+# 423 "cparse.mly"
                                                       ( _2 )
-# 1526 "cparse.ml"
+# 1502 "cparse.ml"
                : 'parameter_declarator))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'type_specifier) in
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'identifier) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'parameter_declarator) in
     Obj.repr(
-# 451 "cparse.mly"
+# 427 "cparse.mly"
  ( _2, _3 )
-# 1535 "cparse.ml"
+# 1511 "cparse.ml"
                : 'function_declarator))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'function_declarator) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'compound_statement) in
     Obj.repr(
-# 456 "cparse.mly"
+# 432 "cparse.mly"
  ( 
           let (loc, var), decls = _1 in
 	  CFUN (loc, var, decls, _2)
 	)
-# 1546 "cparse.ml"
+# 1522 "cparse.ml"
                : 'function_definition))
 (* Entry translation_unit *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))

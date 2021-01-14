@@ -1,14 +1,15 @@
 open CAST
 open Genlab
 
-type fun_env = int (* id * number of args *) 
+
+(*
+ * IN THIS SECTION WE ARE DECLARING OUR OWN TYPES
+ *)
+
+type fun_env = int (* number of args *) 
 
 type var_env = int * string (* level and adress value *)
 
-let end_n = ref 0
-let if_n = ref 0
-let while_n = ref 0
-let string_n = ref 0
 
 type decl_env = 
   |FUN_ENV of fun_env
@@ -17,7 +18,23 @@ type decl_env =
 type env = (string*decl_env) list
 type strenv = (string*string) list
 
+
+(*
+ * IN THIS SECTION WE ARE DECLARING OUR GLOBAL VARIABLES
+ * THAT CONCERN CODE GENERATION
+ *)
+
+
 let unoptimized_code = ref []
+
+let end_n = ref 0
+let if_n = ref 0
+let while_n = ref 0
+let string_n = ref 0
+
+(*
+ * IN THIS SECTION WE ARE DECLARING OUR OWN EXCEPTIONS
+ *)
 
 exception RedefiningFunctionIsForbidden
 exception EmptyReturnOfNonVoidFunction
@@ -33,10 +50,20 @@ let custom_raise excpt loc =
   Error.prerr_loc loc;
   raise excpt
 
+(*
+ * IN THIS SECTION WE ARE DECLARING EVERYTING THAT CONCERNS
+ * ENVIRNOMENTS
+ * WE ALSO DECLAIRE FUNCTIONS TO MANIPULATE DICTIONARIES
+ *)
+
 let empty_env = []
 
 let _64_bit_env = ref empty_env
 
+
+(*
+ * THIS FUNCTION IS USED TO TEST IF A FUNCTION IS 64BITS
+ *)
 let rec is_func_64 str env = 
   match env with
   |[] -> false
@@ -48,6 +75,11 @@ let rec is_func_64 str env =
 
 let str_env = ref empty_env
 
+
+(*
+ * THIS FUNCTION IS USED TO GET ADRESSES 
+ * OF STRINGS IF IT IS IN DICTIONARY
+ *)
 let rec get_str_adress str env = 
   match env with
   |[] -> None
@@ -57,11 +89,18 @@ let rec get_str_adress str env =
       else
         get_str_adress str tl
 
+
+(*
+ * THIS FUNCTION IS USED TO ADD A STRING TO THE DICTIONARY
+ *)
 let put_str_adress str =
   str_env := (str, Printf.sprintf "LString%d" !string_n)::!str_env ;
   string_n := !string_n + 1;
   Printf.sprintf "LString%d" (!string_n-1)
   
+(*
+ * THIS FUNCTION IS USED TO ADD A FUNCTION TO THE 64BITS DICTIONARY
+ *)
 let rec add_64bit env key (value: string) = 
   match env with
   |[] -> [(key,value)]
@@ -72,6 +111,10 @@ let rec add_64bit env key (value: string) =
         (k,v):: add_64bit tl key value
 
 
+(*
+ * THIS FUNCTION IS USED TO ADD BASE 64BITS FUNCTIONS
+ * TO THE 64BITS DICTIONARY
+ *)
 let set_64_bit_functions =
   _64_bit_env := add_64bit !_64_bit_env "malloc" "64bits";
   _64_bit_env := add_64bit !_64_bit_env "realloc" "64bits";
@@ -79,6 +122,9 @@ let set_64_bit_functions =
   _64_bit_env := add_64bit !_64_bit_env "fopen" "64bits"
 
 
+(*
+ * IN THIS SECTION ALL FUNCTIONS ARE USED TO MANIPULATE ENVIRONMENTS
+ *)
 
 let rec add_key env key (value: decl_env) = 
   match env with
@@ -146,6 +192,12 @@ let rec func_is_in_environment env_const (env : env) key loc =
 let get_func_id (_,id) = id
 let get_func_existence (existence,_) = existence
 
+
+(*
+ * IN THIS SECTION ALL FUNCTIONS ARE USED TO GENERATE CODE
+ * AND HAVE THE SAME NAME AS THE ASSEMBLY FUNCTION THEY PRINT
+ *)
+
 let p_0argf func_name () = 
   unoptimized_code := [Printf.sprintf "\t\t%s\n" func_name]@(!unoptimized_code)
 let p_1argf func_name arg1 = 
@@ -167,14 +219,20 @@ let jmp arg1 = p_1argf "jmp" arg1
 let je arg1 = p_1argf "je" arg1
 let leaq arg1 arg2 = p_2argf "leaq" arg1 arg2
 let movq arg1 arg2 = p_2argf "movq" arg1 arg2
-let addq arg1 arg2 = if not (arg1 = "$0")then p_2argf "addq" arg1 arg2 else 
-                  Printf.printf "Optimisation : there was a addq opti\n"
-let subq arg1 arg2 = if not (arg1 = "$0")then p_2argf "subq" arg1 arg2 else
-                  Printf.printf "Optimisation : there was a subq opti\n"
+let addq arg1 arg2 = if not (arg1 = "$0")then p_2argf "addq" arg1 arg2 else ()
+                  (* Printf.printf "Optimisation : there was a addq opti\n" *)
+let subq arg1 arg2 = if not (arg1 = "$0")then p_2argf "subq" arg1 arg2 else ()
+                  (* Printf.printf "Optimisation : there was a subq opti\n" *)
 let cmpq arg1 arg2 = p_2argf "cmpq" arg1 arg2
 let imulq arg1 arg2 = p_2argf "imulq" arg1 arg2
 let ret = p_0argf "ret"
 let cqto = p_0argf "cqto"
+
+
+
+(*
+ * THIS FUNCTION IS USED TO USE A REGISTER AS A POINTER
+ *)
 
 let p_register delta reg = 
   if delta=0 then
@@ -182,6 +240,10 @@ let p_register delta reg =
   else
     Printf.sprintf "%d(%s)" delta reg 
 
+
+(*
+ * THIS FUNCTIONS ARE HANDY TOOLS
+ *)
 let print_global_int var_name = 
   unoptimized_code := [Printf.sprintf ".data\n%s:\n\t\t.zero    8\n.text\n" var_name]@(!unoptimized_code)
 let print_label name id = 
@@ -206,6 +268,20 @@ let arg_register n_arg =
  * var deepness : 0 = global , 1 = function arg , 2+ block
  *)
 
+
+(* THIS FUNCTION IS USED TO COMPILE EXPRESSIONS:
+   * VAR
+   * CST
+   * STRING
+   * SET_VAR
+   * SET_ARRAY
+   * CALL
+   * OP1
+   * OP2
+   * CMP
+   * EIF
+   * ESEQ
+ *)
 let rec compile_expr env loc_expr stack_offset =
   let (loc,expr)=loc_expr in
   match expr with
@@ -262,6 +338,15 @@ let rec compile_expr env loc_expr stack_offset =
       compile_expr env le stack_offset 
       ) list_loc_expr
 
+(* THIS FUNCTION IS USED TO COMPILE THE 
+ * UNARY OPERATORS:
+   * -a
+   * ~a
+   * a++
+   * a--
+   * ++a
+   * --a
+ *)
 and compile_mon_op env stack_offset op1 le  =
   let (loc,expr) = le in
   match op1 with 
@@ -317,6 +402,16 @@ and compile_mon_op env stack_offset op1 le  =
 
         end
     |_ -> custom_raise IllegalMonOpOnNonVar (Some loc)
+
+(* THIS FUNCTION IS USED TO COMPILE THE 
+ * BINARY OPERATORS:
+   * a*b
+   * a/b
+   * a%b
+   * a+b
+   * a-b
+   * a[b]
+ *)
 and compile_bin_op env stack_offset op2 le1 le2  =
   compile_expr env le2 stack_offset  ;
   pushq "%rax" ;
@@ -350,6 +445,12 @@ and compile_bin_op env stack_offset op2 le1 le2  =
       addq "%rbx" "%rax" ;
       movq (p_register 0 "%rax") "%rax" 
 
+(* THIS FUNCTION IS USED TO COMPILE THE
+ * BINARY COMPARISON OPERATORS:
+ * ==
+ * <
+ * <=
+ *)
 and compile_cmp_op env stack_offset cmp_op le1 le2  =
   compile_expr env le2 stack_offset ;
   pushq "%rax" ;
@@ -364,6 +465,11 @@ and compile_cmp_op env stack_offset cmp_op le1 le2  =
   |C_EQ -> sete "%al" 
 
 
+(* THIS FUNCTION IS USED TO HANDLE THE ARGUMENTS
+ * OF A FUNCTION BEFORE CALLING IT
+ * IT WILL EVALUATE EACH ARGUMENT AND PUSH THEM ONTO THE STACK
+ * AFTER IT WILL POP THE FIRST 6 BACK INSIDE THE CONVENTIONAL REGISTERS
+ *)
 and handling_args_call env stack_offset  args = 
   let rev_args = List.rev args in
   List.iteri (fun i arg ->
@@ -380,6 +486,9 @@ and handling_args_call env stack_offset  args =
   ) args
 
 
+(* THIS FUNCTION IS USED TO HANDLE LOCAL VARS OF A BLOCK
+ * IT WILL MODIFY THE ENVIRONMENT TO TAKE THEM INTO ACCOUNT
+ *)
 and handle_local_vars env vars var_deepness stack_offset = 
   let nb_args = List.length vars in
   let to_sub_sizeofint = nb_args * 8 in
@@ -395,6 +504,12 @@ and handle_local_vars env vars var_deepness stack_offset =
   in
   ( to_sub_sizeofint , aux env vars stack_offset)
 
+(* THIS FUNCTION IS USED TO COMPILE A BLOCK 
+ * THE SUBTILITY HERE IS THAT SPACE IS ALLOCATED
+ * FOR LOCAL VARIABLES
+ * ALSO IF A RETURN STATEMENT IS IN THE CODE LIST
+ * OF THE BLOCK, EVERYTHING THAT FOLLOWS WON'T BE COMPILED
+ *)
 and compile_block env var_deepness stack_offset vars (code_list : CAST.loc_code list)  : unit =
   let (to_sub_sizeofint, (new_stack_offset, block_env) ) = handle_local_vars env vars var_deepness stack_offset in
   let rec aux (code_list : CAST.loc_code list) env var_deepness stack_offset last_was_return =
@@ -413,6 +528,7 @@ and compile_block env var_deepness stack_offset vars (code_list : CAST.loc_code 
   aux code_list block_env var_deepness new_stack_offset false;
   addq (int_literal to_sub_sizeofint) "%rsp" 
 
+(* THIS FUNCTION IS USED TO COMPILE AN IF STATEMENT *)
 and compile_if loc_expr l_c_if l_c_else env var_deepness stack_offset  : unit =
   let current_if_n = !if_n+1 in
   let (_,else_code) = l_c_else in
@@ -429,9 +545,10 @@ and compile_if loc_expr l_c_if l_c_else env var_deepness stack_offset  : unit =
   if not else_empty then jmp (get_label "END_IF" current_if_n);
   print_label  "ELSE_BODY" current_if_n;
   compile_code env var_deepness stack_offset l_c_else ;
-  if not else_empty then print_label  "END_IF" current_if_n else
-                  Printf.printf "Optimisation : there was an empty else opti\n"
+  if not else_empty then print_label  "END_IF" current_if_n else ()
+                  (* Printf.printf "Optimisation : there was an empty else opti\n" *)
   
+(* THIS FUNCTION IS USED TO COMPILE A WHILE STATEMENT *)
 and compile_while env loc_expr loc_code var_deepness stack_offset  : unit =
   let current_while_n = !while_n+1 in
   while_n := !while_n+1;
@@ -445,6 +562,7 @@ and compile_while env loc_expr loc_code var_deepness stack_offset  : unit =
   jmp (get_label "WHILE_BODY" current_while_n) ;
   print_label  "END_WHILE" current_while_n
 
+(* THIS FUNCTION IS USED TO COMPILE A RETURN STATEMENT *)
 and compile_return env loc_expr stack_offset  : unit = 
   compile_expr env loc_expr stack_offset  ;
   addq (int_literal (abs stack_offset)) "%rsp" ;
@@ -452,6 +570,7 @@ and compile_return env loc_expr stack_offset  : unit =
   ret ();
   unoptimized_code := ["\n"]@(!unoptimized_code)
 
+(* THIS FUNCTION IS USED TO COMPILE A CODE *)
 and compile_code env var_deepness stack_offset loc_code  : unit =
   let (loc,code) = loc_code in
   match code with
@@ -463,21 +582,28 @@ and compile_code env var_deepness stack_offset loc_code  : unit =
                           |None -> custom_raise  EmptyReturnOfNonVoidFunction (Some loc) 
                           |Some le -> compile_return env le stack_offset 
 
+(* THIS FUNCTION IS USED TO COMPILE A FUNCTION
+ *)
 let rec compile_fun env name args code  : unit =
     let (stack_offset,fun_env) =
       unoptimized_code := [Printf.sprintf "%s:\n" name]@(!unoptimized_code) ;
       pushq "%rbp" ;
       movq  "%rsp" "%rbp" ;
       handle_args env args  in
-    (*args_begin ; str_code ;args_end ;*)
-    (*handle_args env args;*)
     compile_code fun_env 1 stack_offset code ;
     addq (int_literal (-stack_offset)) "%rsp" ;
     popq  "%rbp" ;
     ret ();
     unoptimized_code := ["\n"]@(!unoptimized_code) 
 
-
+(* THIS FUNCTION IS USED TO MOVE THE FUNCTION ARGUMENTS
+ * TO THEIR LOCAL ADRESS
+ * IF THE ARGUMENT IS IN A REGISTER, SPACE IS ALLOCATED
+ * AND THE ARGUMENT IS MOVED
+ * IF THE ARGUMENT WAS ON THE STACK IT IS NOT MOVED.
+ * IN BOTH CASES, THE ARGUMENT'S ADRESS IS PUT IN
+ * THE ENVIRONMENT
+ *)
 and handle_args env args  = 
     let nb_args = List.length args in
     let to_sub = min 6 nb_args in
@@ -503,6 +629,12 @@ and handle_args env args  =
     aux env args 0 0
     (*addq to_sub_sizeofint "%rsp";*)
 
+
+(* THIS FUNCTION TESTS IF RAX
+ * IS GOING TO BE USED DURING
+ * THE COMPILATION OF THE REST
+ * OF THE CURRENT FUNCTION
+ *)
 let rec rax_wont_be_used rest_of_code =
   match rest_of_code with
   |[] -> true
@@ -534,6 +666,10 @@ let rec rax_wont_be_used rest_of_code =
       )
       with e -> true
 
+
+(* THIS FUNCTION IS USED TO PRINT THE CODE AND FILTER
+ * USELESS CODE
+ *)
 let rec print_code_and_optimize out code =
   match code with
   |[] -> ()
@@ -544,7 +680,7 @@ let rec print_code_and_optimize out code =
             begin
               Printf.fprintf out "%s" hd ;
               Printf.fprintf out "\t\tcltq\n";
-              Printf.printf "Debug: a non 64 bit function was called : %s \n" name;
+              (* Printf.printf "Debug: a non 64 bit function was called : %s \n" name; *)
               print_code_and_optimize out tl
             end
           else
@@ -562,7 +698,7 @@ let rec print_code_and_optimize out code =
               fun cmd2 arg3 arg4 ->
                 if cmd=cmd2 && cmd="movq" && arg2=arg3 && arg2="%rax" && (rax_wont_be_used tl2) then
                   begin
-                  Printf.printf "Optimisation : there was a rax opti\n";
+                  (* Printf.printf "Optimisation : there was a rax opti\n"; *)
                   Printf.fprintf out "\t\t%s    $%d , %s\n" cmd value arg4 ;
                   print_code_and_optimize out tl2
                   end
@@ -583,6 +719,10 @@ let rec print_code out code =
   |[] -> ()
   |hd::tl -> Printf.fprintf out "%s" hd ; print_code out tl
 
+(* THIS FUNCTION IS STRAIGHT FORWARD ANS IS USED
+ * TO COMPILE A PROGRAM SEEN AS A AST
+ * WHICH IS THE DECL_LIST ARGUMENT
+ *)
 let compile out decl_list =
   let rec compile_global decl_list env =
     match decl_list with 
@@ -599,7 +739,7 @@ let compile out decl_list =
             let new_env = add_key env name (FUN_ENV (List.length args)) in 
             begin
               _64_bit_env := add_64bit !_64_bit_env name "64bits";
-              Printf.printf "Debug a function is being compiled : name = %s\n" name;
+              (* Printf.printf "Debug a function is being compiled : name = %s\n" name; *)
               compile_fun new_env name args code ;
               compile_global tl new_env
             end
@@ -607,6 +747,7 @@ let compile out decl_list =
   Printf.fprintf out ".global main\n\n";
   compile_global decl_list empty_env;
   print_code_and_optimize out (List.rev !unoptimized_code) ;
+  (* Here we print all the necessary strings *)
   List.iter (fun v ->
     let (value, label) = v in
     Printf.fprintf out "%s:\n    .string    \"%s\"\n" label (String.escaped value)

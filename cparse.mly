@@ -1,37 +1,13 @@
 %{
 
-(*
- * Copyright (c) 2005 by Laboratoire Spécification et Vérification
- * (LSV), UMR 8643 CNRS & ENS Cachan.
- * Written by Jean Goubault-Larrecq.  Derived from the csur project.
- *
- * Permission is granted to anyone to use this software for any
- * purpose on any computer system, and to redistribute it freely,
- * subject to the following restrictions:
- *
- * 1. Neither the author nor its employer is responsible for the
- *    consequences of use of this software, no matter how awful, even if
- *    they arise from defects in it.
- *
- * 2. The origin of this software must not be misrepresented, either
- *    by explicit claim or by omission.
- *
- * 3. Altered versions must be plainly marked as such, and must not
- *    be misrepresented as being the original software.
- *
- * 4. This software is restricted to non-commercial use only.  Commercial
- *    use is subject to a specific license, obtainable from LSV.
- * 
- *)
-
-(* Analyse grammaticale d'un sous-ensemble (tres) reduit de C. *)
+(* Analyse grammaticale d'un sous-ensemble (très) réduit de C. *)
 
 open CAST
 open Error
 
 let parse_error msg =
-    fatal (Some (getloc ())) msg
-
+  fatal (Some (getloc ())) msg
+  
 %}
 
 %token <string> IDENTIFIER TYPE_NAME
@@ -103,7 +79,7 @@ postfix_expression:
 	{ sup_locator (loc_of_expr $1) $2, OP1 (M_POST_DEC, $1) }
         ;
 
-/* Les argument_expression_list sont des listes a l'envers */
+/* Les argument_expression_list sont des listes à l'envers. */
 
 argument_expression_list:
           assignment_expression { [$1] }
@@ -290,7 +266,7 @@ optional_init_declarator_list :
 	| init_declarator_list { $1 }
 	;
 
-/* Une init_declarator_list est une liste a l'envers de declarator. */
+/* Une init_declarator_list est une liste à l'envers de declarator. */
 init_declarator_list
         : init_declarator 
             { [$1] }
@@ -336,7 +312,7 @@ compound_statement:
 	{ sup_locator $1 $4, CBLOCK ($2, List.rev $3) }
         ;
 
-/* Une declaration_list est une liste non inversee de declaration */
+/* Une declaration_list est une liste non inversée de declaration. */
 declaration_list
         : declaration 
           { $1 }
@@ -344,7 +320,7 @@ declaration_list
           { $1 @ $2 }
         ;
 
-/* Une statement_list est une liste inversee de statement */
+/* Une statement_list est une liste inversée de statement. */
 statement_list
         : statement 
           { [$1] }
@@ -430,7 +406,7 @@ external_declaration
 parameter_declaration: type_specifier declarator { $2 };
 
 /*!!!should check no repeated param name! */
-/* Une parameter_list est une liste inversee de parameter_list. */
+/* Une parameter_list est une liste inversée de parameter_list. */
 parameter_list: parameter_declaration 
           { [$1] }
         | parameter_list COMMA_CHR parameter_declaration

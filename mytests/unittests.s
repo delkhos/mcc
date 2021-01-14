@@ -3212,18 +3212,6 @@ main:
 		call    printf
 		cltq
 		addq    $8 , %rsp
-		movq    $1 , %rax
-		cmpq    $0 , %rax
-		je    .ELSE_BODY65
-		.ELSE_BODY65:
-		subq    $8 , %rsp
-		leaq    LString63(%rip) , %rax
-		pushq    %rax
-		popq    %rdi
-		movq    $0 , %rax
-		call    printf
-		cltq
-		addq    $8 , %rsp
 		movq    $0 , %rax
 		addq    $24 , %rsp
 		popq    %rbp
@@ -3233,10 +3221,8 @@ main:
 		popq    %rbp
 		ret
 
-LString63:
-    .string    "[** Congratulations ! All unit tests have succeeded **]\n"
 LString62:
-    .string    "** Testing if compiler optimizes empty elses, you should \"| grep emtpy\" to see if the optimization was made **\n"
+    .string    "[** Congratulations ! All unit tests have succeeded **]\n"
 LString61:
     .string    "    [ 32bits compatibility passed ]\n"
 LString60:

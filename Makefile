@@ -1,6 +1,3 @@
-#  Copyright (c) 2020 by Laboratoire Spécification et Vérification (LSV),
-#  CNRS UMR 8643 & ENS Paris-Saclay.
-#  Written by Amélie Ledein
 
 %.cmo: %.ml
 	ocamlc -g -c $<

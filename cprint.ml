@@ -1,6 +1,12 @@
 open CAST
 
 let print_declarations out dec_list =
+  Format.fprintf out "Todo\n"
+  
+let print_locator out nom fl fc ll lc =
+  Format.fprintf out "Todo\n"
+  
+let print_ast out dec_list =
   let rec string_of_dec l n = match l with
     |[] -> ""
     |h::suite ->
@@ -8,20 +14,117 @@ let print_declarations out dec_list =
       begin
         match h with
         |CDECL(_,var) ->
-          String.concat "" [String.make n ' ';"CDECL{";"VAR{";var;"}";"}\n";l]
+          String.concat "" [String.make n ' ';
+                            "CDECL{\n";
+                            String.make (n+2) ' ';
+                            "VAR{\n";String.make (n+4) ' ';
+                            var;"\n";
+                            String.make (n+2) ' ';"}\n";
+                            String.make (n) ' ';"}\n";l]
         |CFUN(_,f,args,(_,code)) ->
           String.concat "" [String.make n ' ';
                             "CFUN{\n";String.make (n+2) ' ';f;
-                            "{\n";string_of_dec args (n+4);String.make (n+2) ' ';"}\n";l]
+                            "{\n";string_of_dec args (n+4);String.make (n+2) ' ';"}\n";
+                            string_of_code code (n+2);String.make n ' ';"}\n";l]
       end
+  and string_of_code c n = match c with
+    |CBLOCK(decs,code) ->
+      String.concat "" [String.make n ' ';
+                        "CBLOCK{\n";string_of_dec decs (n+2);
+                        string_of_codelist code (n+2);String.make n ' ';"}\n"]
+    |CEXPR((_,e)) ->
+      String.concat "" [String.make n ' ';
+                        "CEXPR{\n";string_of_expr e (n+2);
+                        String.make n ' ';"}\n"]
+    |CIF((_,e),(_,c1),(_,c2)) ->
+      String.concat "" [String.make n ' ';
+                        "CIF{\n";string_of_expr e (n+2);
+                        string_of_code c1 (n+2);string_of_code c2 (n+2);String.make n ' ';"}\n"]
+    |CWHILE((_,e),(_,c)) ->
+      String.concat "" [String.make n ' ';
+                        "CWHILE{\n";string_of_expr e (n+2);string_of_code c (n+2);
+                        String.make n ' ';"}\n"]
+    |CRETURN(Some(_,e)) ->
+      String.concat "" [String.make n ' ';
+                        "CRETURN{\n";string_of_expr e (n+2);
+                        String.make n ' ';"}\n"]
+    |CRETURN(None) ->
+      String.concat "" [String.make n ' ';
+                        "CRETURN{\n";String.make n ' ';"}\n"]
+  and string_of_expr e n = match e with
+    |VAR(s) ->
+      String.concat "" [String.make n ' ';
+                        "VAR{\n";String.make (n+2) ' ';s;"\n";String.make n ' ';"}\n"]
+    |CST(p) ->
+      String.concat "" [String.make n ' ';"CST{\n";String.make (n+2) ' ';string_of_int p;"\n";String.make n ' ';"}\n"]
+    |STRING(s) ->
+      String.concat "" [String.make n ' ';"STRING{\n";String.make (n+2) ' ';s;"\n";String.make n ' ';"}\n"]
+    |SET_VAR(s,(_,e1)) ->
+      String.concat "" [String.make n ' ';"SET_VAR{\n";String.make (n+2) ' ';s;"\n";string_of_expr e1 (n+2);String.make n ' ';"}\n"]
+    |SET_ARRAY(s,(_,e1),(_,e2)) ->
+      String.concat "" [String.make n ' ';
+                        "SET_ARRAY{\n";String.make (n+2) ' ';s;"\n";
+                        string_of_expr e1 (n+2);
+                        string_of_expr e2 (n+2);"\n";
+                        String.make n ' ';"}\n"]
+    |CALL(s,l) ->
+      let list=string_of_exprlist l (n+2) in
+      String.concat "" [String.make n ' ';
+                        "CALL{\n";String.make (n+2) ' ';s;"\n";list;String.make n ' ';"}\n"]
+    |OP1(mop,(_,e1)) ->
+      String.concat "" [String.make n ' ';
+                        "OP1{\n";String.make (n+2) ' ';string_of_monop mop;
+                        "{\n";string_of_expr e1 (n+4);String.make (n+2) ' ';"}\n";
+                        String.make n ' ';"}\n"]
+    |OP2(bop,(_,e1),(_,e2)) ->
+      String.concat "" [String.make n ' ';
+                        "OP2{\n";String.make (n+2) ' ';string_of_binop bop;
+                        "{\n";string_of_expr e1 (n+4);string_of_expr e2 (n+4);String.make (n+2) ' ';"}\n";
+                        String.make n ' ';"}\n"]
+    |CMP(cop,(_,e1),(_,e2)) ->
+      String.concat "" [String.make n ' ';
+                        "CMP{\n";String.make (n+2) ' ';string_of_cmpop cop;"{\n"; string_of_expr e1 (n+4);string_of_expr e2 (n+4);String.make (n+2) ' ';"}\n";String.make n ' ';"}\n"]
+    |EIF((_,e1),(_,e2),(_,e3)) ->
+      String.concat "" [String.make n ' ';
+                        "EIF{\n";string_of_expr e1 (n+2);string_of_expr e2 (n+2);string_of_expr e3 (n+2);String.make n ' ';"}\n"]
+    |ESEQ(l) -> let string=string_of_exprlist l (n+2) in
+                String.concat "" [String.make n ' ';
+                                  "ESEQ{\n";string;"\n";String.make n ' ';"}\n"]
+  and string_of_exprlist l n = match l with
+    |[] -> ""
+    |(_,exp)::r -> String.concat "" [string_of_expr exp n;string_of_exprlist r n]
+  and string_of_codelist l n = match l with
+    |[] -> ""
+    |(_,code)::r ->
+      String.concat "" [string_of_code code n;string_of_codelist r n]
+  and string_of_monop mop = match mop with
+    |M_MINUS    -> "M_MINUS"
+    |M_NOT      -> "M_NOT"
+    |M_POST_INC -> "M_POST_INC"
+    |M_POST_DEC -> "M_POST_DEC"
+    |M_PRE_INC  -> "M_PRE_INC"
+    |M_PRE_DEC  -> "M_PRE_DEC"
+  and string_of_binop bop = match bop with
+    |S_MUL   -> "S_MUL"
+    |S_DIV   -> "S_DIV"
+    |S_MOD   -> "S_MOD"
+    |S_ADD   -> "S_ADD"
+    |S_SUB   -> "S_SUB"
+    |S_INDEX -> "S_INDEX"
+  and string_of_cmpop cop = match cop with
+    |C_LT -> "C_LT"
+    |C_LE -> "C_LE"
+    |C_EQ -> "C_EQ"
   in
-  Format.fprintf out "%s" (string_of_dec dec_list 0)
+  Format.fprintf out "%s" (string_of_dec dec_list 0);;
 
 
-let print_locator out nom fl fc ll lc =
-  Format.fprintf out "%s %d %d %d %d" nom fl fc ll lc
-  
-let print_ast out dec_list =
+
+
+
+
+
+let print_ast_close_to_C out dec_list =
   let rec string_of_dec l n = match l with
     |[] -> ""
     |h::suite ->

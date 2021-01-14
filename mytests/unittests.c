@@ -500,10 +500,6 @@ int main(){
     printf("    [ 32bits compatibility passed ]\n");
   }
   
-  printf("** Testing if compiler optimizes empty elses, you should \"| grep emtpy\" to see if the optimization was made **\n");
-  if(1){
-  }
-
   printf("[** Congratulations ! All unit tests have succeeded **]\n");
 
   return 0;

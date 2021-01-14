@@ -1,32 +1,7 @@
 # 1 "clex.mll"
  
 
-(*
- *	Copyright (c) 2005 by Laboratoire Spécification et Vérification (LSV),
- *	UMR 8643 CNRS & ENS Cachan.
- *	Written by Jean Goubault-Larrecq.  Derived from the csur project.
- *
- *	Permission is granted to anyone to use this software for any
- *	purpose on any computer system, and to redistribute it freely,
- *	subject to the following restrictions:
- *
- *	1. Neither the author nor its employer is responsible for the consequences of use of
- *		this software, no matter how awful, even if they arise
- *		from defects in it.
- *
- *	2. The origin of this software must not be misrepresented, either
- *		by explicit claim or by omission.
- *
- *	3. Altered versions must be plainly marked as such, and must not
- *		be misrepresented as being the original software.
- *
- *	4. This software is restricted to non-commercial use only.  Commercial
- *		use is subject to a specific license, obtainable from LSV.
- * 
-*)
-
-(* Analyse lexicale d'un sous-ensemble (tres) reduit de C.
- *)
+(* Analyse lexicale d'un sous-ensemble (très) réduit de C. *)
 
 open CAST
 open Error
@@ -34,57 +9,53 @@ open Cparse
 
 let string_buf = Buffer.create 256
 
-let string_iter f s = (* = String.iter; pas present en OCaml 2.04. *)
-	let n = String.length s
-	in for i=0 to n-1 do f (s.[i]) done
-
 let count yytext =
-	(oldcline := !cline; oldccol := !ccol;
-	string_iter (fun c -> match c with
-			'\n' -> (cline := !cline+1; ccol := 0)
-                      (* | '\t' -> (ccol := !ccol + 8 - (!ccol mod 8)) *)
-                      | _ -> ccol := !ccol+1) yytext)
+  (oldcline := !cline; oldccol := !ccol;
+   String.iter (fun c -> match c with
+			   '\n' -> (cline := !cline+1; ccol := 0)
+                         (* | '\t' -> (ccol := !ccol + 8 - (!ccol mod 8)) *)
+                         | _ -> ccol := !ccol+1) yytext)
 
 let parse_hex yytext tend =
-	let n = ref 0
-	in let len = String.length yytext-tend
-	in ((for i=2 to len-1 do
-	     let c = yytext.[i] in
-	     match c with
-	         '0'..'9' -> n := 16 * !n + (int_of_char c - int_of_char '0')
-               | 'a'..'f' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'a')
-               | 'A'..'F' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'A')
-	       | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
-			("invalid hexadecimal number " ^ yytext)
-	     done);
-	    !n)
-
+  let n = ref 0
+  in let len = String.length yytext-tend
+     in ((for i=2 to len-1 do
+	    let c = yytext.[i] in
+	    match c with
+	      '0'..'9' -> n := 16 * !n + (int_of_char c - int_of_char '0')
+            | 'a'..'f' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'a')
+            | 'A'..'F' -> n := 16 * !n + (int_of_char c + 10 - int_of_char 'A')
+	    | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
+		     ("invalid hexadecimal number " ^ yytext)
+	  done);
+	 !n)
+      
 let parse_oct yytext start tend =
-	let n = ref 0
-	in let len = String.length yytext-tend
-	in ((for i=start to len-1 do
-	     let c = yytext.[i] in
-	     match c with
-	         '0'..'7' -> n := 8 * !n + (int_of_char c - int_of_char '0')
-	       | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
-			("invalid octal number " ^ yytext)
-	     done);
-	    !n)
-
+  let n = ref 0
+  in let len = String.length yytext-tend
+     in ((for i=start to len-1 do
+	    let c = yytext.[i] in
+	    match c with
+	      '0'..'7' -> n := 8 * !n + (int_of_char c - int_of_char '0')
+	    | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
+		     ("invalid octal number " ^ yytext)
+	  done);
+	 !n)
+      
 let parse_dec yytext tend =
-	let n = ref 0
-	in let len = String.length yytext-tend
-	in ((for i=0 to len-1 do
-	     let c = yytext.[i] in
-	     match c with
-	         '0'..'9' -> n := 10 * !n + (int_of_char c - int_of_char '0')
-	       | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
-			("invalid number " ^ yytext)
-	    done);
-	    !n)
+  let n = ref 0
+  in let len = String.length yytext-tend
+     in ((for i=0 to len-1 do
+	    let c = yytext.[i] in
+	    match c with
+	      '0'..'9' -> n := 10 * !n + (int_of_char c - int_of_char '0')
+	    | _ -> fatal (Some (!cfile, !cline, !ccol-len, !cline, !ccol))
+		     ("invalid number " ^ yytext)
+	  done);
+	 !n)
 
 
-# 88 "clex.ml"
+# 59 "clex.ml"
 let __ocaml_lex_tables = {
   Lexing.lex_base =
    "\000\000\144\255\145\255\118\000\147\255\148\255\156\255\162\255\
@@ -3053,599 +3024,599 @@ let rec ctoken lexbuf =
 and __ocaml_lex_ctoken_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 95 "clex.mll"
+# 66 "clex.mll"
          ( count (Lexing.lexeme lexbuf); comment lexbuf; ctoken lexbuf )
-# 3059 "clex.ml"
+# 3030 "clex.ml"
 
   | 1 ->
-# 96 "clex.mll"
+# 67 "clex.mll"
          ( count (Lexing.lexeme lexbuf); inlcomment lexbuf; ctoken lexbuf )
-# 3064 "clex.ml"
+# 3035 "clex.ml"
 
   | 2 ->
-# 97 "clex.mll"
+# 68 "clex.mll"
            ( count (Lexing.lexeme lexbuf); AUTO )
-# 3069 "clex.ml"
+# 3040 "clex.ml"
 
   | 3 ->
-# 98 "clex.mll"
+# 69 "clex.mll"
             ( count (Lexing.lexeme lexbuf); BREAK )
-# 3074 "clex.ml"
+# 3045 "clex.ml"
 
   | 4 ->
-# 99 "clex.mll"
+# 70 "clex.mll"
            ( count (Lexing.lexeme lexbuf); CASE )
-# 3079 "clex.ml"
+# 3050 "clex.ml"
 
   | 5 ->
-# 100 "clex.mll"
+# 71 "clex.mll"
            ( count (Lexing.lexeme lexbuf); CHAR )
-# 3084 "clex.ml"
+# 3055 "clex.ml"
 
   | 6 ->
-# 101 "clex.mll"
+# 72 "clex.mll"
              ( count (Lexing.lexeme lexbuf); CONST )
-# 3089 "clex.ml"
+# 3060 "clex.ml"
 
   | 7 ->
-# 102 "clex.mll"
+# 73 "clex.mll"
                ( count (Lexing.lexeme lexbuf); CONTINUE )
-# 3094 "clex.ml"
+# 3065 "clex.ml"
 
   | 8 ->
-# 103 "clex.mll"
+# 74 "clex.mll"
               ( count (Lexing.lexeme lexbuf); DEFAULT )
-# 3099 "clex.ml"
+# 3070 "clex.ml"
 
   | 9 ->
-# 104 "clex.mll"
+# 75 "clex.mll"
          ( count (Lexing.lexeme lexbuf); DO )
-# 3104 "clex.ml"
+# 3075 "clex.ml"
 
   | 10 ->
-# 105 "clex.mll"
+# 76 "clex.mll"
              ( count (Lexing.lexeme lexbuf); DOUBLE )
-# 3109 "clex.ml"
+# 3080 "clex.ml"
 
   | 11 ->
-# 106 "clex.mll"
+# 77 "clex.mll"
            ( count (Lexing.lexeme lexbuf); ELSE )
-# 3114 "clex.ml"
+# 3085 "clex.ml"
 
   | 12 ->
-# 107 "clex.mll"
+# 78 "clex.mll"
            ( count (Lexing.lexeme lexbuf); ENUM )
-# 3119 "clex.ml"
+# 3090 "clex.ml"
 
   | 13 ->
-# 108 "clex.mll"
+# 79 "clex.mll"
              ( count (Lexing.lexeme lexbuf); EXTERN )
-# 3124 "clex.ml"
+# 3095 "clex.ml"
 
   | 14 ->
-# 109 "clex.mll"
+# 80 "clex.mll"
             ( count (Lexing.lexeme lexbuf); FLOATING )
-# 3129 "clex.ml"
+# 3100 "clex.ml"
 
   | 15 ->
-# 110 "clex.mll"
+# 81 "clex.mll"
           ( count (Lexing.lexeme lexbuf); FOR )
-# 3134 "clex.ml"
+# 3105 "clex.ml"
 
   | 16 ->
-# 111 "clex.mll"
+# 82 "clex.mll"
            ( count (Lexing.lexeme lexbuf); GOTO )
-# 3139 "clex.ml"
+# 3110 "clex.ml"
 
   | 17 ->
-# 112 "clex.mll"
+# 83 "clex.mll"
          ( count (Lexing.lexeme lexbuf); IF )
-# 3144 "clex.ml"
+# 3115 "clex.ml"
 
   | 18 ->
-# 113 "clex.mll"
+# 84 "clex.mll"
           ( count (Lexing.lexeme lexbuf); INTEGER )
-# 3149 "clex.ml"
+# 3120 "clex.ml"
 
   | 19 ->
-# 114 "clex.mll"
+# 85 "clex.mll"
            ( count (Lexing.lexeme lexbuf); LONG )
-# 3154 "clex.ml"
+# 3125 "clex.ml"
 
   | 20 ->
-# 115 "clex.mll"
+# 86 "clex.mll"
                ( count (Lexing.lexeme lexbuf); REGISTER )
-# 3159 "clex.ml"
+# 3130 "clex.ml"
 
   | 21 ->
-# 116 "clex.mll"
+# 87 "clex.mll"
              ( count (Lexing.lexeme lexbuf); RETURN )
-# 3164 "clex.ml"
+# 3135 "clex.ml"
 
   | 22 ->
-# 117 "clex.mll"
+# 88 "clex.mll"
             ( count (Lexing.lexeme lexbuf); SHORT )
-# 3169 "clex.ml"
+# 3140 "clex.ml"
 
   | 23 ->
-# 118 "clex.mll"
+# 89 "clex.mll"
              ( count (Lexing.lexeme lexbuf); SIGNED )
-# 3174 "clex.ml"
+# 3145 "clex.ml"
 
   | 24 ->
-# 119 "clex.mll"
+# 90 "clex.mll"
              ( count (Lexing.lexeme lexbuf); SIZEOF )
-# 3179 "clex.ml"
+# 3150 "clex.ml"
 
   | 25 ->
-# 120 "clex.mll"
+# 91 "clex.mll"
              ( count (Lexing.lexeme lexbuf); STATIC )
-# 3184 "clex.ml"
+# 3155 "clex.ml"
 
   | 26 ->
-# 121 "clex.mll"
+# 92 "clex.mll"
              ( count (Lexing.lexeme lexbuf); STRUCT )
-# 3189 "clex.ml"
+# 3160 "clex.ml"
 
   | 27 ->
-# 122 "clex.mll"
+# 93 "clex.mll"
              ( count (Lexing.lexeme lexbuf); SWITCH )
-# 3194 "clex.ml"
+# 3165 "clex.ml"
 
   | 28 ->
-# 123 "clex.mll"
+# 94 "clex.mll"
               ( count (Lexing.lexeme lexbuf); TYPEDEF )
-# 3199 "clex.ml"
+# 3170 "clex.ml"
 
   | 29 ->
-# 124 "clex.mll"
+# 95 "clex.mll"
             ( count (Lexing.lexeme lexbuf); UNION )
-# 3204 "clex.ml"
+# 3175 "clex.ml"
 
   | 30 ->
-# 125 "clex.mll"
+# 96 "clex.mll"
                ( count (Lexing.lexeme lexbuf); UNSIGNED )
-# 3209 "clex.ml"
+# 3180 "clex.ml"
 
   | 31 ->
-# 126 "clex.mll"
+# 97 "clex.mll"
            ( count (Lexing.lexeme lexbuf); VOID )
-# 3214 "clex.ml"
+# 3185 "clex.ml"
 
   | 32 ->
-# 127 "clex.mll"
+# 98 "clex.mll"
                ( count (Lexing.lexeme lexbuf); VOLATILE )
-# 3219 "clex.ml"
+# 3190 "clex.ml"
 
   | 33 ->
-# 128 "clex.mll"
+# 99 "clex.mll"
             ( count (Lexing.lexeme lexbuf); WHILE )
-# 3224 "clex.ml"
+# 3195 "clex.ml"
 
   | 34 ->
-# 129 "clex.mll"
+# 100 "clex.mll"
                              ( count (Lexing.lexeme lexbuf);
-		let yytext = Lexing.lexeme lexbuf in
-		    IDENTIFIER yytext
-                    )
-# 3232 "clex.ml"
+		               let yytext = Lexing.lexeme lexbuf in
+		               IDENTIFIER yytext
+                             )
+# 3203 "clex.ml"
 
   | 35 ->
-# 133 "clex.mll"
+# 104 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 0) )
-# 3238 "clex.ml"
+# 3209 "clex.ml"
 
   | 36 ->
-# 135 "clex.mll"
+# 106 "clex.mll"
                                  ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 1) )
-# 3244 "clex.ml"
+# 3215 "clex.ml"
 
   | 37 ->
-# 137 "clex.mll"
+# 108 "clex.mll"
                                  ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 1) )
-# 3250 "clex.ml"
+# 3221 "clex.ml"
 
   | 38 ->
-# 139 "clex.mll"
+# 110 "clex.mll"
                                            ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 2) )
-# 3256 "clex.ml"
+# 3227 "clex.ml"
 
   | 39 ->
-# 142 "clex.mll"
-                                                    ( count (Lexing.lexeme lexbuf);
+# 113 "clex.mll"
+                                                     ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_hex (Lexing.lexeme lexbuf) 3) )
-# 3262 "clex.ml"
+# 3233 "clex.ml"
 
   | 40 ->
-# 146 "clex.mll"
+# 117 "clex.mll"
                    ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_oct (Lexing.lexeme lexbuf) 1 0) )
-# 3268 "clex.ml"
+# 3239 "clex.ml"
 
   | 41 ->
-# 148 "clex.mll"
+# 119 "clex.mll"
                              ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_oct (Lexing.lexeme lexbuf) 1 1) )
-# 3274 "clex.ml"
+# 3245 "clex.ml"
 
   | 42 ->
-# 150 "clex.mll"
+# 121 "clex.mll"
                              ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_oct (Lexing.lexeme lexbuf) 1 1) )
-# 3280 "clex.ml"
+# 3251 "clex.ml"
 
   | 43 ->
-# 153 "clex.mll"
+# 124 "clex.mll"
                                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_oct (Lexing.lexeme lexbuf) 1 2) )
-# 3286 "clex.ml"
+# 3257 "clex.ml"
 
   | 44 ->
-# 156 "clex.mll"
+# 127 "clex.mll"
                                                  ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_oct (Lexing.lexeme lexbuf) 1 3) )
-# 3292 "clex.ml"
+# 3263 "clex.ml"
 
   | 45 ->
-# 159 "clex.mll"
+# 130 "clex.mll"
            ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_dec (Lexing.lexeme lexbuf) 0) )
-# 3298 "clex.ml"
+# 3269 "clex.ml"
 
   | 46 ->
-# 161 "clex.mll"
+# 132 "clex.mll"
                      ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_dec (Lexing.lexeme lexbuf) 1) )
-# 3304 "clex.ml"
+# 3275 "clex.ml"
 
   | 47 ->
-# 163 "clex.mll"
+# 134 "clex.mll"
                      ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_dec (Lexing.lexeme lexbuf) 1) )
-# 3310 "clex.ml"
+# 3281 "clex.ml"
 
   | 48 ->
-# 166 "clex.mll"
+# 137 "clex.mll"
                                  ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_dec (Lexing.lexeme lexbuf) 1) )
-# 3316 "clex.ml"
+# 3287 "clex.ml"
 
   | 49 ->
-# 169 "clex.mll"
+# 140 "clex.mll"
                                ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_dec (Lexing.lexeme lexbuf) 2) )
-# 3322 "clex.ml"
+# 3293 "clex.ml"
 
   | 50 ->
-# 172 "clex.mll"
+# 143 "clex.mll"
                                          ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_dec (Lexing.lexeme lexbuf) 3) )
-# 3328 "clex.ml"
+# 3299 "clex.ml"
 
   | 51 ->
-# 175 "clex.mll"
+# 146 "clex.mll"
                             ( count (Lexing.lexeme lexbuf);
 			CONSTANT (int_of_char (Lexing.lexeme_char lexbuf 1)) )
-# 3334 "clex.ml"
+# 3305 "clex.ml"
 
   | 52 ->
-# 177 "clex.mll"
+# 148 "clex.mll"
                                                    ( count (Lexing.lexeme lexbuf);
 			CONSTANT (parse_oct (Lexing.lexeme lexbuf) 2 1) )
-# 3340 "clex.ml"
+# 3311 "clex.ml"
 
   | 53 ->
-# 179 "clex.mll"
+# 150 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT 7 (* bell, ^G *) )
-# 3346 "clex.ml"
+# 3317 "clex.ml"
 
   | 54 ->
-# 181 "clex.mll"
+# 152 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT (int_of_char '\b') )
-# 3352 "clex.ml"
+# 3323 "clex.ml"
 
   | 55 ->
-# 183 "clex.mll"
+# 154 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT 12 (* form feed, ^L *) )
-# 3358 "clex.ml"
+# 3329 "clex.ml"
 
   | 56 ->
-# 185 "clex.mll"
+# 156 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT (int_of_char '\n') )
-# 3364 "clex.ml"
+# 3335 "clex.ml"
 
   | 57 ->
-# 187 "clex.mll"
+# 158 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT (int_of_char '\r') )
-# 3370 "clex.ml"
+# 3341 "clex.ml"
 
   | 58 ->
-# 189 "clex.mll"
+# 160 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT (int_of_char '\t')
 				 (* bell, ^G *) )
-# 3377 "clex.ml"
+# 3348 "clex.ml"
 
   | 59 ->
-# 192 "clex.mll"
+# 163 "clex.mll"
                        ( count (Lexing.lexeme lexbuf);
 			CONSTANT 11 (* vertical tab, ^K *) )
-# 3383 "clex.ml"
+# 3354 "clex.ml"
 
   | 60 ->
-# 194 "clex.mll"
+# 165 "clex.mll"
                      ( count (Lexing.lexeme lexbuf);
 			CONSTANT (int_of_char (Lexing.lexeme_char lexbuf 2)) )
-# 3389 "clex.ml"
+# 3360 "clex.ml"
 
   | 61 ->
-# 197 "clex.mll"
+# 168 "clex.mll"
       ( 
         count (Lexing.lexeme lexbuf); Buffer.reset string_buf;
         string lexbuf;
 	STRING_LITERAL (Buffer.contents string_buf)
       )
-# 3398 "clex.ml"
+# 3369 "clex.ml"
 
   | 62 ->
-# 202 "clex.mll"
+# 173 "clex.mll"
           ( count (Lexing.lexeme lexbuf); ELLIPSIS )
-# 3403 "clex.ml"
+# 3374 "clex.ml"
 
   | 63 ->
-# 203 "clex.mll"
+# 174 "clex.mll"
           ( count (Lexing.lexeme lexbuf); RIGHT_ASSIGN )
-# 3408 "clex.ml"
+# 3379 "clex.ml"
 
   | 64 ->
-# 204 "clex.mll"
+# 175 "clex.mll"
           ( count (Lexing.lexeme lexbuf); LEFT_ASSIGN )
-# 3413 "clex.ml"
+# 3384 "clex.ml"
 
   | 65 ->
-# 205 "clex.mll"
+# 176 "clex.mll"
           ( count (Lexing.lexeme lexbuf); ADD_ASSIGN )
-# 3418 "clex.ml"
+# 3389 "clex.ml"
 
   | 66 ->
-# 206 "clex.mll"
+# 177 "clex.mll"
           ( count (Lexing.lexeme lexbuf); SUB_ASSIGN )
-# 3423 "clex.ml"
+# 3394 "clex.ml"
 
   | 67 ->
-# 207 "clex.mll"
+# 178 "clex.mll"
           ( count (Lexing.lexeme lexbuf); MUL_ASSIGN )
-# 3428 "clex.ml"
+# 3399 "clex.ml"
 
   | 68 ->
-# 208 "clex.mll"
+# 179 "clex.mll"
           ( count (Lexing.lexeme lexbuf); DIV_ASSIGN )
-# 3433 "clex.ml"
+# 3404 "clex.ml"
 
   | 69 ->
-# 209 "clex.mll"
+# 180 "clex.mll"
           ( count (Lexing.lexeme lexbuf); MOD_ASSIGN )
-# 3438 "clex.ml"
+# 3409 "clex.ml"
 
   | 70 ->
-# 210 "clex.mll"
+# 181 "clex.mll"
           ( count (Lexing.lexeme lexbuf); AND_ASSIGN )
-# 3443 "clex.ml"
+# 3414 "clex.ml"
 
   | 71 ->
-# 211 "clex.mll"
+# 182 "clex.mll"
           ( count (Lexing.lexeme lexbuf); XOR_ASSIGN )
-# 3448 "clex.ml"
+# 3419 "clex.ml"
 
   | 72 ->
-# 212 "clex.mll"
+# 183 "clex.mll"
           ( count (Lexing.lexeme lexbuf); OR_ASSIGN )
-# 3453 "clex.ml"
+# 3424 "clex.ml"
 
   | 73 ->
-# 213 "clex.mll"
+# 184 "clex.mll"
           ( count (Lexing.lexeme lexbuf); RIGHT_OP )
-# 3458 "clex.ml"
+# 3429 "clex.ml"
 
   | 74 ->
-# 214 "clex.mll"
+# 185 "clex.mll"
           ( count (Lexing.lexeme lexbuf); LEFT_OP )
-# 3463 "clex.ml"
+# 3434 "clex.ml"
 
   | 75 ->
-# 215 "clex.mll"
+# 186 "clex.mll"
           ( count (Lexing.lexeme lexbuf); INC_OP )
-# 3468 "clex.ml"
+# 3439 "clex.ml"
 
   | 76 ->
-# 216 "clex.mll"
+# 187 "clex.mll"
           ( count (Lexing.lexeme lexbuf); DEC_OP )
-# 3473 "clex.ml"
+# 3444 "clex.ml"
 
   | 77 ->
-# 217 "clex.mll"
+# 188 "clex.mll"
           ( count (Lexing.lexeme lexbuf); PTR_OP )
-# 3478 "clex.ml"
+# 3449 "clex.ml"
 
   | 78 ->
-# 218 "clex.mll"
+# 189 "clex.mll"
           ( count (Lexing.lexeme lexbuf); AND_OP )
-# 3483 "clex.ml"
+# 3454 "clex.ml"
 
   | 79 ->
-# 219 "clex.mll"
+# 190 "clex.mll"
           ( count (Lexing.lexeme lexbuf); OR_OP )
-# 3488 "clex.ml"
+# 3459 "clex.ml"
 
   | 80 ->
-# 220 "clex.mll"
+# 191 "clex.mll"
           ( count (Lexing.lexeme lexbuf); LE_OP )
-# 3493 "clex.ml"
+# 3464 "clex.ml"
 
   | 81 ->
-# 221 "clex.mll"
+# 192 "clex.mll"
           ( count (Lexing.lexeme lexbuf); GE_OP )
-# 3498 "clex.ml"
+# 3469 "clex.ml"
 
   | 82 ->
-# 222 "clex.mll"
+# 193 "clex.mll"
           ( count (Lexing.lexeme lexbuf); EQ_OP )
-# 3503 "clex.ml"
+# 3474 "clex.ml"
 
   | 83 ->
-# 223 "clex.mll"
+# 194 "clex.mll"
           ( count (Lexing.lexeme lexbuf); NE_OP )
-# 3508 "clex.ml"
+# 3479 "clex.ml"
 
   | 84 ->
-# 224 "clex.mll"
+# 195 "clex.mll"
           ( count (Lexing.lexeme lexbuf); SEMI_CHR )
-# 3513 "clex.ml"
+# 3484 "clex.ml"
 
   | 85 ->
-# 225 "clex.mll"
+# 196 "clex.mll"
                  ( count (Lexing.lexeme lexbuf); OPEN_BRACE_CHR )
-# 3518 "clex.ml"
+# 3489 "clex.ml"
 
   | 86 ->
-# 226 "clex.mll"
+# 197 "clex.mll"
                  ( count (Lexing.lexeme lexbuf); CLOSE_BRACE_CHR )
-# 3523 "clex.ml"
+# 3494 "clex.ml"
 
   | 87 ->
-# 227 "clex.mll"
+# 198 "clex.mll"
         ( count (Lexing.lexeme lexbuf); COMMA_CHR )
-# 3528 "clex.ml"
+# 3499 "clex.ml"
 
   | 88 ->
-# 228 "clex.mll"
+# 199 "clex.mll"
         ( count (Lexing.lexeme lexbuf); COLON_CHR )
-# 3533 "clex.ml"
+# 3504 "clex.ml"
 
   | 89 ->
-# 229 "clex.mll"
+# 200 "clex.mll"
         ( count (Lexing.lexeme lexbuf); EQ_CHR )
-# 3538 "clex.ml"
+# 3509 "clex.ml"
 
   | 90 ->
-# 230 "clex.mll"
+# 201 "clex.mll"
         ( count (Lexing.lexeme lexbuf); OPEN_PAREN_CHR )
-# 3543 "clex.ml"
+# 3514 "clex.ml"
 
   | 91 ->
-# 231 "clex.mll"
+# 202 "clex.mll"
         ( count (Lexing.lexeme lexbuf); CLOSE_PAREN_CHR )
-# 3548 "clex.ml"
+# 3519 "clex.ml"
 
   | 92 ->
-# 232 "clex.mll"
+# 203 "clex.mll"
                  ( count (Lexing.lexeme lexbuf); OPEN_BRACKET_CHR )
-# 3553 "clex.ml"
+# 3524 "clex.ml"
 
   | 93 ->
-# 233 "clex.mll"
+# 204 "clex.mll"
                  ( count (Lexing.lexeme lexbuf); CLOSE_BRACKET_CHR )
-# 3558 "clex.ml"
+# 3529 "clex.ml"
 
   | 94 ->
-# 234 "clex.mll"
+# 205 "clex.mll"
         ( count (Lexing.lexeme lexbuf); DOT_CHR )
-# 3563 "clex.ml"
+# 3534 "clex.ml"
 
   | 95 ->
-# 235 "clex.mll"
+# 206 "clex.mll"
         ( count (Lexing.lexeme lexbuf); AND_CHR )
-# 3568 "clex.ml"
+# 3539 "clex.ml"
 
   | 96 ->
-# 236 "clex.mll"
+# 207 "clex.mll"
         ( count (Lexing.lexeme lexbuf); OR_CHR )
-# 3573 "clex.ml"
+# 3544 "clex.ml"
 
   | 97 ->
-# 237 "clex.mll"
+# 208 "clex.mll"
         ( count (Lexing.lexeme lexbuf); XOR_CHR )
-# 3578 "clex.ml"
+# 3549 "clex.ml"
 
   | 98 ->
-# 238 "clex.mll"
+# 209 "clex.mll"
         ( count (Lexing.lexeme lexbuf); BANG_CHR )
-# 3583 "clex.ml"
+# 3554 "clex.ml"
 
   | 99 ->
-# 239 "clex.mll"
+# 210 "clex.mll"
         ( count (Lexing.lexeme lexbuf); TILDE_CHR )
-# 3588 "clex.ml"
+# 3559 "clex.ml"
 
   | 100 ->
-# 240 "clex.mll"
+# 211 "clex.mll"
         ( count (Lexing.lexeme lexbuf); ADD_CHR )
-# 3593 "clex.ml"
+# 3564 "clex.ml"
 
   | 101 ->
-# 241 "clex.mll"
+# 212 "clex.mll"
         ( count (Lexing.lexeme lexbuf); SUB_CHR )
-# 3598 "clex.ml"
+# 3569 "clex.ml"
 
   | 102 ->
-# 242 "clex.mll"
+# 213 "clex.mll"
         ( count (Lexing.lexeme lexbuf); STAR_CHR )
-# 3603 "clex.ml"
+# 3574 "clex.ml"
 
   | 103 ->
-# 243 "clex.mll"
+# 214 "clex.mll"
         ( count (Lexing.lexeme lexbuf); DIV_CHR )
-# 3608 "clex.ml"
+# 3579 "clex.ml"
 
   | 104 ->
-# 244 "clex.mll"
+# 215 "clex.mll"
         ( count (Lexing.lexeme lexbuf); MOD_CHR )
-# 3613 "clex.ml"
+# 3584 "clex.ml"
 
   | 105 ->
-# 245 "clex.mll"
+# 216 "clex.mll"
         ( count (Lexing.lexeme lexbuf); OPEN_ANGLE_CHR )
-# 3618 "clex.ml"
+# 3589 "clex.ml"
 
   | 106 ->
-# 246 "clex.mll"
+# 217 "clex.mll"
         ( count (Lexing.lexeme lexbuf); CLOSE_ANGLE_CHR )
-# 3623 "clex.ml"
+# 3594 "clex.ml"
 
   | 107 ->
-# 247 "clex.mll"
+# 218 "clex.mll"
         ( count (Lexing.lexeme lexbuf); QUES_CHR )
-# 3628 "clex.ml"
+# 3599 "clex.ml"
 
   | 108 ->
-# 248 "clex.mll"
+# 219 "clex.mll"
         ( count (Lexing.lexeme lexbuf); line lexbuf )
-# 3633 "clex.ml"
+# 3604 "clex.ml"
 
   | 109 ->
-# 249 "clex.mll"
+# 220 "clex.mll"
                                           ( count (Lexing.lexeme lexbuf); ctoken lexbuf )
-# 3638 "clex.ml"
+# 3609 "clex.ml"
 
   | 110 ->
-# 250 "clex.mll"
+# 221 "clex.mll"
       ( fatal (Some (!cfile, !cline, !ccol, !cline, !ccol+1))
 	 ("bad character '" ^ (Lexing.lexeme lexbuf) ^ "'") )
-# 3644 "clex.ml"
+# 3615 "clex.ml"
 
   | 111 ->
-# 252 "clex.mll"
+# 223 "clex.mll"
         ( EOF )
-# 3649 "clex.ml"
+# 3620 "clex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_ctoken_rec lexbuf __ocaml_lex_state
@@ -3655,19 +3626,19 @@ and comment lexbuf =
 and __ocaml_lex_comment_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 254 "clex.mll"
+# 225 "clex.mll"
          ( count (Lexing.lexeme lexbuf) )
-# 3661 "clex.ml"
+# 3632 "clex.ml"
 
   | 1 ->
-# 255 "clex.mll"
+# 226 "clex.mll"
              ( count (Lexing.lexeme lexbuf); comment lexbuf )
-# 3666 "clex.ml"
+# 3637 "clex.ml"
 
   | 2 ->
-# 256 "clex.mll"
+# 227 "clex.mll"
         ( fatal (Some (!cfile, !cline, !ccol, !cline, !ccol)) "end of file reached inside comment" )
-# 3671 "clex.ml"
+# 3642 "clex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_comment_rec lexbuf __ocaml_lex_state
@@ -3677,14 +3648,14 @@ and inlcomment lexbuf =
 and __ocaml_lex_inlcomment_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 258 "clex.mll"
+# 229 "clex.mll"
          ( count (Lexing.lexeme lexbuf) )
-# 3683 "clex.ml"
+# 3654 "clex.ml"
 
   | 1 ->
-# 259 "clex.mll"
+# 230 "clex.mll"
               ( count (Lexing.lexeme lexbuf); inlcomment lexbuf )
-# 3688 "clex.ml"
+# 3659 "clex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_inlcomment_rec lexbuf __ocaml_lex_state
@@ -3694,74 +3665,74 @@ and string lexbuf =
 and __ocaml_lex_string_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 261 "clex.mll"
+# 232 "clex.mll"
         ( () )
-# 3700 "clex.ml"
+# 3671 "clex.ml"
 
   | 1 ->
-# 262 "clex.mll"
+# 233 "clex.mll"
           ( string lexbuf )
-# 3705 "clex.ml"
+# 3676 "clex.ml"
 
   | 2 ->
-# 263 "clex.mll"
+# 234 "clex.mll"
                                          ( Buffer.add_char string_buf (Char.chr (parse_oct (Lexing.lexeme lexbuf) 1 0)); string lexbuf )
-# 3710 "clex.ml"
+# 3681 "clex.ml"
 
   | 3 ->
-# 264 "clex.mll"
+# 235 "clex.mll"
              ( Buffer.add_char string_buf '\007'; string lexbuf )
-# 3715 "clex.ml"
+# 3686 "clex.ml"
 
   | 4 ->
-# 265 "clex.mll"
+# 236 "clex.mll"
              ( Buffer.add_char string_buf '\b'; string lexbuf )
-# 3720 "clex.ml"
+# 3691 "clex.ml"
 
   | 5 ->
-# 266 "clex.mll"
+# 237 "clex.mll"
              ( Buffer.add_char string_buf '\014'; string lexbuf )
-# 3725 "clex.ml"
+# 3696 "clex.ml"
 
   | 6 ->
-# 267 "clex.mll"
+# 238 "clex.mll"
              ( Buffer.add_char string_buf '\n'; string lexbuf )
-# 3730 "clex.ml"
+# 3701 "clex.ml"
 
   | 7 ->
-# 268 "clex.mll"
+# 239 "clex.mll"
              ( Buffer.add_char string_buf '\r'; string lexbuf )
-# 3735 "clex.ml"
+# 3706 "clex.ml"
 
   | 8 ->
-# 269 "clex.mll"
+# 240 "clex.mll"
              ( Buffer.add_char string_buf '\t'; string lexbuf )
-# 3740 "clex.ml"
+# 3711 "clex.ml"
 
   | 9 ->
-# 270 "clex.mll"
+# 241 "clex.mll"
              ( Buffer.add_char string_buf '\013'; string lexbuf )
-# 3745 "clex.ml"
+# 3716 "clex.ml"
 
   | 10 ->
-# 271 "clex.mll"
+# 242 "clex.mll"
            ( Buffer.add_char string_buf (Lexing.lexeme_char lexbuf 1); string lexbuf )
-# 3750 "clex.ml"
+# 3721 "clex.ml"
 
   | 11 ->
-# 272 "clex.mll"
+# 243 "clex.mll"
                        ( Buffer.add_string string_buf (Lexing.lexeme lexbuf); string lexbuf )
-# 3755 "clex.ml"
+# 3726 "clex.ml"
 
   | 12 ->
-# 273 "clex.mll"
+# 244 "clex.mll"
       ( Buffer.add_char string_buf (Lexing.lexeme_char lexbuf 0); string lexbuf )
-# 3760 "clex.ml"
+# 3731 "clex.ml"
 
   | 13 ->
-# 274 "clex.mll"
+# 245 "clex.mll"
         ( fatal (Some (!cfile, !cline, !ccol, !cline, !ccol)) "end of file reached inside string literal" )
-# 3765 "clex.ml"
+# 3736 "clex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_string_rec lexbuf __ocaml_lex_state
@@ -3771,33 +3742,33 @@ and line lexbuf =
 and __ocaml_lex_line_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 276 "clex.mll"
+# 247 "clex.mll"
                ( cline := parse_dec (Lexing.lexeme lexbuf) 0 - 1; line2 lexbuf )
-# 3777 "clex.ml"
+# 3748 "clex.ml"
 
   | 1 ->
-# 277 "clex.mll"
+# 248 "clex.mll"
                 ( count (Lexing.lexeme lexbuf); line lexbuf )
-# 3782 "clex.ml"
+# 3753 "clex.ml"
 
   | 2 ->
-# 278 "clex.mll"
+# 249 "clex.mll"
          ( count (Lexing.lexeme lexbuf); ctoken lexbuf )
-# 3787 "clex.ml"
+# 3758 "clex.ml"
 
   | 3 ->
-# 279 "clex.mll"
+# 250 "clex.mll"
          ( count (Lexing.lexeme lexbuf); Buffer.reset string_buf;
-        string lexbuf;
-	cfile := Buffer.contents string_buf;
-	ctoken lexbuf
-      )
-# 3796 "clex.ml"
+           string lexbuf;
+	   cfile := Buffer.contents string_buf;
+	   ctoken lexbuf
+         )
+# 3767 "clex.ml"
 
   | 4 ->
-# 284 "clex.mll"
+# 255 "clex.mll"
         ( fatal (Some (!cfile, !cline, !ccol, !cline, !ccol)) "end of file reached inside # directive" )
-# 3801 "clex.ml"
+# 3772 "clex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_line_rec lexbuf __ocaml_lex_state
@@ -3807,28 +3778,28 @@ and line2 lexbuf =
 and __ocaml_lex_line2_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 286 "clex.mll"
+# 257 "clex.mll"
                 ( count (Lexing.lexeme lexbuf); line2 lexbuf )
-# 3813 "clex.ml"
+# 3784 "clex.ml"
 
   | 1 ->
-# 287 "clex.mll"
+# 258 "clex.mll"
          ( count (Lexing.lexeme lexbuf); ctoken lexbuf )
-# 3818 "clex.ml"
+# 3789 "clex.ml"
 
   | 2 ->
-# 288 "clex.mll"
+# 259 "clex.mll"
          ( count (Lexing.lexeme lexbuf); Buffer.reset string_buf;
-        string lexbuf;
-	cfile := Buffer.contents string_buf;
-	line3 lexbuf
-      )
-# 3827 "clex.ml"
+           string lexbuf;
+	   cfile := Buffer.contents string_buf;
+	   line3 lexbuf
+         )
+# 3798 "clex.ml"
 
   | 3 ->
-# 293 "clex.mll"
+# 264 "clex.mll"
         ( fatal (Some (!cfile, !cline, !ccol, !cline, !ccol)) "end of file reached inside # directive" )
-# 3832 "clex.ml"
+# 3803 "clex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_line2_rec lexbuf __ocaml_lex_state
@@ -3838,19 +3809,19 @@ and line3 lexbuf =
 and __ocaml_lex_line3_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 295 "clex.mll"
+# 266 "clex.mll"
          ( count (Lexing.lexeme lexbuf); ctoken lexbuf )
-# 3844 "clex.ml"
+# 3815 "clex.ml"
 
   | 1 ->
-# 296 "clex.mll"
+# 267 "clex.mll"
        ( count (Lexing.lexeme lexbuf); line3 lexbuf )
-# 3849 "clex.ml"
+# 3820 "clex.ml"
 
   | 2 ->
-# 297 "clex.mll"
+# 268 "clex.mll"
          ( fatal (Some (!cfile, !cline, !ccol, !cline, !ccol)) "end of file reached inside # directive" )
-# 3854 "clex.ml"
+# 3825 "clex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_line3_rec lexbuf __ocaml_lex_state
